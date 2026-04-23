@@ -1,124 +1,70 @@
 """
 Verifica la conexión a Google Search Console (GSC) API.
 
-Soporta dos métodos de autenticación:
-  1. Service Account (variable de entorno GSC_SERVICE_ACCOUNT_FILE o GSC_SERVICE_ACCOUNT_JSON)
-  2. OAuth2 (variable de entorno GSC_CREDENTIALS_FILE, por defecto credentials.json)
-
 Variables de entorno:
   GSC_SERVICE_ACCOUNT_FILE  - Ruta al archivo JSON de service account
   GSC_SERVICE_ACCOUNT_JSON  - Contenido JSON del service account (inline)
-  GSC_CREDENTIALS_FILE      - Ruta al archivo credentials.json de OAuth2
   GSC_SITE_URL              - URL del sitio a verificar (opcional)
 """
 
 import json
 import os
 import sys
+import warnings
 
+import requests
+import urllib3
 from dotenv import load_dotenv
+from google.oauth2 import service_account
+from google.auth.transport.requests import AuthorizedSession
 
 load_dotenv()
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 SCOPES = ["https://www.googleapis.com/auth/webmasters.readonly"]
+GSC_API = "https://www.googleapis.com/webmasters/v3"
 
 
-def build_service_with_service_account():
-    import google.auth
-    from google.oauth2 import service_account
-    from googleapiclient.discovery import build
-
-    sa_file = os.getenv("GSC_SERVICE_ACCOUNT_FILE")
+def build_credentials():
     sa_json = os.getenv("GSC_SERVICE_ACCOUNT_JSON")
+    sa_file = os.getenv("GSC_SERVICE_ACCOUNT_FILE")
 
     if sa_json:
         info = json.loads(sa_json)
-        credentials = service_account.Credentials.from_service_account_info(
-            info, scopes=SCOPES
-        )
-    elif sa_file:
-        credentials = service_account.Credentials.from_service_account_file(
-            sa_file, scopes=SCOPES
-        )
-    else:
-        return None
+        return service_account.Credentials.from_service_account_info(info, scopes=SCOPES)
+    if sa_file:
+        return service_account.Credentials.from_service_account_file(sa_file, scopes=SCOPES)
 
-    return build("searchconsole", "v1", credentials=credentials)
+    raise EnvironmentError(
+        "Define GSC_SERVICE_ACCOUNT_FILE o GSC_SERVICE_ACCOUNT_JSON en el .env"
+    )
 
 
-def build_service_with_oauth2():
-    import pickle
-
-    from google.auth.transport.requests import Request
-    from google_auth_oauthlib.flow import InstalledAppFlow
-    from googleapiclient.discovery import build
-
-    creds_file = os.getenv("GSC_CREDENTIALS_FILE", "credentials.json")
-    token_file = "token.pickle"
-    creds = None
-
-    if os.path.exists(token_file):
-        with open(token_file, "rb") as f:
-            creds = pickle.load(f)
-
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            if not os.path.exists(creds_file):
-                raise FileNotFoundError(
-                    f"No se encontró el archivo de credenciales: {creds_file}\n"
-                    "Configura GSC_SERVICE_ACCOUNT_FILE, GSC_SERVICE_ACCOUNT_JSON "
-                    f"o proporciona {creds_file}"
-                )
-            flow = InstalledAppFlow.from_client_secrets_file(creds_file, SCOPES)
-            creds = flow.run_local_server(port=0)
-        with open(token_file, "wb") as f:
-            pickle.dump(creds, f)
-
-    return build("searchconsole", "v1", credentials=creds)
+def get_session(credentials):
+    session = AuthorizedSession(credentials)
+    session.verify = False  # permite proxies con certificados autofirmados
+    return session
 
 
-def get_service():
-    service = build_service_with_service_account()
-    if service:
-        print("[AUTH] Usando Service Account")
-        return service
-    print("[AUTH] Usando OAuth2")
-    return build_service_with_oauth2()
+def list_sites(session):
+    url = f"{GSC_API}/sites"
+    resp = session.get(url)
+    resp.raise_for_status()
+    return resp.json().get("siteEntry", [])
 
 
-def check_connection(service):
-    print("\n[CHECK] Listando sitios verificados en GSC...")
-    result = service.sites().list().execute()
-    sites = result.get("siteEntry", [])
-
-    if not sites:
-        print("[WARN]  No se encontraron sitios verificados en esta cuenta.")
-        return []
-
-    print(f"[OK]    Se encontraron {len(sites)} sitio(s):")
-    for site in sites:
-        print(f"         - {site['siteUrl']}  (permiso: {site.get('permissionLevel', 'desconocido')})")
-    return sites
-
-
-def check_site_data(service, site_url):
-    """Realiza una consulta de prueba de datos de rendimiento para confirmar acceso de lectura."""
-    print(f"\n[CHECK] Consultando datos de rendimiento para: {site_url}")
+def query_search_analytics(session, site_url):
+    url = f"{GSC_API}/sites/{requests.utils.quote(site_url, safe='')}/searchAnalytics/query"
     body = {
         "startDate": "2025-01-01",
         "endDate": "2025-01-07",
         "dimensions": ["query"],
         "rowLimit": 3,
     }
-    response = service.searchanalytics().query(siteUrl=site_url, body=body).execute()
-    rows = response.get("rows", [])
-    if rows:
-        print(f"[OK]    Datos recibidos ({len(rows)} fila(s) de muestra).")
-    else:
-        print("[OK]    Conexión correcta pero sin datos en el rango de fechas de prueba.")
-    return rows
+    resp = session.post(url, json=body)
+    resp.raise_for_status()
+    return resp.json().get("rows", [])
 
 
 def main():
@@ -127,30 +73,59 @@ def main():
     print("=" * 55)
 
     try:
-        service = get_service()
+        credentials = build_credentials()
+        print("[AUTH]   Service Account cargado correctamente")
+        print(f"         Proyecto : {credentials.service_account_email.split('@')[1]}")
+        print(f"         Email SA : {credentials.service_account_email}")
     except Exception as e:
-        print(f"\n[ERROR] Autenticación fallida: {e}")
+        print(f"\n[ERROR] Credenciales inválidas: {e}")
         sys.exit(1)
 
     try:
-        sites = check_connection(service)
+        session = get_session(credentials)
     except Exception as e:
-        print(f"\n[ERROR] No se pudo listar los sitios: {e}")
+        print(f"\n[ERROR] No se pudo crear la sesión autenticada: {e}")
         sys.exit(1)
 
-    site_url = os.getenv("GSC_SITE_URL")
-    if not site_url and sites:
-        site_url = sites[0]["siteUrl"]
-        print(f"\n[INFO]  GSC_SITE_URL no definido; usando el primer sitio: {site_url}")
+    try:
+        print("\n[CHECK]  Listando sitios verificados en GSC...")
+        sites = list_sites(session)
+    except requests.HTTPError as e:
+        print(f"\n[ERROR] HTTP {e.response.status_code}: {e.response.text}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"\n[ERROR] No se pudo conectar con GSC: {e}")
+        sys.exit(1)
 
-    if site_url:
+    if not sites:
+        print("[WARN]   No hay sitios verificados para esta cuenta de servicio.")
+        print("         Asegúrate de haber añadido el email del SA como usuario en GSC.")
+    else:
+        print(f"[OK]     Se encontraron {len(sites)} sitio(s):")
+        for s in sites:
+            print(f"          - {s['siteUrl']}  (permiso: {s.get('permissionLevel', '?')})")
+
+    site_url = os.getenv("GSC_SITE_URL") or (sites[0]["siteUrl"] if sites else None)
+    if not site_url:
+        print("\n[INFO]   Sin sitios disponibles para consulta de datos.")
+    else:
+        if not os.getenv("GSC_SITE_URL"):
+            print(f"\n[INFO]   GSC_SITE_URL no definido; usando: {site_url}")
         try:
-            check_site_data(service, site_url)
+            print(f"[CHECK]  Consultando SearchAnalytics para {site_url}...")
+            rows = query_search_analytics(session, site_url)
+            if rows:
+                print(f"[OK]     Datos recibidos ({len(rows)} fila(s) de muestra).")
+            else:
+                print("[OK]     Conexión correcta (sin datos en el rango de fechas de prueba).")
+        except requests.HTTPError as e:
+            print(f"\n[ERROR] HTTP {e.response.status_code}: {e.response.text}")
+            sys.exit(1)
         except Exception as e:
-            print(f"\n[ERROR] No se pudo consultar datos del sitio: {e}")
+            print(f"\n[ERROR] Error al consultar datos: {e}")
             sys.exit(1)
 
-    print("\n[RESULT] Conexión a GSC verificada correctamente.")
+    print("\n[RESULT] Conexión a GSC verificada correctamente.\n")
 
 
 if __name__ == "__main__":
