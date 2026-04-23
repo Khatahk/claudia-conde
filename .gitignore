@@ -1,0 +1,8 @@
+.env
+*.json
+!.env.example
+token.pickle
+__pycache__/
+*.py[cod]
+.venv/
+venv/
