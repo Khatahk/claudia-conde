@@ -1,0 +1,176 @@
+<?xml version="1.0" ?>
+<gsc_informe site="passas.io" fecha="2026-07-16" service_account="seopassas@ethereal-mind-493609-g5.iam.gserviceaccount.com">
+  <conexion>
+    <estado>OK</estado>
+    <permiso>siteOwner</permiso>
+    <sitios_verificados>1</sitios_verificados>
+  </conexion>
+  <sitemaps total="1">
+    <sitemap url="https://passas.io/sitemap.xml" ultima_descarga="2026-07-15T22:00:13.298Z" es_indice="False">
+      <paginas_enviadas>0</paginas_enviadas>
+      <paginas_indexadas>0</paginas_indexadas>
+      <errores>0</errores>
+      <avisos>0</avisos>
+      <tasa_indexacion>N/A</tasa_indexacion>
+      <alerta>CRITICO: sitemap sin URLs enviadas</alerta>
+    </sitemap>
+  </sitemaps>
+  <rendimiento>
+    <periodo_90_dias desde="2026-04-17" hasta="2026-07-16">
+      <clics_totales>87</clics_totales>
+      <impresiones_totales>4548</impresiones_totales>
+      <ctr_medio>1.91%</ctr_medio>
+      <posicion_media>7.5</posicion_media>
+    </periodo_90_dias>
+    <periodo_30_dias desde="2026-06-16" hasta="2026-07-16">
+      <clics>29</clics>
+      <impresiones>2431</impresiones>
+      <ctr_medio>1.19%</ctr_medio>
+      <posicion_media>9.3</posicion_media>
+    </periodo_30_dias>
+    <tendencia_30_vs_30_anterior>
+      <variacion_clics actual="29" anterior="26">+11.5%</variacion_clics>
+      <variacion_impresiones actual="2431" anterior="1000">+143.1%</variacion_impresiones>
+    </tendencia_30_vs_30_anterior>
+    <top_paginas_30_dias total="25">
+      <pagina clics="9" impresiones="1007" ctr="0.9%" posicion="6.8">https://passas.io/blog/me-ha-llegado-un-burofax-guia-de-actuacion-legal-y-pasos-a-seguir-2026</pagina>
+      <pagina clics="5" impresiones="141" ctr="3.5%" posicion="5.2">https://passas.io/</pagina>
+      <pagina clics="3" impresiones="71" ctr="4.2%" posicion="5.3">https://passas.io/blog/cuanto-cuesta-abogado-startup-espana-precios-2026</pagina>
+      <pagina clics="3" impresiones="113" ctr="2.7%" posicion="4.8">https://passas.io/blog/estafa-o-incumplimiento-de-contrato-como-distinguirlo-en-2026</pagina>
+      <pagina clics="2" impresiones="262" ctr="0.8%" posicion="7.3">https://passas.io/blog/gastos-hipoteca-2026-guia-legal-para-reclamar-plazos-y-modelo</pagina>
+      <pagina clics="2" impresiones="80" ctr="2.5%" posicion="7.5">https://passas.io/team/david-sanchez-lorenzo</pagina>
+      <pagina clics="1" impresiones="39" ctr="2.6%" posicion="12.3">https://passas.io/blog/como-salir-de-asnef-en-2026-sin-abogados-guia-paso-a-paso-y-modelo-de-reclamacion-gratuito</pagina>
+      <pagina clics="1" impresiones="33" ctr="3.0%" posicion="9.7">https://passas.io/honorarios</pagina>
+      <pagina clics="1" impresiones="247" ctr="0.4%" posicion="10.5">https://passas.io/servicios/litigacion-juicio-administrativo</pagina>
+      <pagina clics="1" impresiones="18" ctr="5.6%" posicion="6.8">https://passas.io/servicios/techlaw-ai-act-alto-riesgo</pagina>
+      <pagina clics="1" impresiones="29" ctr="3.4%" posicion="6.6">https://passas.io/servicios/techlaw-founding-pack</pagina>
+      <pagina clics="0" impresiones="2" ctr="0.0%" posicion="26.5">https://passas.io/autoevaluacion-ai-act</pagina>
+      <pagina clics="0" impresiones="12" ctr="0.0%" posicion="29.7">https://passas.io/blog</pagina>
+      <pagina clics="0" impresiones="1" ctr="0.0%" posicion="3.0">https://passas.io/blog/ai-act-startups-espana-obligaciones-agosto-2026</pagina>
+      <pagina clics="0" impresiones="45" ctr="0.0%" posicion="5.2">https://passas.io/blog/chat-control-1-0-prorroga-enmiendas-cifrado-2026</pagina>
+      <pagina clics="0" impresiones="9" ctr="0.0%" posicion="5.3">https://passas.io/blog/como-reclamar-una-factura-de-hasta-2000-euros-sin-abogado-guia-2026</pagina>
+      <pagina clics="0" impresiones="13" ctr="0.0%" posicion="6.9">https://passas.io/blog/consultar-estado-juicio-andalucia-2026</pagina>
+      <pagina clics="0" impresiones="21" ctr="0.0%" posicion="5.1">https://passas.io/blog/digital-omnibus-ai-act-2026-que-cambia-que-no</pagina>
+      <pagina clics="0" impresiones="40" ctr="0.0%" posicion="6.2">https://passas.io/blog/el-masc-en-la-practica-que-tienes-que-hacer-antes-de-demandar-en-2026</pagina>
+      <pagina clics="0" impresiones="1" ctr="0.0%" posicion="5.0">https://passas.io/blog/exito-abogado-preventivo-etica?efe235d7_page=2</pagina>
+      <pagina clics="0" impresiones="9" ctr="0.0%" posicion="6.2">https://passas.io/blog/la-consulta-juridica-gratuita-y-sus-consecuencias-reales-en-la-abogacia</pagina>
+      <pagina clics="0" impresiones="21" ctr="0.0%" posicion="6.2">https://passas.io/blog/la-empresa-que-me-debe-dinero-es-insolvente-puedo-reclamar-al-administrador-personalmente-guia-2026</pagina>
+      <pagina clics="0" impresiones="3" ctr="0.0%" posicion="4.7">https://passas.io/blog/responsable-del-despliegue-ai-act-obligaciones-2026?efe235d7_page=3</pagina>
+      <pagina clics="0" impresiones="19" ctr="0.0%" posicion="7.5">https://passas.io/blog/te-reclaman-las-deudas-de-tu-empresa-guia-2026-para-el-administrador-social</pagina>
+      <pagina clics="0" impresiones="12" ctr="0.0%" posicion="8.9">https://passas.io/legal</pagina>
+    </top_paginas_30_dias>
+    <top_queries_30_dias total="25">
+      <query clics="3" impresiones="67" ctr="4.5%" posicion="6.3">passas</query>
+      <query clics="0" impresiones="3" ctr="0.0%" posicion="1.3">2da enmienda inurl:article</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="4.0">2da enmienda inurl:blog</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="1.0">2da enmienda inurl:discussion</query>
+      <query clics="0" impresiones="4" ctr="0.0%" posicion="30.2">abogado digital granada</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="12.0">abogado propiedad intelectual</query>
+      <query clics="0" impresiones="14" ctr="0.0%" posicion="55.7">asesoramiento legal ai act</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="9.0">banco de españa gastos hipoteca quién paga tasación notaría registro gestoría 2026</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="9.0">borrar asnef</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="21.0">buscando abogados</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="6.0">chat 1.0</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="6.0">chat contro 1.0</query>
+      <query clics="0" impresiones="9" ctr="0.0%" posicion="7.9">chat control 1.0</query>
+      <query clics="0" impresiones="3" ctr="0.0%" posicion="3.3">chat control cuando entra en vigor</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="11.0">como saber si ha llegado un burofax</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="11.0">como saber si me han enviado un burofax</query>
+      <query clics="0" impresiones="12" ctr="0.0%" posicion="9.0">como te llega un burofax</query>
+      <query clics="0" impresiones="5" ctr="0.0%" posicion="71.8">compliance en inteligencia artificial para empresas</query>
+      <query clics="0" impresiones="3" ctr="0.0%" posicion="50.3">compliance inteligencia artificial</query>
+      <query clics="0" impresiones="5" ctr="0.0%" posicion="21.4">compliance inteligencia artificial empresas precio</query>
+      <query clics="0" impresiones="7" ctr="0.0%" posicion="78.4">compliance inteligencia artificial españa</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="12.0">contencioso administrativo cuanto cuesta</query>
+      <query clics="0" impresiones="1" ctr="0.0%" posicion="3.0">convenio regulador</query>
+      <query clics="0" impresiones="3" ctr="0.0%" posicion="12.3">coste contencioso administrativo</query>
+      <query clics="0" impresiones="2" ctr="0.0%" posicion="25.0">coste recurso contencioso administrativo</query>
+    </top_queries_30_dias>
+    <oportunidades_pagina2 total="4">
+      <query impresiones="15" clics="0" posicion="13.0">litigio mercantil</query>
+      <query impresiones="11" clics="0" posicion="12.1">honorarios abogado contencioso administrativo</query>
+      <query impresiones="6" clics="0" posicion="11.2">honorarios abogado recurso contencioso administrativo</query>
+      <query impresiones="5" clics="0" posicion="11.0">precio abogado recurso contencioso administrativo</query>
+    </oportunidades_pagina2>
+    <desglose_dispositivo_30_dias>
+      <mobile clics="18" impresiones="1373" ctr="1.3%" posicion="7.2"/>
+      <desktop clics="11" impresiones="1045" ctr="1.1%" posicion="10.7"/>
+      <tablet clics="0" impresiones="13" ctr="0.0%" posicion="5.6"/>
+    </desglose_dispositivo_30_dias>
+    <top_paises_30_dias>
+      <pais codigo="esp" clics="27" impresiones="1947" posicion="9.2"/>
+      <pais codigo="arg" clics="2" impresiones="22" posicion="4.8"/>
+      <pais codigo="and" clics="0" impresiones="2" posicion="4.5"/>
+      <pais codigo="aus" clics="0" impresiones="1" posicion="1.0"/>
+      <pais codigo="aut" clics="0" impresiones="2" posicion="4.5"/>
+      <pais codigo="bel" clics="0" impresiones="2" posicion="8.5"/>
+      <pais codigo="blr" clics="0" impresiones="1" posicion="1.0"/>
+      <pais codigo="bol" clics="0" impresiones="1" posicion="15.0"/>
+      <pais codigo="bra" clics="0" impresiones="2" posicion="12.0"/>
+      <pais codigo="can" clics="0" impresiones="10" posicion="8.1"/>
+    </top_paises_30_dias>
+  </rendimiento>
+  <inspeccion_urls total="6">
+    <url estado="PASS" href="https://passas.io/">
+      <cobertura>Submitted and indexed</cobertura>
+      <robots_txt>ALLOWED</robots_txt>
+      <estado_indexacion>INDEXING_ALLOWED</estado_indexacion>
+      <ultimo_rastreo>2026-07-15T10:54:57Z</ultimo_rastreo>
+      <rastreado_como>MOBILE</rastreado_como>
+      <canonical_google>https://passas.io/</canonical_google>
+      <usabilidad_movil>VERDICT_UNSPECIFIED</usabilidad_movil>
+    </url>
+    <url estado="PASS" href="https://passas.io/blog/me-ha-llegado-un-burofax-guia-de-actuacion-legal-y-pasos-a-seguir-2026">
+      <cobertura>Submitted and indexed</cobertura>
+      <robots_txt>ALLOWED</robots_txt>
+      <estado_indexacion>INDEXING_ALLOWED</estado_indexacion>
+      <ultimo_rastreo>2026-07-15T08:52:19Z</ultimo_rastreo>
+      <rastreado_como>MOBILE</rastreado_como>
+      <canonical_google>https://passas.io/blog/me-ha-llegado-un-burofax-guia-de-actuacion-legal-y-pasos-a-seguir-2026</canonical_google>
+      <usabilidad_movil>VERDICT_UNSPECIFIED</usabilidad_movil>
+    </url>
+    <url estado="PASS" href="https://passas.io/blog/cuanto-cuesta-abogado-startup-espana-precios-2026">
+      <cobertura>Submitted and indexed</cobertura>
+      <robots_txt>ALLOWED</robots_txt>
+      <estado_indexacion>INDEXING_ALLOWED</estado_indexacion>
+      <ultimo_rastreo>2026-07-09T03:05:20Z</ultimo_rastreo>
+      <rastreado_como>MOBILE</rastreado_como>
+      <canonical_google>https://passas.io/blog/cuanto-cuesta-abogado-startup-espana-precios-2026</canonical_google>
+      <usabilidad_movil>VERDICT_UNSPECIFIED</usabilidad_movil>
+    </url>
+    <url estado="PASS" href="https://passas.io/blog/estafa-o-incumplimiento-de-contrato-como-distinguirlo-en-2026">
+      <cobertura>Submitted and indexed</cobertura>
+      <robots_txt>ALLOWED</robots_txt>
+      <estado_indexacion>INDEXING_ALLOWED</estado_indexacion>
+      <ultimo_rastreo>2026-07-13T06:46:30Z</ultimo_rastreo>
+      <rastreado_como>MOBILE</rastreado_como>
+      <canonical_google>https://passas.io/blog/estafa-o-incumplimiento-de-contrato-como-distinguirlo-en-2026</canonical_google>
+      <usabilidad_movil>VERDICT_UNSPECIFIED</usabilidad_movil>
+    </url>
+    <url estado="PASS" href="https://passas.io/blog/gastos-hipoteca-2026-guia-legal-para-reclamar-plazos-y-modelo">
+      <cobertura>Submitted and indexed</cobertura>
+      <robots_txt>ALLOWED</robots_txt>
+      <estado_indexacion>INDEXING_ALLOWED</estado_indexacion>
+      <ultimo_rastreo>2026-07-16T00:51:45Z</ultimo_rastreo>
+      <rastreado_como>MOBILE</rastreado_como>
+      <canonical_google>https://passas.io/blog/gastos-hipoteca-2026-guia-legal-para-reclamar-plazos-y-modelo</canonical_google>
+      <usabilidad_movil>VERDICT_UNSPECIFIED</usabilidad_movil>
+    </url>
+    <url estado="PASS" href="https://passas.io/team/david-sanchez-lorenzo">
+      <cobertura>Submitted and indexed</cobertura>
+      <robots_txt>ALLOWED</robots_txt>
+      <estado_indexacion>INDEXING_ALLOWED</estado_indexacion>
+      <ultimo_rastreo>2026-07-12T12:11:22Z</ultimo_rastreo>
+      <rastreado_como>MOBILE</rastreado_como>
+      <canonical_google>https://passas.io/team/david-sanchez-lorenzo</canonical_google>
+      <usabilidad_movil>VERDICT_UNSPECIFIED</usabilidad_movil>
+    </url>
+  </inspeccion_urls>
+  <diagnostico>
+    <problema severidad="CRITICO" codigo="sitemap_vacio">El sitemap.xml registra 0 URLs enviadas en GSC. Verificar Webflow Project Settings &gt; SEO &gt; Sitemap habilitado y que ninguna página tenga 'Exclude from sitemap' activado.</problema>
+    <problema severidad="ALTO" codigo="trafico_organico_muy_bajo">Solo 87 clics orgánicos en 90 días. El sitio tiene visibilidad mínima. Priorizar producción de contenido y link building.</problema>
+    <problema severidad="MEDIO" codigo="paginas_sin_clics_con_impresiones">2 página(s) con &gt;30 impresiones y 0 clics. Revisar y mejorar meta descriptions en Webflow CMS.</problema>
+    <problema severidad="OPORTUNIDAD" codigo="queries_pagina2">4 queries entre posición 11-20 con potencial de pasar a pág 1. Optimizar contenido y CTR para estas búsquedas.</problema>
+  </diagnostico>
+</gsc_informe>
+
