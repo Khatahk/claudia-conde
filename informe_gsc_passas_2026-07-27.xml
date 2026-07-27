@@ -6,13 +6,12 @@
     <sitios_verificados>1</sitios_verificados>
   </conexion>
   <sitemaps total="1">
-    <sitemap url="https://passas.io/sitemap.xml" ultima_descarga="2026-07-25T14:40:52.639Z" es_indice="False">
-      <paginas_enviadas>0</paginas_enviadas>
-      <paginas_indexadas>0</paginas_indexadas>
+    <sitemap url="https://passas.io/sitemap.xml" ultima_descarga="2026-07-25T14:40:52.639Z" ultimo_envio="2026-04-21T10:29:21.704Z" es_indice="False">
+      <urls_enviadas>41</urls_enviadas>
       <errores>0</errores>
       <avisos>0</avisos>
-      <tasa_indexacion>N/A</tasa_indexacion>
-      <alerta>CRITICO: sitemap sin URLs enviadas</alerta>
+      <pendiente>False</pendiente>
+      <estado>OK</estado>
     </sitemap>
   </sitemaps>
   <rendimiento>
@@ -155,18 +154,19 @@
       <canonical_google>https://passas.io/blog/estafa-o-incumplimiento-de-contrato-como-distinguirlo-en-2026</canonical_google>
       <usabilidad_movil>VERDICT_UNSPECIFIED</usabilidad_movil>
     </url>
-    <url estado="PASS" href="https://passas.io/blog/gastos-hipoteca-2026-guia-legal-para-reclamar-plazos-y-modelo">
-      <cobertura>Submitted and indexed</cobertura>
-      <robots_txt>ALLOWED</robots_txt>
-      <estado_indexacion>INDEXING_ALLOWED</estado_indexacion>
-      <ultimo_rastreo>2026-07-25T06:32:09Z</ultimo_rastreo>
-      <rastreado_como>MOBILE</rastreado_como>
-      <canonical_google>https://passas.io/blog/gastos-hipoteca-2026-guia-legal-para-reclamar-plazos-y-modelo</canonical_google>
+    <url estado="NEUTRAL" href="https://passas.io/blog/checklist-ai-act-cumplimiento-empresas">
+      <cobertura>Discovered - currently not indexed</cobertura>
+      <robots_txt>ROBOTS_TXT_STATE_UNSPECIFIED</robots_txt>
+      <estado_indexacion>INDEXING_STATE_UNSPECIFIED</estado_indexacion>
+      <ultimo_rastreo>sin_rastreo</ultimo_rastreo>
+      <rastreado_como>CRAWLING_USER_AGENT_UNSPECIFIED</rastreado_como>
+      <canonical_google>https://passas.io/blog/checklist-ai-act-cumplimiento-empresas</canonical_google>
       <usabilidad_movil>VERDICT_UNSPECIFIED</usabilidad_movil>
     </url>
   </inspeccion_urls>
   <diagnostico>
-    <problema severidad="CRITICO" codigo="sitemap_vacio">El sitemap.xml registra 0 URLs enviadas en GSC. Verificar Webflow Project Settings &gt; SEO &gt; Sitemap habilitado y que ninguna página tenga 'Exclude from sitemap' activado.</problema>
+    <problema severidad="MEDIO" codigo="cambios_sin_publicar">El sitio tiene modificaciones mas recientes que la ultima publicacion (2026-07-24T13:56:35.894Z). Publicar para que Google las vea.</problema>
+    <problema severidad="ALTO" codigo="contenido_no_rastreado">1 pagina(s) de contenido sin impresiones: /blog/checklist-ai-act-cumplimiento-empresas</problema>
     <problema severidad="ALTO" codigo="trafico_organico_muy_bajo">Solo 90 clics orgánicos en 90 días. El sitio tiene visibilidad mínima. Priorizar producción de contenido y link building.</problema>
     <problema severidad="ALTO" codigo="ctr_marca_bajo">Query de marca 'passas' en pos 3.3 con CTR 6.2%. Optimizar meta title y description de la homepage.</problema>
     <problema severidad="MEDIO" codigo="paginas_sin_clics_con_impresiones">2 página(s) con &gt;30 impresiones y 0 clics. Revisar y mejorar meta descriptions en Webflow CMS.</problema>
@@ -174,5 +174,31 @@
     <problema severidad="OPORTUNIDAD" codigo="queries_pagina2">3 queries entre posición 11-20 con potencial de pasar a pág 1. Optimizar contenido y CTR para estas búsquedas.</problema>
     <problema severidad="INFO" codigo="tendencia_positiva">Crecimiento del 100% en clics (últ. 30 vs 30 anteriores). Mantener ritmo de publicación de contenido.</problema>
   </diagnostico>
+  <cobertura_indexacion>
+    <urls_en_sitemap_segun_gsc>41</urls_en_sitemap_segun_gsc>
+    <urls_verificadas_en_webflow>41</urls_verificadas_en_webflow>
+    <urls_con_impresiones_90d>36</urls_con_impresiones_90d>
+    <porcentaje_cobertura>87.8%</porcentaje_cobertura>
+    <urls_sin_impresiones total="5" relevantes="1">
+      <url tipo="legal_sin_valor_seo">https://passas.io/politica-de-inteligencia-artificial</url>
+      <url tipo="legal_sin_valor_seo">https://passas.io/politica-de-cookies</url>
+      <url tipo="legal_sin_valor_seo">https://passas.io/terminos-y-condiciones</url>
+      <url tipo="legal_sin_valor_seo">https://passas.io/aviso-legal</url>
+      <url tipo="CONTENIDO">https://passas.io/blog/checklist-ai-act-cumplimiento-empresas</url>
+    </urls_sin_impresiones>
+    <urls_duplicadas_www>0</urls_duplicadas_www>
+  </cobertura_indexacion>
+  <verificacion_webflow site="PASSAS" site_id="693bff66fcd35a6e780380c2">
+    <urls_con_includeInSitemap_true>41</urls_con_includeInSitemap_true>
+    <coincide_con_gsc>True</coincide_con_gsc>
+    <paginas_excluidas_del_sitemap>changelog, licenses, footers, headers, top-notification-bars, style-guide</paginas_excluidas_del_sitemap>
+    <ultima_publicacion_dominios>2026-07-24T13:56:35.894Z</ultima_publicacion_dominios>
+    <ultima_modificacion_sitio>2026-07-27T12:41:11.338Z</ultima_modificacion_sitio>
+    <grupo nombre="estaticas">10</grupo>
+    <grupo nombre="blog">19</grupo>
+    <grupo nombre="servicios">10</grupo>
+    <grupo nombre="team">2</grupo>
+    <alerta>Hay cambios sin publicar posteriores al ultimo deploy</alerta>
+  </verificacion_webflow>
 </gsc_informe>
 

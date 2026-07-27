@@ -17,6 +17,8 @@ GSC_API  = "https://www.googleapis.com/webmasters/v3"
 SC_API   = "https://searchconsole.googleapis.com/v1"
 SITE     = "sc-domain:passas.io"
 SITE_ENC = requests.utils.quote(SITE, safe="")
+INVENTORY_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              "webflow_sitemap_inventory.json")
 TODAY    = date.today()
 D90      = (TODAY - timedelta(days=90)).isoformat()
 D60      = (TODAY - timedelta(days=60)).isoformat()
@@ -94,26 +96,27 @@ def main():
         print(pretty(root)); return
 
     # ── SITEMAPS ────────────────────────────────────────────────────────────
+    # NOTA: la API devuelve contents:[{type:"web", submitted:"N", indexed:"M"}].
+    # 'errors'/'warnings' son campos de primer nivel, no entradas de contents.
+    # El campo 'indexed' está deprecado por Google y devuelve siempre 0: NO usarlo
+    # como señal de indexación. La cobertura real se mide con urlInspection.
     sm_data = gsc_get(session, f"sites/{SITE_ENC}/sitemaps").get("sitemap", [])
     sms = sub(root, "sitemaps", total=len(sm_data))
+    total_submitted = 0
     for sm in sm_data:
-        contents = sm.get("contents", [])
-        submitted = next((c.get("count",0) for c in contents if c.get("type")=="submitted"), 0)
-        indexed   = next((c.get("count",0) for c in contents if c.get("type")=="indexed"), 0)
-        errors    = next((c.get("count",0) for c in contents if c.get("type")=="indexedError"), 0)
-        warns     = next((c.get("count",0) for c in contents if c.get("type")=="indexedWarning"), 0)
+        submitted = sum(int(c.get("submitted", 0)) for c in sm.get("contents", []))
+        total_submitted += submitted
         s_el = sub(sms, "sitemap",
                    url=sm.get("path","?"),
                    ultima_descarga=sm.get("lastDownloaded","?"),
+                   ultimo_envio=sm.get("lastSubmitted","?"),
                    es_indice=str(sm.get("isSitemapsIndex",False)))
-        sub(s_el, "paginas_enviadas", submitted)
-        sub(s_el, "paginas_indexadas", indexed)
-        sub(s_el, "errores", errors)
-        sub(s_el, "avisos", warns)
-        tasa = f"{indexed/submitted*100:.1f}%" if submitted else "N/A"
-        sub(s_el, "tasa_indexacion", tasa)
-        if submitted == 0:
-            sub(s_el, "alerta", "CRITICO: sitemap sin URLs enviadas")
+        sub(s_el, "urls_enviadas", submitted)
+        sub(s_el, "errores", sm.get("errors","0"))
+        sub(s_el, "avisos", sm.get("warnings","0"))
+        sub(s_el, "pendiente", str(sm.get("isPending", False)))
+        estado = "OK" if submitted > 0 and sm.get("errors","0") == "0" else "REVISAR"
+        sub(s_el, "estado", estado)
 
     # ── RENDIMIENTO 90d ─────────────────────────────────────────────────────
     rows90 = analytics(session, D90, TODAY_S, ["date"], limit=90)
@@ -213,10 +216,24 @@ def main():
 
     # ── INSPECCIÓN URLs ──────────────────────────────────────────────────────
     urls_inspect = ["https://passas.io/"]
-    for p in pages[:6]:
+    for p in pages[:5]:
         u = p["keys"][0]
         if u not in urls_inspect:
             urls_inspect.append(u)
+
+    # Anade paginas de contenido del sitemap que NO reciben impresiones:
+    # son las candidatas reales a tener un problema de indexacion.
+    if os.path.exists(INVENTORY_FILE):
+        with open(INVENTORY_FILE) as f:
+            _inv = json.load(f)
+        _base = _inv["base_url"]
+        _vistas = {r["keys"][0].split("?")[0].rstrip("/")
+                   for r in analytics(session, D90, TODAY_S, ["page"], limit=500)}
+        _legales = {_base + p for p in _inv.get("paginas_legales", [])}
+        for p in _inv["blog"] + _inv["servicios"] + _inv["team"]:
+            u = _base + p
+            if u.rstrip("/") not in _vistas and u not in _legales and u not in urls_inspect:
+                urls_inspect.append(u)
 
     insp_el = sub(root, "inspeccion_urls", total=len(urls_inspect))
     for url in urls_inspect:
@@ -257,14 +274,75 @@ def main():
     diag = sub(root, "diagnostico")
 
     problems = []
-    if sm_data and sm_data[0].get("contents"):
-        sub_count = next((c.get("count",0) for c in sm_data[0].get("contents",[])
-                          if c.get("type")=="submitted"), 0)
-        if sub_count == 0:
-            problems.append(("CRITICO", "sitemap_vacio",
-                "El sitemap.xml registra 0 URLs enviadas en GSC. "
-                "Verificar Webflow Project Settings > SEO > Sitemap habilitado y que "
-                "ninguna página tenga 'Exclude from sitemap' activado."))
+
+    # ── VERIFICACION CRUZADA CON WEBFLOW ────────────────────────────────────
+    # Inventario real del sitemap segun la API de Webflow (includeInSitemap=true).
+    inv = {}
+    if os.path.exists(INVENTORY_FILE):
+        with open(INVENTORY_FILE) as f:
+            inv = json.load(f)
+
+    pages90 = analytics(session, D90, TODAY_S, ["page"], limit=500)
+    vistas = {p["keys"][0].split("?")[0].rstrip("/") for p in pages90}
+
+    cob = sub(root, "cobertura_indexacion")
+    sub(cob, "urls_en_sitemap_segun_gsc", total_submitted)
+
+    if inv:
+        base = inv["base_url"]
+        grupos = {
+            "estaticas": inv["paginas_estaticas"],
+            "blog":      inv["blog"],
+            "servicios": inv["servicios"],
+            "team":      inv["team"],
+        }
+        todas = [base + p for g in grupos.values() for p in g]
+        legales = {base + p for p in inv.get("paginas_legales", [])}
+
+        wf = sub(root, "verificacion_webflow",
+                 site=inv.get("site_name", "?"),
+                 site_id=inv.get("site_id", "?"))
+        sub(wf, "urls_con_includeInSitemap_true", len(todas))
+        sub(wf, "coincide_con_gsc", str(len(todas) == total_submitted))
+        sub(wf, "paginas_excluidas_del_sitemap",
+            ", ".join(inv.get("paginas_estaticas_excluidas", [])))
+        sub(wf, "ultima_publicacion_dominios", inv.get("domains_last_published", "?"))
+        sub(wf, "ultima_modificacion_sitio", inv.get("site_last_updated", "?"))
+        for nombre, lista in grupos.items():
+            sub(wf, "grupo", len(lista), nombre=nombre)
+
+        if inv.get("site_last_updated", "") > inv.get("domains_last_published", ""):
+            sub(wf, "alerta", "Hay cambios sin publicar posteriores al ultimo deploy")
+            problems.append(("MEDIO", "cambios_sin_publicar",
+                "El sitio tiene modificaciones mas recientes que la ultima publicacion "
+                f"({inv.get('domains_last_published')}). Publicar para que Google las vea."))
+
+        sin_impr = [u for u in todas if u.rstrip("/") not in vistas]
+        sin_impr_relevantes = [u for u in sin_impr if u not in legales]
+
+        sub(cob, "urls_verificadas_en_webflow", len(todas))
+        sub(cob, "urls_con_impresiones_90d", len(todas) - len(sin_impr))
+        sub(cob, "porcentaje_cobertura", f"{(len(todas)-len(sin_impr))/len(todas)*100:.1f}%")
+
+        gap = sub(cob, "urls_sin_impresiones", total=len(sin_impr),
+                  relevantes=len(sin_impr_relevantes))
+        for u in sin_impr:
+            tipo = "legal_sin_valor_seo" if u in legales else "CONTENIDO"
+            sub(gap, "url", u, tipo=tipo)
+
+        if sin_impr_relevantes:
+            problems.append(("ALTO", "contenido_no_rastreado",
+                f"{len(sin_impr_relevantes)} pagina(s) de contenido sin impresiones: "
+                + ", ".join(u.replace(base, "") for u in sin_impr_relevantes)))
+    else:
+        sub(cob, "urls_con_impresiones_90d", len(pages90))
+
+    # Duplicacion www / no-www
+    www_pages = [p for p in pages90 if "www.passas.io" in p["keys"][0]]
+    sub(cob, "urls_duplicadas_www", len(www_pages))
+    if www_pages:
+        problems.append(("ALTO", "duplicacion_www",
+            f"{len(www_pages)} URL(s) indexadas en www.passas.io ademas del dominio sin www."))
 
     if c90 < 100:
         problems.append(("ALTO", "trafico_organico_muy_bajo",

@@ -1,0 +1,73 @@
+{
+  "_comentario": "Inventario de URLs del sitemap generado automaticamente por Webflow. Extraido via Webflow MCP (data_sitemap_tool) el 2026-07-27. Solo incluye paginas/items con includeInSitemap=true.",
+  "site_id": "693bff66fcd35a6e780380c2",
+  "site_name": "PASSAS",
+  "base_url": "https://passas.io",
+  "site_last_published": "2026-07-17T15:13:14.119Z",
+  "domains_last_published": "2026-07-24T13:56:35.894Z",
+  "site_last_updated": "2026-07-27T12:41:11.338Z",
+  "paginas_estaticas": [
+    "",
+    "/blog",
+    "/servicios",
+    "/honorarios",
+    "/autoevaluacion-ai-act",
+    "/politica-de-inteligencia-artificial",
+    "/politica-de-cookies",
+    "/politica-de-privacidad",
+    "/terminos-y-condiciones",
+    "/aviso-legal"
+  ],
+  "paginas_estaticas_excluidas": [
+    "changelog",
+    "licenses",
+    "footers",
+    "headers",
+    "top-notification-bars",
+    "style-guide"
+  ],
+  "blog": [
+    "/blog/cuanto-cuesta-un-contencioso-administrativo-precios-2026",
+    "/blog/chat-control-1-0-prorroga-enmiendas-cifrado-2026",
+    "/blog/checklist-ai-act-cumplimiento-empresas",
+    "/blog/la-empresa-que-me-debe-dinero-es-insolvente-puedo-reclamar-al-administrador-personalmente-guia-2026",
+    "/blog/te-reclaman-las-deudas-de-tu-empresa-guia-2026-para-el-administrador-social",
+    "/blog/responsable-del-despliegue-ai-act-obligaciones-2026",
+    "/blog/digital-omnibus-ai-act-2026-que-cambia-que-no",
+    "/blog/el-masc-en-la-practica-que-tienes-que-hacer-antes-de-demandar-en-2026",
+    "/blog/cuanto-cuesta-abogado-startup-espana-precios-2026",
+    "/blog/estafa-o-incumplimiento-de-contrato-como-distinguirlo-en-2026",
+    "/blog/ai-act-startups-espana-obligaciones-agosto-2026",
+    "/blog/cuando-necesitas-abogado-en-un-monitorio-los-tres-momentos-en-que-ir-solo-es-un-error",
+    "/blog/consultar-estado-juicio-andalucia-2026",
+    "/blog/me-ha-llegado-un-burofax-guia-de-actuacion-legal-y-pasos-a-seguir-2026",
+    "/blog/como-reclamar-una-factura-de-hasta-2000-euros-sin-abogado-guia-2026",
+    "/blog/como-salir-de-asnef-en-2026-sin-abogados-guia-paso-a-paso-y-modelo-de-reclamacion-gratuito",
+    "/blog/gastos-hipoteca-2026-guia-legal-para-reclamar-plazos-y-modelo",
+    "/blog/exito-abogado-preventivo-etica",
+    "/blog/la-consulta-juridica-gratuita-y-sus-consecuencias-reales-en-la-abogacia"
+  ],
+  "servicios": [
+    "/servicios/techlaw-ai-compliance-providers",
+    "/servicios/internacional-due-diligence-tech",
+    "/servicios/internacional-european-data-compliance",
+    "/servicios/internacional-spain-entry-pack",
+    "/servicios/litigacion-juicio-administrativo",
+    "/servicios/litigacion-juicio-mercantil",
+    "/servicios/litigacion-juicio-civil",
+    "/servicios/techlaw-ai-act-alto-riesgo",
+    "/servicios/techlaw-ai-act-compliance",
+    "/servicios/techlaw-founding-pack"
+  ],
+  "team": [
+    "/team/david-sanchez-lorenzo",
+    "/team/guillermo-passas-varo"
+  ],
+  "paginas_legales": [
+    "/politica-de-inteligencia-artificial",
+    "/politica-de-cookies",
+    "/politica-de-privacidad",
+    "/terminos-y-condiciones",
+    "/aviso-legal"
+  ]
+}
