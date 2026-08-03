@@ -3,6 +3,8 @@
 !.env.example
 # Inventario de URLs publicas del sitemap (sin credenciales)
 !webflow_sitemap_inventory.json
+# Volcados de datos brutos de GSC (sin credenciales)
+!gsc_raw_passas_*.json
 token.pickle
 __pycache__/
 *.py[cod]
