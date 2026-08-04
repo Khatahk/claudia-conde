@@ -1,0 +1,593 @@
+{
+  "_meta": {
+    "fecha": "2026-08-04",
+    "propiedad": "sc-domain:passas.io",
+    "total_urls_en": 23,
+    "resumen_cobertura": {
+      "Redirect error": 1,
+      "Discovered - currently not indexed": 10,
+      "Submitted and indexed": 10,
+      "URL is unknown to Google": 2
+    }
+  },
+  "resultados": {
+    "https://passas.io/en/": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=NksGDyxsI5bNkCri0xzlCg&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "Redirect error",
+            "robotsTxtState": "ALLOWED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "lastCrawlTime": "2026-07-30T15:37:13Z",
+            "pageFetchState": "REDIRECT_ERROR",
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "MOBILE"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/blog": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=sVh5P2vmo4thzFSe6bkBEw&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "Discovered - currently not indexed",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "CRAWLING_USER_AGENT_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/servicios": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=8aFersH4Rpm8VXg2qw_ORg&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "PASS",
+            "coverageState": "Submitted and indexed",
+            "robotsTxtState": "ALLOWED",
+            "indexingState": "INDEXING_ALLOWED",
+            "lastCrawlTime": "2026-07-30T15:39:00Z",
+            "pageFetchState": "SUCCESSFUL",
+            "googleCanonical": "https://passas.io/en/servicios",
+            "userCanonical": "https://passas.io/en/servicios",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "crawledAs": "MOBILE"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/honorarios": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=S97_BGGZ8kFfjtY-Odec1g&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "PASS",
+            "coverageState": "Submitted and indexed",
+            "robotsTxtState": "ALLOWED",
+            "indexingState": "INDEXING_ALLOWED",
+            "lastCrawlTime": "2026-07-30T15:46:11Z",
+            "pageFetchState": "SUCCESSFUL",
+            "googleCanonical": "https://passas.io/en/honorarios",
+            "userCanonical": "https://passas.io/en/honorarios",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "MOBILE"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/autoevaluacion-ai-act": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=5kUtc5xuUUGoRBID3j29YQ&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "PASS",
+            "coverageState": "Submitted and indexed",
+            "robotsTxtState": "ALLOWED",
+            "indexingState": "INDEXING_ALLOWED",
+            "lastCrawlTime": "2026-07-30T16:17:28Z",
+            "pageFetchState": "SUCCESSFUL",
+            "googleCanonical": "https://passas.io/en/autoevaluacion-ai-act",
+            "userCanonical": "https://passas.io/en/autoevaluacion-ai-act",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en"
+            ],
+            "crawledAs": "MOBILE"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/politica-de-inteligencia-artificial": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=zSETyr62SGOxumL5fxMc5w&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "URL is unknown to Google",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/politica-de-cookies": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=HmH5ZDeEMQVl4VLpCfI55g&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "Discovered - currently not indexed",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "CRAWLING_USER_AGENT_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/politica-de-privacidad": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=4dY3ZU6y2dg7DCf5JVLw_A&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "Discovered - currently not indexed",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/servicios/ai-act-provider-compliance"
+            ],
+            "crawledAs": "CRAWLING_USER_AGENT_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/terminos-y-condiciones": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=1lqpitwlZDJ-LyWyOpIfnQ&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "PASS",
+            "coverageState": "Submitted and indexed",
+            "robotsTxtState": "ALLOWED",
+            "indexingState": "INDEXING_ALLOWED",
+            "lastCrawlTime": "2026-08-04T15:13:28Z",
+            "pageFetchState": "SUCCESSFUL",
+            "googleCanonical": "https://passas.io/en/terminos-y-condiciones",
+            "userCanonical": "https://passas.io/en/terminos-y-condiciones",
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "MOBILE"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/aviso-legal": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=9smnLwgyUPFO8-CJBa4jiw&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "Discovered - currently not indexed",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "CRAWLING_USER_AGENT_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/blog/digital-omnibus-ai-act-final-text": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=qq-2d81ooGuqTNy8xKYNgA&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "PASS",
+            "coverageState": "Submitted and indexed",
+            "robotsTxtState": "ALLOWED",
+            "indexingState": "INDEXING_ALLOWED",
+            "lastCrawlTime": "2026-07-30T21:56:00Z",
+            "pageFetchState": "SUCCESSFUL",
+            "googleCanonical": "https://passas.io/en/blog/digital-omnibus-ai-act-final-text",
+            "userCanonical": "https://passas.io/en/blog/digital-omnibus-ai-act-final-text",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "crawledAs": "MOBILE"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/servicios/ai-act-provider-compliance": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=Lg0QEDWsB6gxwBsx-fZo8w&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "PASS",
+            "coverageState": "Submitted and indexed",
+            "robotsTxtState": "ALLOWED",
+            "indexingState": "INDEXING_ALLOWED",
+            "lastCrawlTime": "2026-07-30T15:41:07Z",
+            "pageFetchState": "SUCCESSFUL",
+            "googleCanonical": "https://passas.io/en/servicios/ai-act-provider-compliance",
+            "userCanonical": "https://passas.io/en/servicios/ai-act-provider-compliance",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "MOBILE"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/servicios/tech-due-diligence": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=_PALwfSTNXEnQB4pMHtDLw&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "Discovered - currently not indexed",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/team/guillermo-passas-varo"
+            ],
+            "crawledAs": "CRAWLING_USER_AGENT_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/servicios/eu-data-compliance": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=vmRxITxC6sVl2cwxhWkOBg&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "PASS",
+            "coverageState": "Submitted and indexed",
+            "robotsTxtState": "ALLOWED",
+            "indexingState": "INDEXING_ALLOWED",
+            "lastCrawlTime": "2026-07-30T15:45:01Z",
+            "pageFetchState": "SUCCESSFUL",
+            "googleCanonical": "https://passas.io/en/servicios/eu-data-compliance",
+            "userCanonical": "https://passas.io/en/servicios/eu-data-compliance",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/team/guillermo-passas-varo"
+            ],
+            "crawledAs": "MOBILE"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/servicios/administrative-litigation": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=MuTfqUYVdTdqu8eSQulcwA&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "URL is unknown to Google",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/servicios/civil-litigation": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=yu_T6D73Q7uzlayPeLm0-A&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "Discovered - currently not indexed",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "CRAWLING_USER_AGENT_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/servicios/ai-act-high-risk": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=wCIxM8MQWnXKiEiH9Dm0TQ&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "PASS",
+            "coverageState": "Submitted and indexed",
+            "robotsTxtState": "ALLOWED",
+            "indexingState": "INDEXING_ALLOWED",
+            "lastCrawlTime": "2026-07-30T15:41:07Z",
+            "pageFetchState": "SUCCESSFUL",
+            "googleCanonical": "https://passas.io/en/servicios/ai-act-high-risk",
+            "userCanonical": "https://passas.io/en/servicios/ai-act-high-risk",
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "MOBILE"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/servicios/ai-act-compliance": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=TU1yq4g2ato_6jv8QWHv7w&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "PASS",
+            "coverageState": "Submitted and indexed",
+            "robotsTxtState": "ALLOWED",
+            "indexingState": "INDEXING_ALLOWED",
+            "lastCrawlTime": "2026-07-30T15:40:01Z",
+            "pageFetchState": "SUCCESSFUL",
+            "googleCanonical": "https://passas.io/en/servicios/ai-act-compliance",
+            "userCanonical": "https://passas.io/en/servicios/ai-act-compliance",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "MOBILE"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/servicios/founding-pack": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=Rfrpqe5qXayj2SPSQn8n4g&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "Discovered - currently not indexed",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "CRAWLING_USER_AGENT_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/servicios/spain-entry-pack": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=5RzM17XX9BR-5_SM7HhaiQ&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "PASS",
+            "coverageState": "Submitted and indexed",
+            "robotsTxtState": "ALLOWED",
+            "indexingState": "INDEXING_ALLOWED",
+            "lastCrawlTime": "2026-07-30T15:45:00Z",
+            "pageFetchState": "SUCCESSFUL",
+            "googleCanonical": "https://passas.io/en/servicios/spain-entry-pack",
+            "userCanonical": "https://passas.io/en/servicios/spain-entry-pack",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en"
+            ],
+            "crawledAs": "MOBILE"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/servicios/commercial-litigation": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=q_0LGRbce5ubjlOFSZAy1Q&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "Discovered - currently not indexed",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en",
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "CRAWLING_USER_AGENT_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/team/david-sanchez-lorenzo": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=JJEV7UTw3bHPieq43Sj3gg&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "Discovered - currently not indexed",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "CRAWLING_USER_AGENT_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    },
+    "https://passas.io/en/team/guillermo-passas-varo": {
+      "http_status": 200,
+      "body": {
+        "inspectionResult": {
+          "inspectionResultLink": "https://search.google.com/search-console/inspect?resource_id=sc-domain:passas.io&id=n84aijgdO0KKtHeR_49WTg&utm_medium=link&utm_source=api",
+          "indexStatusResult": {
+            "verdict": "NEUTRAL",
+            "coverageState": "Discovered - currently not indexed",
+            "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "indexingState": "INDEXING_STATE_UNSPECIFIED",
+            "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+            "sitemap": [
+              "https://passas.io/sitemap.xml"
+            ],
+            "referringUrls": [
+              "https://passas.io/en/servicios"
+            ],
+            "crawledAs": "CRAWLING_USER_AGENT_UNSPECIFIED"
+          },
+          "mobileUsabilityResult": {
+            "verdict": "VERDICT_UNSPECIFIED"
+          }
+        }
+      }
+    }
+  }
+}

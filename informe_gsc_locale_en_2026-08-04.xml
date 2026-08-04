@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<gsc_informe_locale_en site="passas.io" prefijo="/en" fecha="2026-08-04">
+  <configuracion_webflow>
+    <locale_primario subdirectorio="(raiz)" redirect_automatico="True">es-ES</locale_primario>
+    <locale_secundario subdirectorio="en" habilitado="True">en</locale_secundario>
+    <alerta>El locale primario tiene redirect automatico por idioma de navegador. Es la causa probable del Redirect error en /en/.</alerta>
+  </configuracion_webflow>
+  <sitemap>
+    <urls_totales_enviadas>64</urls_totales_enviadas>
+    <ultima_descarga>2026-08-04T04:26:44.289Z</ultima_descarga>
+    <errores>0</errores>
+  </sitemap>
+  <estado_indexacion total_urls_en="23">
+    <resumen>
+      <estado nombre="Discovered - currently not indexed">10</estado>
+      <estado nombre="Submitted and indexed">10</estado>
+      <estado nombre="URL is unknown to Google">2</estado>
+      <estado nombre="Redirect error">1</estado>
+      <porcentaje_indexado>43.5%</porcentaje_indexado>
+    </resumen>
+    <grupo estado="Discovered - currently not indexed" total="10">
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/aviso-legal</url>
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/blog</url>
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/politica-de-cookies</url>
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/politica-de-privacidad</url>
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/servicios/civil-litigation</url>
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/servicios/commercial-litigation</url>
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/servicios/founding-pack</url>
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/servicios/tech-due-diligence</url>
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/team/david-sanchez-lorenzo</url>
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/team/guillermo-passas-varo</url>
+    </grupo>
+    <grupo estado="Submitted and indexed" total="10">
+      <url rastreada="2026-07-30T16:17:28Z">/en/autoevaluacion-ai-act</url>
+      <url rastreada="2026-07-30T21:56:00Z">/en/blog/digital-omnibus-ai-act-final-text</url>
+      <url rastreada="2026-07-30T15:46:11Z">/en/honorarios</url>
+      <url rastreada="2026-07-30T15:39:00Z">/en/servicios</url>
+      <url rastreada="2026-07-30T15:40:01Z">/en/servicios/ai-act-compliance</url>
+      <url rastreada="2026-07-30T15:41:07Z">/en/servicios/ai-act-high-risk</url>
+      <url rastreada="2026-07-30T15:41:07Z">/en/servicios/ai-act-provider-compliance</url>
+      <url rastreada="2026-07-30T15:45:01Z">/en/servicios/eu-data-compliance</url>
+      <url rastreada="2026-07-30T15:45:00Z">/en/servicios/spain-entry-pack</url>
+      <url rastreada="2026-08-04T15:13:28Z">/en/terminos-y-condiciones</url>
+    </grupo>
+    <grupo estado="URL is unknown to Google" total="2">
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/politica-de-inteligencia-artificial</url>
+      <url rastreada="NUNCA" nota="sin rastrear todavia">/en/servicios/administrative-litigation</url>
+    </grupo>
+    <grupo estado="Redirect error" total="1">
+      <url rastreada="2026-07-30T15:37:13Z">/en/</url>
+    </grupo>
+  </estado_indexacion>
+  <rendimiento_en periodo="2026-05-06 a 2026-08-04">
+    <impresiones_totales>219</impresiones_totales>
+    <clics_totales>0</clics_totales>
+    <dias_con_impresiones>4</dias_con_impresiones>
+    <primera_impresion>2026-07-30</primera_impresion>
+    <ultima_impresion>2026-08-02</ultima_impresion>
+    <serie_diaria>
+      <dia fecha="2026-07-30" impresiones="48" clics="0" posicion="15.0"/>
+      <dia fecha="2026-07-31" impresiones="125" clics="0" posicion="7.8"/>
+      <dia fecha="2026-08-01" impresiones="17" clics="0" posicion="7.8"/>
+      <dia fecha="2026-08-02" impresiones="29" clics="0" posicion="9.1"/>
+    </serie_diaria>
+    <paginas>
+      <pagina impresiones="135" clics="0" posicion="7.2">/en/blog/digital-omnibus-ai-act-final-text</pagina>
+      <pagina impresiones="39" clics="0" posicion="8.3">/en/servicios/ai-act-compliance</pagina>
+      <pagina impresiones="11" clics="0" posicion="7.9">/en/servicios/ai-act-high-risk</pagina>
+      <pagina impresiones="11" clics="0" posicion="27.5">/en/servicios/ai-act-provider-compliance</pagina>
+      <pagina impresiones="10" clics="0" posicion="4.6">/en/servicios/eu-data-compliance</pagina>
+      <pagina impresiones="6" clics="0" posicion="43.7">/en/servicios</pagina>
+      <pagina impresiones="4" clics="0" posicion="14.8">/en/servicios/spain-entry-pack</pagina>
+      <pagina impresiones="2" clics="0" posicion="11.0">/en/honorarios</pagina>
+      <pagina impresiones="1" clics="0" posicion="24.0">/en/autoevaluacion-ai-act</pagina>
+    </paginas>
+    <queries>
+      <query impresiones="8" clics="0" posicion="5.1">&quot;schrems&quot; -site:reddit.com -site:twitter.com -site:x.com -site:wykop.pl -site:tripadvisor.com -site:youtube.com -site:yelp.com -site:booking.com -site:facebook.com -site:instagram.com -site:tiktok.com</query>
+      <query impresiones="5" clics="0" posicion="8.6">passas</query>
+      <query impresiones="2" clics="0" posicion="5.0">&quot;2026/1744&quot; &quot;article 113&quot; ai act</query>
+      <query impresiones="2" clics="0" posicion="181.0">startup (&quot;el ejido&quot; or &quot;juanma moreno&quot; or &quot;junta de andalucía&quot; or &quot;la junta&quot; or &quot;la línea&quot; or &quot;puerto real&quot; or &quot;san fernando&quot; or algeciras or almería or andalucía or andujar or antequera or baza or benalmádena or cabra or cádiz or córdoba or écija or granada or guadix or huelva or huércal or jaén or jeréz or lebrija)</query>
+      <query impresiones="1" clics="0" posicion="8.0">&quot;2026/1744&quot; &quot;artificial intelligence act&quot;</query>
+      <query impresiones="1" clics="0" posicion="5.0">&quot;regulation (eu) 2026/1744&quot; &quot;article 113&quot;</query>
+      <query impresiones="1" clics="0" posicion="10.0">&quot;regulation (eu) 2026/1744&quot; &quot;third day following&quot;</query>
+      <query impresiones="1" clics="0" posicion="10.0">ai policy and regulation -site:youtube.com -site:reddit.com -site:x.com -site:twitter.com -site:facebook.com -site:instagram.com -site:tiktok.com -site:linkedin.com -site:pinterest.com -site:nytimes.com -site:wsj.com -site:yelp.com -site:rottentomatoes.com</query>
+      <query impresiones="1" clics="0" posicion="25.0">digital omnibus data</query>
+    </queries>
+    <paises>
+      <pais impresiones="5" clics="0" posicion="6.0">nld</pais>
+      <pais impresiones="2" clics="0" posicion="181.0">esp</pais>
+      <pais impresiones="2" clics="0" posicion="5.5">hrv</pais>
+      <pais impresiones="2" clics="0" posicion="5.5">idn</pais>
+      <pais impresiones="2" clics="0" posicion="9.0">ltu</pais>
+      <pais impresiones="2" clics="0" posicion="5.0">prt</pais>
+      <pais impresiones="1" clics="0" posicion="25.0">bel</pais>
+      <pais impresiones="1" clics="0" posicion="10.0">deu</pais>
+      <pais impresiones="1" clics="0" posicion="8.0">dnk</pais>
+      <pais impresiones="1" clics="0" posicion="8.0">gbr</pais>
+      <pais impresiones="1" clics="0" posicion="10.0">irn</pais>
+      <pais impresiones="1" clics="0" posicion="1.0">sau</pais>
+      <pais impresiones="1" clics="0" posicion="10.0">usa</pais>
+    </paises>
+  </rendimiento_en>
+  <diagnostico>
+    <problema severidad="CRITICO" codigo="home_en_redirect_error">https://passas.io/en/ devuelve Redirect error. Es la pagina raiz del locale ingles: sin ella no consolida ni recibe el enlazado interno. Causa probable: el redirect automatico por idioma del locale primario.</problema>
+    <problema severidad="ALTO" codigo="urls_en_sin_rastrear">12 URLs EN nunca rastreadas por Google.</problema>
+    <problema severidad="ALTO" codigo="cero_clics_en">219 impresiones y 0 clics en /en. Titles y descriptions traducidos pero sin captar clic.</problema>
+    <problema severidad="INFO" codigo="cobertura_blog_en">Solo 1 de 19 entradas del blog tiene version EN. El blog es el motor de trafico en ES; sin traducirlo el locale EN no escala.</problema>
+  </diagnostico>
+</gsc_informe_locale_en>
