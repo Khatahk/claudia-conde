@@ -1,0 +1,90 @@
+{
+  "cluster_contencioso": {
+    "impresiones": 1090,
+    "clics": 7,
+    "afirmado_respuesta": {
+      "impresiones": 1064,
+      "clics": 7
+    }
+  },
+  "intencion_precio_contencioso": {
+    "impresiones": 183,
+    "clics": 0,
+    "consultas": 14,
+    "afirmado": 350
+  },
+  "paginas_servicio": {
+    "con_impresiones": 14,
+    "con_clics": 1,
+    "detalle_con_clics": {
+      "/servicios/litigacion-juicio-administrativo": 3
+    }
+  },
+  "dispositivo": {
+    "MOBILE": {
+      "clics": 25,
+      "impresiones": 1913
+    },
+    "DESKTOP": {
+      "clics": 9,
+      "impresiones": 1694
+    },
+    "TABLET": {
+      "clics": 1,
+      "impresiones": 15
+    }
+  },
+  "due_diligence": {
+    "pagina": {
+      "impresiones": 55,
+      "pos": 21.2
+    },
+    "consultas": [
+      {
+        "q": "due diligence",
+        "impr": 1,
+        "pos": 1
+      },
+      {
+        "q": "due diligence legal ronda inversión startup",
+        "impr": 17,
+        "pos": 9.1
+      },
+      {
+        "q": "due diligence tecnológica",
+        "impr": 16,
+        "pos": 39.8
+      },
+      {
+        "q": "software saas para gestionar documentación y due diligence en rondas de inversión de startups",
+        "impr": 1,
+        "pos": 8
+      },
+      {
+        "q": "tech due diligence",
+        "impr": 1,
+        "pos": 50
+      }
+    ]
+  },
+  "marca": {
+    "impresiones": 133,
+    "clics": 2,
+    "pct": 3.5
+  },
+  "asimetria": {
+    "/servicios/techlaw-ai-act-compliance": {
+      "pos": 29.1,
+      "impr": 180
+    },
+    "/en/servicios/ai-act-compliance": {
+      "pos": 7.8,
+      "impr": 28
+    },
+    "/en/servicios/ai-act-high-risk": {
+      "pos": 7.4,
+      "impr": 23
+    }
+  },
+  "responsable_despliegue": {}
+}

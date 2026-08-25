@@ -11,3 +11,8 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
+# Cotejos de GSC (sin credenciales)
+!gsc_cotejo_*.json
+!gsc_canonical_probe_*.json
+!gsc_inspection_stability_*.json
+!gsc_check_respuesta_*.json

@@ -1,0 +1,100 @@
+{
+  "https://passas.io/": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-08-25T14:18:53Z",
+    "canonica_google": "https://passas.io/",
+    "canonica_declarada": "https://passas.io/"
+  },
+  "https://passas.io/en": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-08-05T05:03:43Z",
+    "canonica_google": "https://passas.io/en",
+    "canonica_declarada": null
+  },
+  "https://passas.io/blog": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-08-07T04:31:36Z",
+    "canonica_google": "https://passas.io/blog",
+    "canonica_declarada": "https://passas.io/blog"
+  },
+  "https://passas.io/en/blog": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-08-18T04:40:15Z",
+    "canonica_google": "https://passas.io/en/blog",
+    "canonica_declarada": null
+  },
+  "https://passas.io/servicios": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-08-06T06:17:49Z",
+    "canonica_google": "https://passas.io/servicios",
+    "canonica_declarada": "https://passas.io/servicios"
+  },
+  "https://passas.io/en/servicios": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-08-09T01:16:16Z",
+    "canonica_google": "https://passas.io/en/servicios",
+    "canonica_declarada": "https://passas.io/en/servicios"
+  },
+  "https://passas.io/honorarios": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-07-31T04:20:33Z",
+    "canonica_google": "https://passas.io/honorarios",
+    "canonica_declarada": "https://passas.io/honorarios"
+  },
+  "https://passas.io/en/honorarios": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-08-09T08:48:28Z",
+    "canonica_google": "https://passas.io/en/honorarios",
+    "canonica_declarada": "https://passas.io/en/honorarios"
+  },
+  "https://passas.io/servicios/litigacion-juicio-administrativo": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-07-17T15:20:24Z",
+    "canonica_google": "https://passas.io/servicios/litigacion-juicio-administrativo",
+    "canonica_declarada": "https://passas.io/servicios/litigacion-juicio-administrativo"
+  },
+  "https://passas.io/en/servicios/administrative-litigation": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-08-09T03:59:15Z",
+    "canonica_google": "https://passas.io/en/servicios/administrative-litigation",
+    "canonica_declarada": "https://passas.io/en/servicios/administrative-litigation"
+  },
+  "https://passas.io/servicios/techlaw-ai-act-compliance": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-07-31T06:09:33Z",
+    "canonica_google": "https://passas.io/servicios/techlaw-ai-act-compliance",
+    "canonica_declarada": "https://passas.io/servicios/techlaw-ai-act-compliance"
+  },
+  "https://passas.io/en/servicios/ai-act-compliance": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-08-09T04:27:10Z",
+    "canonica_google": "https://passas.io/en/servicios/ai-act-compliance",
+    "canonica_declarada": "https://passas.io/en/servicios/ai-act-compliance"
+  },
+  "https://passas.io/team/guillermo-passas-varo": {
+    "veredicto": "PASS",
+    "cobertura": "Submitted and indexed",
+    "ultimo_rastreo": "2026-08-05T20:39:25Z",
+    "canonica_google": "https://passas.io/team/guillermo-passas-varo",
+    "canonica_declarada": "https://passas.io/team/guillermo-passas-varo"
+  },
+  "https://passas.io/en/team/guillermo-passas-varo": {
+    "veredicto": "NEUTRAL",
+    "cobertura": "Discovered - currently not indexed",
+    "ultimo_rastreo": null,
+    "canonica_google": null,
+    "canonica_declarada": null
+  }
+}

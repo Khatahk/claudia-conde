@@ -1,0 +1,83 @@
+{
+  "llamadas_por_url": 6,
+  "resultados": {
+    "https://passas.io/blog/responsable-del-despliegue-ai-act-obligaciones-2026": {
+      "observaciones": [
+        "Discovered - currently not indexed",
+        "Discovered - currently not indexed",
+        "URL is unknown to Google",
+        "URL is unknown to Google",
+        "Discovered - currently not indexed",
+        "Discovered - currently not indexed"
+      ],
+      "distintos": 2,
+      "estable": false,
+      "reparto": {
+        "Discovered - currently not indexed": 4,
+        "URL is unknown to Google": 2
+      }
+    },
+    "https://passas.io/en/servicios/commercial-litigation": {
+      "observaciones": [
+        "URL is unknown to Google",
+        "Discovered - currently not indexed",
+        "URL is unknown to Google",
+        "Discovered - currently not indexed",
+        "Discovered - currently not indexed",
+        "Discovered - currently not indexed"
+      ],
+      "distintos": 2,
+      "estable": false,
+      "reparto": {
+        "URL is unknown to Google": 2,
+        "Discovered - currently not indexed": 4
+      }
+    },
+    "https://passas.io/en/team/guillermo-passas-varo": {
+      "observaciones": [
+        "URL is unknown to Google",
+        "Discovered - currently not indexed",
+        "URL is unknown to Google",
+        "Discovered - currently not indexed",
+        "Discovered - currently not indexed",
+        "Discovered - currently not indexed"
+      ],
+      "distintos": 2,
+      "estable": false,
+      "reparto": {
+        "URL is unknown to Google": 2,
+        "Discovered - currently not indexed": 4
+      }
+    },
+    "https://passas.io/blog/exito-abogado-preventivo-etica": {
+      "observaciones": [
+        "Crawled - currently not indexed",
+        "Crawled - currently not indexed",
+        "Crawled - currently not indexed",
+        "Crawled - currently not indexed",
+        "Crawled - currently not indexed",
+        "Crawled - currently not indexed"
+      ],
+      "distintos": 1,
+      "estable": true,
+      "reparto": {
+        "Crawled - currently not indexed": 6
+      }
+    },
+    "https://passas.io/honorarios": {
+      "observaciones": [
+        "Submitted and indexed",
+        "Submitted and indexed",
+        "Submitted and indexed",
+        "Submitted and indexed",
+        "Submitted and indexed",
+        "Submitted and indexed"
+      ],
+      "distintos": 1,
+      "estable": true,
+      "reparto": {
+        "Submitted and indexed": 6
+      }
+    }
+  }
+}

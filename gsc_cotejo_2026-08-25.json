@@ -1,0 +1,873 @@
+{
+  "serie_diaria_reciente": [
+    {
+      "fecha": "2026-08-05",
+      "clics": 0,
+      "impresiones": 217,
+      "ctr": 0,
+      "pos": 7.6
+    },
+    {
+      "fecha": "2026-08-06",
+      "clics": 0,
+      "impresiones": 199,
+      "ctr": 0,
+      "pos": 9.3
+    },
+    {
+      "fecha": "2026-08-07",
+      "clics": 2,
+      "impresiones": 184,
+      "ctr": 1.09,
+      "pos": 8.0
+    },
+    {
+      "fecha": "2026-08-08",
+      "clics": 1,
+      "impresiones": 127,
+      "ctr": 0.79,
+      "pos": 9.1
+    },
+    {
+      "fecha": "2026-08-09",
+      "clics": 0,
+      "impresiones": 111,
+      "ctr": 0,
+      "pos": 9.2
+    },
+    {
+      "fecha": "2026-08-10",
+      "clics": 1,
+      "impresiones": 158,
+      "ctr": 0.63,
+      "pos": 7.8
+    },
+    {
+      "fecha": "2026-08-11",
+      "clics": 1,
+      "impresiones": 150,
+      "ctr": 0.67,
+      "pos": 7.2
+    },
+    {
+      "fecha": "2026-08-12",
+      "clics": 1,
+      "impresiones": 136,
+      "ctr": 0.74,
+      "pos": 7.4
+    },
+    {
+      "fecha": "2026-08-13",
+      "clics": 0,
+      "impresiones": 167,
+      "ctr": 0,
+      "pos": 6.9
+    },
+    {
+      "fecha": "2026-08-14",
+      "clics": 4,
+      "impresiones": 207,
+      "ctr": 1.93,
+      "pos": 7.8
+    },
+    {
+      "fecha": "2026-08-15",
+      "clics": 0,
+      "impresiones": 136,
+      "ctr": 0,
+      "pos": 8.5
+    },
+    {
+      "fecha": "2026-08-16",
+      "clics": 1,
+      "impresiones": 111,
+      "ctr": 0.9,
+      "pos": 6.8
+    },
+    {
+      "fecha": "2026-08-17",
+      "clics": 5,
+      "impresiones": 243,
+      "ctr": 2.06,
+      "pos": 7.2
+    },
+    {
+      "fecha": "2026-08-18",
+      "clics": 6,
+      "impresiones": 210,
+      "ctr": 2.86,
+      "pos": 7.9
+    },
+    {
+      "fecha": "2026-08-19",
+      "clics": 3,
+      "impresiones": 234,
+      "ctr": 1.28,
+      "pos": 9.4
+    },
+    {
+      "fecha": "2026-08-20",
+      "clics": 2,
+      "impresiones": 192,
+      "ctr": 1.04,
+      "pos": 8.3
+    },
+    {
+      "fecha": "2026-08-21",
+      "clics": 3,
+      "impresiones": 208,
+      "ctr": 1.44,
+      "pos": 8.4
+    },
+    {
+      "fecha": "2026-08-22",
+      "clics": 3,
+      "impresiones": 79,
+      "ctr": 3.8,
+      "pos": 9.8
+    },
+    {
+      "fecha": "2026-08-23",
+      "clics": 0,
+      "impresiones": 164,
+      "ctr": 0,
+      "pos": 7.8
+    }
+  ],
+  "ventana_informe_recheck": {
+    "clicks": 35,
+    "impressions": 3622,
+    "ctr": 0.97,
+    "position": 8.14
+  },
+  "ventana_previa_recheck": {
+    "clicks": 29,
+    "impressions": 4104,
+    "ctr": 0.71,
+    "position": 7.73
+  },
+  "semana_inflexion": {
+    "clicks": 23,
+    "impressions": 1277,
+    "ctr": 1.8,
+    "position": 8.19
+  },
+  "post_informe": [
+    {
+      "fecha": "2026-08-23",
+      "clics": 0,
+      "impresiones": 164,
+      "ctr": 0,
+      "pos": 7.8
+    }
+  ],
+  "paginas_ventana": [
+    {
+      "pagina": "/blog/me-ha-llegado-un-burofax-guia-de-actuacion-legal-y-pasos-a-seguir-2026",
+      "clics": 21,
+      "impresiones": 1018,
+      "ctr": 2.06,
+      "pos": 6.0
+    },
+    {
+      "pagina": "/blog/cuanto-cuesta-un-contencioso-administrativo-precios-2026",
+      "clics": 4,
+      "impresiones": 665,
+      "ctr": 0.6,
+      "pos": 6.9
+    },
+    {
+      "pagina": "/servicios/litigacion-juicio-administrativo",
+      "clics": 3,
+      "impresiones": 425,
+      "ctr": 0.71,
+      "pos": 8.1
+    },
+    {
+      "pagina": "/en/blog/digital-omnibus-ai-act-final-text",
+      "clics": 0,
+      "impresiones": 280,
+      "ctr": 0,
+      "pos": 7.6
+    },
+    {
+      "pagina": "/servicios/techlaw-ai-act-compliance",
+      "clics": 0,
+      "impresiones": 180,
+      "ctr": 0,
+      "pos": 29.1
+    },
+    {
+      "pagina": "/blog/chat-control-1-0-prorroga-enmiendas-cifrado-2026",
+      "clics": 1,
+      "impresiones": 146,
+      "ctr": 0.68,
+      "pos": 7.6
+    },
+    {
+      "pagina": "/en/blog/ai-act-article-5-1a-provider-scope",
+      "clics": 0,
+      "impresiones": 131,
+      "ctr": 0,
+      "pos": 5.8
+    },
+    {
+      "pagina": "/en",
+      "clics": 1,
+      "impresiones": 114,
+      "ctr": 0.88,
+      "pos": 7.0
+    },
+    {
+      "pagina": "/",
+      "clics": 1,
+      "impresiones": 90,
+      "ctr": 1.11,
+      "pos": 3.2
+    },
+    {
+      "pagina": "/honorarios",
+      "clics": 0,
+      "impresiones": 88,
+      "ctr": 0,
+      "pos": 10.3
+    },
+    {
+      "pagina": "/blog/gastos-hipoteca-2026-guia-legal-para-reclamar-plazos-y-modelo",
+      "clics": 0,
+      "impresiones": 81,
+      "ctr": 0,
+      "pos": 7.0
+    },
+    {
+      "pagina": "/blog/estafa-o-incumplimiento-de-contrato-como-distinguirlo-en-2026",
+      "clics": 0,
+      "impresiones": 59,
+      "ctr": 0,
+      "pos": 4.4
+    },
+    {
+      "pagina": "/blog/cuanto-cuesta-abogado-startup-espana-precios-2026",
+      "clics": 0,
+      "impresiones": 55,
+      "ctr": 0,
+      "pos": 5.8
+    },
+    {
+      "pagina": "/servicios/internacional-due-diligence-tech",
+      "clics": 0,
+      "impresiones": 55,
+      "ctr": 0,
+      "pos": 21.2
+    },
+    {
+      "pagina": "/team/david-sanchez-lorenzo",
+      "clics": 1,
+      "impresiones": 49,
+      "ctr": 2.04,
+      "pos": 7.9
+    },
+    {
+      "pagina": "/servicios",
+      "clics": 1,
+      "impresiones": 40,
+      "ctr": 2.5,
+      "pos": 24.9
+    },
+    {
+      "pagina": "/blog/digital-omnibus-ai-act-2026-que-cambia-que-no",
+      "clics": 0,
+      "impresiones": 33,
+      "ctr": 0,
+      "pos": 6.7
+    },
+    {
+      "pagina": "/en/servicios/ai-act-compliance",
+      "clics": 0,
+      "impresiones": 28,
+      "ctr": 0,
+      "pos": 7.8
+    },
+    {
+      "pagina": "/servicios/litigacion-juicio-civil",
+      "clics": 0,
+      "impresiones": 26,
+      "ctr": 0,
+      "pos": 6
+    },
+    {
+      "pagina": "/servicios/techlaw-founding-pack",
+      "clics": 0,
+      "impresiones": 24,
+      "ctr": 0,
+      "pos": 4.2
+    },
+    {
+      "pagina": "/en/servicios/ai-act-high-risk",
+      "clics": 0,
+      "impresiones": 23,
+      "ctr": 0,
+      "pos": 7.4
+    },
+    {
+      "pagina": "/servicios/litigacion-juicio-mercantil",
+      "clics": 0,
+      "impresiones": 23,
+      "ctr": 0,
+      "pos": 10.2
+    },
+    {
+      "pagina": "/team/guillermo-passas-varo",
+      "clics": 2,
+      "impresiones": 22,
+      "ctr": 9.09,
+      "pos": 6.0
+    },
+    {
+      "pagina": "/servicios/techlaw-ai-act-alto-riesgo",
+      "clics": 0,
+      "impresiones": 22,
+      "ctr": 0,
+      "pos": 6.6
+    },
+    {
+      "pagina": "/en/servicios/ai-act-provider-compliance",
+      "clics": 0,
+      "impresiones": 20,
+      "ctr": 0,
+      "pos": 16.2
+    },
+    {
+      "pagina": "/blog/como-reclamar-una-factura-de-hasta-2000-euros-sin-abogado-guia-2026",
+      "clics": 0,
+      "impresiones": 19,
+      "ctr": 0,
+      "pos": 7.4
+    },
+    {
+      "pagina": "/servicios/internacional-spain-entry-pack",
+      "clics": 0,
+      "impresiones": 17,
+      "ctr": 0,
+      "pos": 8.8
+    },
+    {
+      "pagina": "/blog/la-empresa-que-me-debe-dinero-es-insolvente-puedo-reclamar-al-administrador-personalmente-guia-2026",
+      "clics": 0,
+      "impresiones": 15,
+      "ctr": 0,
+      "pos": 4.1
+    },
+    {
+      "pagina": "/blog",
+      "clics": 0,
+      "impresiones": 14,
+      "ctr": 0,
+      "pos": 7.6
+    },
+    {
+      "pagina": "/blog/te-reclaman-las-deudas-de-tu-empresa-guia-2026-para-el-administrador-social",
+      "clics": 0,
+      "impresiones": 8,
+      "ctr": 0,
+      "pos": 7
+    },
+    {
+      "pagina": "/en/servicios/spain-entry-pack",
+      "clics": 0,
+      "impresiones": 8,
+      "ctr": 0,
+      "pos": 5.2
+    },
+    {
+      "pagina": "/en/servicios",
+      "clics": 0,
+      "impresiones": 7,
+      "ctr": 0,
+      "pos": 5.4
+    },
+    {
+      "pagina": "/blog/consultar-estado-juicio-andalucia-2026",
+      "clics": 0,
+      "impresiones": 6,
+      "ctr": 0,
+      "pos": 6.3
+    },
+    {
+      "pagina": "/politica-de-privacidad",
+      "clics": 0,
+      "impresiones": 6,
+      "ctr": 0,
+      "pos": 3
+    },
+    {
+      "pagina": "/blog/checklist-ai-act-cumplimiento-empresas",
+      "clics": 0,
+      "impresiones": 5,
+      "ctr": 0,
+      "pos": 7.6
+    },
+    {
+      "pagina": "/servicios/internacional-european-data-compliance",
+      "clics": 0,
+      "impresiones": 5,
+      "ctr": 0,
+      "pos": 12.6
+    },
+    {
+      "pagina": "/blog/el-masc-en-la-practica-que-tienes-que-hacer-antes-de-demandar-en-2026",
+      "clics": 0,
+      "impresiones": 4,
+      "ctr": 0,
+      "pos": 4
+    },
+    {
+      "pagina": "/en/honorarios",
+      "clics": 0,
+      "impresiones": 4,
+      "ctr": 0,
+      "pos": 6.5
+    },
+    {
+      "pagina": "/en/politica-de-inteligencia-artificial",
+      "clics": 0,
+      "impresiones": 4,
+      "ctr": 0,
+      "pos": 6
+    },
+    {
+      "pagina": "/en/servicios/eu-data-compliance",
+      "clics": 0,
+      "impresiones": 4,
+      "ctr": 0,
+      "pos": 7
+    },
+    {
+      "pagina": "/blog/ai-act-startups-espana-obligaciones-agosto-2026",
+      "clics": 0,
+      "impresiones": 3,
+      "ctr": 0,
+      "pos": 8.3
+    },
+    {
+      "pagina": "/blog/la-consulta-juridica-gratuita-y-sus-consecuencias-reales-en-la-abogacia",
+      "clics": 0,
+      "impresiones": 3,
+      "ctr": 0,
+      "pos": 6.3
+    },
+    {
+      "pagina": "/en/blog",
+      "clics": 0,
+      "impresiones": 3,
+      "ctr": 0,
+      "pos": 8
+    },
+    {
+      "pagina": "/autoevaluacion-ai-act",
+      "clics": 0,
+      "impresiones": 2,
+      "ctr": 0,
+      "pos": 5.5
+    },
+    {
+      "pagina": "/en/autoevaluacion-ai-act",
+      "clics": 0,
+      "impresiones": 2,
+      "ctr": 0,
+      "pos": 3.5
+    },
+    {
+      "pagina": "/en/terminos-y-condiciones",
+      "clics": 0,
+      "impresiones": 2,
+      "ctr": 0,
+      "pos": 2.5
+    },
+    {
+      "pagina": "/blog/cuando-necesitas-abogado-en-un-monitorio-los-tres-momentos-en-que-ir-solo-es-un-error",
+      "clics": 0,
+      "impresiones": 1,
+      "ctr": 0,
+      "pos": 5
+    },
+    {
+      "pagina": "/en/politica-de-cookies",
+      "clics": 0,
+      "impresiones": 1,
+      "ctr": 0,
+      "pos": 1
+    }
+  ],
+  "concentracion_burofax": {
+    "clics_burofax": 21,
+    "clics_sitio": 35,
+    "pct": 60.0,
+    "pos": 6.0,
+    "ctr": 2.06
+  },
+  "locale_en": {
+    "total": {
+      "clics": 1,
+      "impresiones": 631,
+      "urls_con_impresiones": 15
+    },
+    "paginas": [
+      {
+        "pagina": "/en/blog/digital-omnibus-ai-act-final-text",
+        "clics": 0,
+        "impresiones": 280,
+        "ctr": 0,
+        "pos": 7.6
+      },
+      {
+        "pagina": "/en/blog/ai-act-article-5-1a-provider-scope",
+        "clics": 0,
+        "impresiones": 131,
+        "ctr": 0,
+        "pos": 5.8
+      },
+      {
+        "pagina": "/en",
+        "clics": 1,
+        "impresiones": 114,
+        "ctr": 0.88,
+        "pos": 7.0
+      },
+      {
+        "pagina": "/en/servicios/ai-act-compliance",
+        "clics": 0,
+        "impresiones": 28,
+        "ctr": 0,
+        "pos": 7.8
+      },
+      {
+        "pagina": "/en/servicios/ai-act-high-risk",
+        "clics": 0,
+        "impresiones": 23,
+        "ctr": 0,
+        "pos": 7.4
+      },
+      {
+        "pagina": "/en/servicios/ai-act-provider-compliance",
+        "clics": 0,
+        "impresiones": 20,
+        "ctr": 0,
+        "pos": 16.2
+      },
+      {
+        "pagina": "/en/servicios/spain-entry-pack",
+        "clics": 0,
+        "impresiones": 8,
+        "ctr": 0,
+        "pos": 5.2
+      },
+      {
+        "pagina": "/en/servicios",
+        "clics": 0,
+        "impresiones": 7,
+        "ctr": 0,
+        "pos": 5.4
+      },
+      {
+        "pagina": "/en/honorarios",
+        "clics": 0,
+        "impresiones": 4,
+        "ctr": 0,
+        "pos": 6.5
+      },
+      {
+        "pagina": "/en/politica-de-inteligencia-artificial",
+        "clics": 0,
+        "impresiones": 4,
+        "ctr": 0,
+        "pos": 6
+      },
+      {
+        "pagina": "/en/servicios/eu-data-compliance",
+        "clics": 0,
+        "impresiones": 4,
+        "ctr": 0,
+        "pos": 7
+      },
+      {
+        "pagina": "/en/blog",
+        "clics": 0,
+        "impresiones": 3,
+        "ctr": 0,
+        "pos": 8
+      },
+      {
+        "pagina": "/en/autoevaluacion-ai-act",
+        "clics": 0,
+        "impresiones": 2,
+        "ctr": 0,
+        "pos": 3.5
+      },
+      {
+        "pagina": "/en/terminos-y-condiciones",
+        "clics": 0,
+        "impresiones": 2,
+        "ctr": 0,
+        "pos": 2.5
+      },
+      {
+        "pagina": "/en/politica-de-cookies",
+        "clics": 0,
+        "impresiones": 1,
+        "ctr": 0,
+        "pos": 1
+      }
+    ]
+  },
+  "cluster_aiact": [
+    {
+      "pagina": "/servicios/techlaw-ai-act-compliance",
+      "clics": 0,
+      "impresiones": 180,
+      "ctr": 0,
+      "pos": 29.1
+    },
+    {
+      "pagina": "/servicios/techlaw-founding-pack",
+      "clics": 0,
+      "impresiones": 24,
+      "ctr": 0,
+      "pos": 4.2
+    },
+    {
+      "pagina": "/servicios/techlaw-ai-act-alto-riesgo",
+      "clics": 0,
+      "impresiones": 22,
+      "ctr": 0,
+      "pos": 6.6
+    }
+  ],
+  "asimetria_es_en": {
+    "/servicios/techlaw-ai-act-compliance": {
+      "pagina": "/servicios/techlaw-ai-act-compliance",
+      "clics": 0,
+      "impresiones": 180,
+      "ctr": 0,
+      "pos": 29.1
+    },
+    "/en/servicios/ai-act-compliance": {
+      "pagina": "/en/servicios/ai-act-compliance",
+      "clics": 0,
+      "impresiones": 28,
+      "ctr": 0,
+      "pos": 7.8
+    },
+    "/en/servicios/ai-act-high-risk": {
+      "pagina": "/en/servicios/ai-act-high-risk",
+      "clics": 0,
+      "impresiones": 23,
+      "ctr": 0,
+      "pos": 7.4
+    },
+    "/servicios/techlaw-ai-act-alto-riesgo": {
+      "pagina": "/servicios/techlaw-ai-act-alto-riesgo",
+      "clics": 0,
+      "impresiones": 22,
+      "ctr": 0,
+      "pos": 6.6
+    },
+    "/en/blog/digital-omnibus-ai-act-final-text": {
+      "pagina": "/en/blog/digital-omnibus-ai-act-final-text",
+      "clics": 0,
+      "impresiones": 280,
+      "ctr": 0,
+      "pos": 7.6
+    },
+    "/blog/digital-omnibus-ai-act-2026-que-cambia-que-no": {
+      "pagina": "/blog/digital-omnibus-ai-act-2026-que-cambia-que-no",
+      "clics": 0,
+      "impresiones": 33,
+      "ctr": 0,
+      "pos": 6.7
+    }
+  },
+  "dispositivo": [
+    {
+      "dispositivo": "MOBILE",
+      "clics": 25,
+      "impresiones": 1913,
+      "ctr": 1.31,
+      "pos": 6.3
+    },
+    {
+      "dispositivo": "DESKTOP",
+      "clics": 9,
+      "impresiones": 1694,
+      "ctr": 0.53,
+      "pos": 10.2
+    },
+    {
+      "dispositivo": "TABLET",
+      "clics": 1,
+      "impresiones": 15,
+      "ctr": 6.67,
+      "pos": 5.7
+    }
+  ],
+  "marca": {
+    "total": {
+      "clicks": 2,
+      "impressions": 133,
+      "ctr": 1.5,
+      "position": 4.46
+    },
+    "consultas": [
+      {
+        "q": "passas",
+        "clics": 2,
+        "impresiones": 131,
+        "pos": 4.4
+      },
+      {
+        "q": "o passas",
+        "clics": 0,
+        "impresiones": 1,
+        "pos": 11
+      },
+      {
+        "q": "passa s",
+        "clics": 0,
+        "impresiones": 1,
+        "pos": 4
+      }
+    ]
+  },
+  "bloques_negocio": {
+    "Litigación y consumo ES (Perfil A)": {
+      "clics": 29,
+      "impresiones": 2554,
+      "pos_media": 6.7
+    },
+    "Internacional / locale EN (Perfil C)": {
+      "clics": 1,
+      "impresiones": 631,
+      "pos_media": 7.3
+    },
+    "TechLaw ES (Perfil B)": {
+      "clics": 0,
+      "impresiones": 346,
+      "pos_media": 20.7
+    },
+    "Marca e institucional": {
+      "clics": 5,
+      "impresiones": 309,
+      "pos_media": 9.2
+    }
+  },
+  "inspeccion_urls": {
+    "https://passas.io/blog/responsable-del-despliegue-ai-act-obligaciones-2026": {
+      "veredicto": "NEUTRAL",
+      "cobertura": "Discovered - currently not indexed",
+      "ultimo_rastreo": null,
+      "canonica_google": null,
+      "canonica_declarada": null,
+      "robots": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexacion": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "https://passas.io/blog/exito-abogado-preventivo-etica": {
+      "veredicto": "NEUTRAL",
+      "cobertura": "Crawled - currently not indexed",
+      "ultimo_rastreo": "2026-06-20T23:31:58Z",
+      "canonica_google": "https://passas.io/blog/exito-abogado-preventivo-etica",
+      "canonica_declarada": null,
+      "robots": "ALLOWED",
+      "indexacion": "INDEXING_ALLOWED"
+    },
+    "https://passas.io/blog/la-consulta-juridica-gratuita-y-sus-consecuencias-reales-en-la-abogacia": {
+      "veredicto": "NEUTRAL",
+      "cobertura": "Crawled - currently not indexed",
+      "ultimo_rastreo": "2026-06-13T12:42:08Z",
+      "canonica_google": "https://passas.io/blog/la-consulta-juridica-gratuita-y-sus-consecuencias-reales-en-la-abogacia",
+      "canonica_declarada": null,
+      "robots": "ALLOWED",
+      "indexacion": "INDEXING_ALLOWED"
+    },
+    "https://passas.io/en/servicios/commercial-litigation": {
+      "veredicto": "NEUTRAL",
+      "cobertura": "URL is unknown to Google",
+      "ultimo_rastreo": null,
+      "canonica_google": null,
+      "canonica_declarada": null,
+      "robots": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexacion": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "https://passas.io/en/team/guillermo-passas-varo": {
+      "veredicto": "NEUTRAL",
+      "cobertura": "Discovered - currently not indexed",
+      "ultimo_rastreo": null,
+      "canonica_google": null,
+      "canonica_declarada": null,
+      "robots": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexacion": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "https://passas.io/en": {
+      "veredicto": "PASS",
+      "cobertura": "Submitted and indexed",
+      "ultimo_rastreo": "2026-08-05T05:03:43Z",
+      "canonica_google": "https://passas.io/en",
+      "canonica_declarada": null,
+      "robots": "ALLOWED",
+      "indexacion": "INDEXING_ALLOWED"
+    },
+    "https://passas.io/en/blog": {
+      "veredicto": "PASS",
+      "cobertura": "Submitted and indexed",
+      "ultimo_rastreo": "2026-08-18T04:40:15Z",
+      "canonica_google": "https://passas.io/en/blog",
+      "canonica_declarada": null,
+      "robots": "ALLOWED",
+      "indexacion": "INDEXING_ALLOWED"
+    },
+    "https://passas.io/servicios/techlaw-ai-act-compliance": {
+      "veredicto": "PASS",
+      "cobertura": "Submitted and indexed",
+      "ultimo_rastreo": "2026-07-31T06:09:33Z",
+      "canonica_google": "https://passas.io/servicios/techlaw-ai-act-compliance",
+      "canonica_declarada": "https://passas.io/servicios/techlaw-ai-act-compliance",
+      "robots": "ALLOWED",
+      "indexacion": "INDEXING_ALLOWED"
+    },
+    "https://passas.io/honorarios": {
+      "veredicto": "PASS",
+      "cobertura": "Submitted and indexed",
+      "ultimo_rastreo": "2026-07-31T04:20:33Z",
+      "canonica_google": "https://passas.io/honorarios",
+      "canonica_declarada": "https://passas.io/honorarios",
+      "robots": "ALLOWED",
+      "indexacion": "INDEXING_ALLOWED"
+    }
+  },
+  "sitemaps": {
+    "sitemap": [
+      {
+        "path": "https://passas.io/sitemap.xml",
+        "lastSubmitted": "2026-04-21T10:29:21.704Z",
+        "isPending": false,
+        "isSitemapsIndex": false,
+        "type": "sitemap",
+        "lastDownloaded": "2026-08-23T18:33:26.506Z",
+        "warnings": "0",
+        "errors": "0",
+        "contents": [
+          {
+            "type": "web",
+            "submitted": "65",
+            "indexed": "0"
+          }
+        ]
+      }
+    ]
+  },
+  "_meta": {
+    "ejecutado": "2026-08-25T19:50:43.255327Z",
+    "propiedad": "sc-domain:passas.io",
+    "proposito": "Cotejo del informe 2026-08-24 y su respuesta contra GSC en vivo",
+    "ultimo_dia_con_datos": "2026-08-23"
+  }
+}
