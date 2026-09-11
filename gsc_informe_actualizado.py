@@ -39,6 +39,8 @@ SITE_ENC = requests.utils.quote(SITE, safe="")
 BASE     = "https://passas.io"
 
 ROW_LIMIT = 25000
+# Impresiones minimas para que la posicion media de una query sea informativa.
+UMBRAL_IMPRESIONES = 10
 SEARCH_TYPE = "web"
 
 HOY = date.today().isoformat()
@@ -53,10 +55,15 @@ SERIE_INI  = "2026-07-27"   # lunes
 
 # ── Terminos declarados para el subbloque TechLaw ───────────────────────────
 TECHLAW_PREFIJO_SERVICIOS = "techlaw-"
-TECHLAW_TERMINOS_SLUG = [
-    "ai-act", "ia-", "inteligencia-artificial",
+# Subcadenas: se buscan tal cual dentro del slug.
+TECHLAW_SUBCADENAS = [
+    "ai-act", "inteligencia-artificial",
     "digital-omnibus", "chat-control", "software", "rgpd",
 ]
+# Tokens: el termino pedido es "ia-", pero aplicado como subcadena captura
+# "guia-", "tributaria-", "andalucia-", "audiencia-"... Se aplica por tanto
+# como token completo delimitado por guiones.
+TECHLAW_TOKENS = ["ia"]
 
 # ── Clusters de query (subcadenas, sobre la query en minusculas) ────────────
 CLUSTERS = {
@@ -102,6 +109,10 @@ ANALYZE = {
     "por_dispositivo": {"escritorio": 32, "movil": 18},
     "usa_aterriza_en": ["ASNEF", "estafa", "burofax", "digital-omnibus"],
 }
+
+# Cifras de V_previa citadas en el encargo (informe del 25 ago), solo para
+# contrastar con el recalculo. No se usan como fuente.
+CONTEXTO_V_PREVIA = {"clics": 35, "impresiones": 3622}
 
 RAW = {
     "_meta": {
@@ -220,7 +231,15 @@ def dec(x, n=2):
 # Clasificacion por bloque
 # ════════════════════════════════════════════════════════════════════════════
 def ruta(url):
+    """Ruta sin host ni query: se usa para clasificar."""
     return re.sub(r"^https?://[^/]+", "", url).split("?")[0].split("#")[0]
+
+
+def disp(url):
+    """Ruta para mostrar: conserva la query string, que distingue URLs
+    realmente distintas (p. ej. la paginacion ?..._page=3)."""
+    r = re.sub(r"^https?://[^/]+", "", url).split("#")[0]
+    return r or "/"
 
 
 def bloque(url):
@@ -242,7 +261,9 @@ def es_techlaw(url):
     slug = p.rsplit("/", 1)[-1]
     if "/servicios/" in p and slug.startswith(TECHLAW_PREFIJO_SERVICIOS):
         return True
-    return any(t in slug for t in TECHLAW_TERMINOS_SLUG)
+    if any(t in slug for t in TECHLAW_SUBCADENAS):
+        return True
+    return any(t in slug.split("-") for t in TECHLAW_TOKENS)
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -284,7 +305,10 @@ def urls_sitemap():
 # ════════════════════════════════════════════════════════════════════════════
 # Inspeccion de URL
 # ════════════════════════════════════════════════════════════════════════════
-INESTABLES = {"unknown", "discovered", ""}
+# Estados que la API devuelve de forma inestable. Ojo: no incluir "" aqui,
+# porque la cadena vacia es subcadena de cualquier estado y dispararia
+# el reintento en todas las URLs.
+INESTABLES = ("unknown", "discovered")
 
 
 def inspect_once(s, url):
@@ -315,7 +339,8 @@ def inspect_url(s, url):
     """Inspecciona. Si sale unknown/discovered, repite 3 veces y devuelve la moda."""
     r1 = resumen_inspeccion(inspect_once(s, url))
     estado = (r1.get("coverageState") or "").strip().lower()
-    if not any(k in estado for k in INESTABLES) and estado:
+    inestable = (not estado) or any(k in estado for k in INESTABLES)
+    if not inestable:
         r1["intentos"] = 1
         return r1
     muestras = [r1] + [resumen_inspeccion(inspect_once(s, url)) for _ in range(2)]
@@ -490,6 +515,16 @@ def main():
 
     # ── 6. Cruce con Analyze ────────────────────────────────────────────────
     R["cruce_page"]    = sa_query(s, "cruce:page", *V_CRUCE, ["page"])
+    # Las consultas de DOS dimensiones sufren anonimizacion agresiva: pierden la
+    # mayor parte de los clics. Para la pregunta clave se usa una consulta de UNA
+    # dimension con filtro de pais, que no sufre esa perdida.
+    R["cruce_total"] = tot(sa_query(s, "cruce:total", *V_CRUCE, []))
+    for cc in ("usa", "esp"):
+        filtro = [{"dimension": "country", "operator": "equals", "expression": cc}]
+        R[f"cruce_{cc}_total"] = tot(sa_query(s, f"cruce:total:{cc}", *V_CRUCE, [],
+                                              filters=filtro))
+        R[f"cruce_{cc}_pages"] = sa_query(s, f"cruce:page:{cc}", *V_CRUCE, ["page"],
+                                          filters=filtro)
     R["cruce_pais"]    = sa_query(s, "cruce:page_country", *V_CRUCE, ["page", "country"])
     R["cruce_device"]  = sa_query(s, "cruce:page_device", *V_CRUCE, ["page", "device"])
 
@@ -564,12 +599,22 @@ def tabla_vigilancia(R):
                   f"CTR {dec(mp['ctr'])}% — consulta homónima, solo dato",
                   "confirma" if mp["ctr"] > 0 else "preocupa"))
 
-    # Cluster contencioso
+    # Cluster contencioso. La posicion se mide solo sobre queries con volumen
+    # suficiente: con 1 impresion la API devuelve posiciones de 2,0 que son
+    # ruido de cola larga, no una entrada real en el top 5.
     cc = R["clusters"]["contencioso"]
-    if cc["queries"]:
-        mejor = min(q["posicion"] for q in cc["queries"] if q["posicion"])
-        txt = f"mejor posición {dec(mejor,1)}; {cc['total']['clics']} clics, {fmt(cc['total']['impresiones'])} impr."
+    relevantes = [q for q in cc["queries"]
+                  if q["posicion"] and q["impresiones"] >= UMBRAL_IMPRESIONES]
+    if relevantes:
+        mejor = min(q["posicion"] for q in relevantes)
+        txt = (f"mejor posición {dec(mejor,1)} entre queries con ≥{UMBRAL_IMPRESIONES} "
+               f"impresiones; {cc['total']['clics']} clic(s), "
+               f"{fmt(cc['total']['impresiones'])} impr. en el cluster")
         ver = "confirma" if mejor <= 5 else ("preocupa" if 7 <= mejor <= 12 else "sin dato suficiente")
+    elif cc["queries"]:
+        txt = (f"ninguna query del cluster alcanza {UMBRAL_IMPRESIONES} impresiones; "
+               f"{fmt(cc['total']['impresiones'])} impr. repartidas en cola larga")
+        ver = "sin dato suficiente"
     else:
         txt, ver = "sin queries del cluster (ver cobertura)", "sin dato suficiente"
     filas.append(("Cluster contencioso", txt, ver))
@@ -699,16 +744,29 @@ def construir_informe(R):
     sb_i = sum(v["impresiones"] for v in R["bloques"].values())
     A(f"| **Total `page`** | **{sb_c}** | **{fmt(sb_i)}** | | |")
     A("")
-    A(f"**Cuadre**: la suma por bloque ({sb_c} clics, {fmt(sb_i)} impresiones) es el total de la "
-      f"dimensión `page`. Frente a la dimensión de referencia `date` "
-      f"({ta['clics']} clics, {fmt(ta['impresiones'])} impresiones) hay una diferencia de "
-      f"{sb_c-ta['clics']:+d} clics y {sfmt(sb_i-ta['impresiones'])} impresiones: es el efecto "
-      f"conocido de agregación por dimensión en la API, no un error de extracción.")
+    if sb_c == ta["clics"] and sb_i == ta["impresiones"]:
+        A(f"**Cuadre**: la suma por bloque ({sb_c} clics, {fmt(sb_i)} impresiones) **coincide "
+          f"exactamente** con la dimensión de referencia `date`. La tabla suma su total.")
+    else:
+        A(f"**Cuadre**: la suma por bloque ({sb_c} clics, {fmt(sb_i)} impresiones) es el total de "
+          f"la dimensión `page`. Frente a la referencia `date` ({ta['clics']} clics, "
+          f"{fmt(ta['impresiones'])} impresiones) hay {sb_c-ta['clics']:+d} clics y "
+          f"{sfmt(sb_i-ta['impresiones'])} impresiones de diferencia: es el efecto conocido de "
+          f"agregación por dimensión en la API (filtrado de privacidad), no un error de extracción.")
     A("")
     A("### Subbloque TechLaw")
     A("")
-    A(f"Términos declarados — servicios con prefijo `{TECHLAW_PREFIJO_SERVICIOS}`; "
-      f"artículos cuyo slug contenga: {', '.join('`'+t+'`' for t in TECHLAW_TERMINOS_SLUG)}.")
+    A(f"**Términos declarados** — servicios con prefijo `{TECHLAW_PREFIJO_SERVICIOS}`; "
+      f"artículos cuyo slug contenga: "
+      f"{', '.join('`'+t+'`' for t in TECHLAW_SUBCADENAS)}; "
+      f"y artículos cuyo slug incluya el token `ia` aislado.")
+    A("")
+    A("> **Nota sobre el término `ia-`**: aplicado como simple subcadena captura "
+      "`guia-`, `tributaria-`, `andalucia-` o `audiencia-`, lo que arrastraba al bloque "
+      "artículos sin relación con IA (entre ellos el de burofax, la página con más "
+      "impresiones del sitio). Se aplica por tanto como **token completo delimitado por "
+      "guiones**: entran `...-ia-...` y `...-ia` (p. ej. `decision-ia-reclamacion`), "
+      "y no entra `guia-`.")
     A("")
     tl = R["techlaw"]
     A(f"**Total TechLaw (ES+EN)**: {tl['clics']} clics, {fmt(tl['impresiones'])} impresiones "
@@ -718,14 +776,14 @@ def construir_informe(R):
         A("| URL | Clics | Impresiones | Pos. | Δ clics | Δ impr. |")
         A("|---|---:|---:|---:|---:|---:|")
         for p in tl["urls"][:30]:
-            A(f"| `{ruta(p['url'])}` | {p['clics']} | {fmt(p['impresiones'])} | {dec(p['posicion'],1)} | {p['d_clics']:+d} | {sfmt(p['d_impr'])} |")
+            A(f"| `{disp(p['url'])}` | {p['clics']} | {fmt(p['impresiones'])} | {dec(p['posicion'],1)} | {p['d_clics']:+d} | {sfmt(p['d_impr'])} |")
         A("")
     A("### Páginas (top 40 por impresiones)")
     A("")
     A("| URL | Bloque | Clics | Impresiones | Pos. | Δ clics | Δ impr. |")
     A("|---|---|---:|---:|---:|---:|---:|")
     for p in R["paginas"][:40]:
-        A(f"| `{ruta(p['url'])}` | {p['bloque']} | {p['clics']} | {fmt(p['impresiones'])} | "
+        A(f"| `{disp(p['url'])}` | {p['bloque']} | {p['clics']} | {fmt(p['impresiones'])} | "
           f"{dec(p['posicion'],1)} | {p['d_clics']:+d} | {sfmt(p['d_impr'])} |")
     A("")
 
@@ -734,6 +792,10 @@ def construir_informe(R):
     A("")
     A(f"> Cobertura: las queries explican {dec(cob['clics_pct'],1)}% de los clics y "
       f"{dec(cob['impr_pct'],1)}% de las impresiones. Lo que sigue describe **solo esa porción**.")
+    A("")
+    A(f"> Para juzgar posiciones se exige un mínimo de **{UMBRAL_IMPRESIONES} impresiones** por "
+      "query: por debajo, la API devuelve posiciones extremas (2,0 con una sola impresión) "
+      "que son cola larga, no presencia real en el top.")
     A("")
     A("### Top queries en V_actual")
     A("")
@@ -763,23 +825,23 @@ def construir_informe(R):
         A("| Query | URL | Clics | Impr. | Pos. |")
         A("|---|---|---:|---:|---:|")
         for q in cl["queries"][:15]:
-            A(f"| {q['query']} | `{ruta(q['page'])}` | {q['clics']} | {fmt(q['impresiones'])} | {dec(q['posicion'],1)} |")
+            A(f"| {q['query']} | `{disp(q['page'])}` | {q['clics']} | {fmt(q['impresiones'])} | {dec(q['posicion'],1)} |")
         A("")
         A("**Reparto por URL** (impresiones vs. clics — canibalización):")
         A("")
         A("| URL | Clics | Impresiones |")
         A("|---|---:|---:|")
         for u in cl["por_url"][:10]:
-            A(f"| `{ruta(u['url'])}` | {u['clics']} | {fmt(u['impresiones'])} |")
+            A(f"| `{disp(u['url'])}` | {u['clics']} | {fmt(u['impresiones'])} |")
         top_i = cl["por_url"][0] if cl["por_url"] else None
         con_c = [u for u in cl["por_url"] if u["clics"] > 0]
         top_c = max(con_c, key=lambda x: x["clics"]) if con_c else None
         A("")
         if top_i and top_c and top_i["url"] != top_c["url"]:
-            A(f"> **Canibalización**: las impresiones se concentran en `{ruta(top_i['url'])}` "
-              f"pero los clics los recibe `{ruta(top_c['url'])}`.")
+            A(f"> **Canibalización**: las impresiones se concentran en `{disp(top_i['url'])}` "
+              f"pero los clics los recibe `{disp(top_c['url'])}`.")
         elif top_i and top_c:
-            A(f"> Impresiones y clics coinciden en `{ruta(top_i['url'])}`; sin señal de canibalización.")
+            A(f"> Impresiones y clics coinciden en `{disp(top_i['url'])}`; sin señal de canibalización.")
         else:
             A("> Impresiones sin clics en el cluster; no puede evaluarse canibalización.")
         A("")
@@ -804,9 +866,16 @@ def construir_informe(R):
     cv = tot(R["country"])
     A(f"| **Total** | **{cv['clics']}** | **{fmt(cv['impresiones'])}** | | |")
     A("")
-    A(f"**Cuadre**: device suma {dv['clics']} clics / {fmt(dv['impresiones'])} impresiones y "
-      f"country suma {cv['clics']} / {fmt(cv['impresiones'])}; la referencia `date` da "
-      f"{ta['clics']} / {fmt(ta['impresiones'])}. Las diferencias son de agregación por dimensión.")
+    iguales = (dv["clics"] == cv["clics"] == ta["clics"]
+               and dv["impresiones"] == cv["impresiones"] == ta["impresiones"])
+    if iguales:
+        A(f"**Cuadre**: device y country suman ambos {dv['clics']} clics / "
+          f"{fmt(dv['impresiones'])} impresiones, **exactamente igual** que la referencia "
+          f"`date`. Ambas tablas suman su total sin pérdida.")
+    else:
+        A(f"**Cuadre**: device suma {dv['clics']} clics / {fmt(dv['impresiones'])} impresiones y "
+          f"country suma {cv['clics']} / {fmt(cv['impresiones'])}; la referencia `date` da "
+          f"{ta['clics']} / {fmt(ta['impresiones'])}. Las diferencias son de agregación por dimensión.")
     A("")
     A("### Aspecto en la búsqueda (searchAppearance)")
     A("")
@@ -837,40 +906,69 @@ def construir_informe(R):
     A("| URL | Clics | Impresiones |")
     A("|---|---:|---:|")
     for f in sorted(R["cruce_page"], key=lambda x: -x.get("clicks", 0))[:25]:
-        A(f"| `{ruta(f['keys'][0])}` | {f.get('clicks',0)} | {fmt(f.get('impressions',0))} |")
+        A(f"| `{disp(f['keys'][0])}` | {f.get('clicks',0)} | {fmt(f.get('impressions',0))} |")
+    A("")
+    # ── Aviso metodologico: perdida por cruce de dos dimensiones ───────────
+    ct = R["cruce_total"]
+    pc = tot(R["cruce_pais"])
+    A("### Aviso: las consultas de dos dimensiones pierden clics")
+    A("")
+    A("| Consulta | Clics | Impresiones |")
+    A("|---|---:|---:|")
+    A(f"| Sin dimensiones (referencia) | {ct['clics']} | {fmt(ct['impresiones'])} |")
+    A(f"| `page` (una dimensión) | {tot(R['cruce_page'])['clics']} | {fmt(tot(R['cruce_page'])['impresiones'])} |")
+    A(f"| `page` × `country` (dos dimensiones) | {pc['clics']} | {fmt(pc['impresiones'])} |")
+    A(f"| `page` × `device` (dos dimensiones) | {tot(R['cruce_device'])['clics']} | {fmt(tot(R['cruce_device'])['impresiones'])} |")
+    A("")
+    perdida = (1 - pc["clics"] / ct["clics"]) * 100 if ct["clics"] else 0
+    A(f"> **Esta tabla no suma su total, y la razón importa**: al cruzar dos dimensiones "
+      f"Google anonimiza de forma agresiva y aquí se pierde el **{dec(perdida,0)}%** de los "
+      f"clics ({ct['clics']} → {pc['clics']}). Por eso **la pregunta clave NO se responde con "
+      f"`page`×`country`**: se responde con consultas de una sola dimensión y filtro de país, "
+      f"que no sufren esa pérdida.")
     A("")
     A("### Pregunta clave: ¿hay clics de EE. UU. en ASNEF, estafa y burofax?")
     A("")
-    objetivo = {"asnef": "ASNEF", "estafa": "estafa", "burofax": "burofax"}
-    A("| Página | Clics esp | Clics usa |")
+    usa, esp = R["cruce_usa_total"], R["cruce_esp_total"]
+    A("| País (filtro, una dimensión) | Clics | Impresiones |")
     A("|---|---:|---:|")
-    veredictos = {}
-    for clave, et in objetivo.items():
-        esp = sum(f.get("clicks", 0) for f in R["cruce_pais"]
-                  if clave in f["keys"][0].lower() and f["keys"][1] == "esp")
-        usa = sum(f.get("clicks", 0) for f in R["cruce_pais"]
-                  if clave in f["keys"][0].lower() and f["keys"][1] == "usa")
-        veredictos[clave] = usa
-        A(f"| {et} | {esp} | {usa} |")
+    A(f"| EE. UU. | {usa['clics']} | {fmt(usa['impresiones'])} |")
+    A(f"| España | {esp['clics']} | {fmt(esp['impresiones'])} |")
+    A(f"| **Total del sitio** | **{ct['clics']}** | **{fmt(ct['impresiones'])}** |")
     A("")
-    total_usa = sum(veredictos.values())
+    objetivo = ("asnef", "estafa", "burofax")
+    hits = [f for f in R["cruce_usa_pages"]
+            if any(k in f["keys"][0].lower() for k in objetivo)]
+    total_usa = usa["clics"]
     if total_usa == 0:
-        A("**Verificado**: GSC registra **0 clics desde EE. UU.** en ASNEF, estafa y burofax "
-          "en V_cruce. Por tanto las 10 sesiones de EE. UU. que Analyze atribuye a "
-          "`google.com` **no son clics de la Búsqueda de Google**. Explicaciones compatibles "
-          "(no verificadas aquí): tráfico automatizado, referrer falsificado, o servicios de "
-          "Google distintos de la Búsqueda.")
+        A(f"**Verificado**: en V_cruce GSC registra **0 clics desde EE. UU. en todo el sitio** "
+          f"(sobre {fmt(usa['impresiones'])} impresiones). Si no hay ningún clic "
+          f"estadounidense en ninguna página, no puede haberlo en ASNEF, estafa ni burofax. "
+          f"La respuesta es **no**.")
+        A("")
+        A(f"De las {len(R['cruce_usa_pages'])} páginas con impresiones desde EE. UU., "
+          f"{len(hits)} pertenece(n) a esos tres temas:")
+        A("")
+        if hits:
+            A("| URL | Clics | Impresiones |")
+            A("|---|---:|---:|")
+            for f in sorted(hits, key=lambda x: -x.get("impressions", 0)):
+                A(f"| `{disp(f['keys'][0])}` | {f.get('clicks',0)} | {fmt(f.get('impressions',0))} |")
+            A("")
+        A("**Conclusión**: las 10 sesiones de EE. UU. que Analyze atribuye a `google.com` "
+          "**no son clics de la Búsqueda de Google**. Hipótesis compatibles, no verificadas "
+          "aquí: tráfico automatizado, `referrer` falsificado, o servicios de Google "
+          "distintos de la Búsqueda.")
     else:
-        A(f"**Verificado**: GSC sí registra clics desde EE. UU. en esas páginas "
-          f"({total_usa} en total), de modo que las sesiones de Analyze son compatibles "
-          f"con clics reales de la Búsqueda.")
+        A(f"**Verificado**: GSC sí registra {total_usa} clic(s) desde EE. UU. en V_cruce, "
+          f"de modo que las sesiones de Analyze son compatibles con clics reales.")
     A("")
     A("### Reparto por dispositivo en V_cruce (top páginas)")
     A("")
     A("| URL | Dispositivo | Clics | Impresiones |")
     A("|---|---|---:|---:|")
     for f in sorted(R["cruce_device"], key=lambda x: -x.get("clicks", 0))[:20]:
-        A(f"| `{ruta(f['keys'][0])}` | {f['keys'][1]} | {f.get('clicks',0)} | {fmt(f.get('impressions',0))} |")
+        A(f"| `{disp(f['keys'][0])}` | {f['keys'][1]} | {f.get('clicks',0)} | {fmt(f.get('impressions',0))} |")
     A("")
     cg = tot(R["cruce_page"])
     ap = sum(n for _, n in ANALYZE["por_pagina"])
@@ -913,28 +1011,48 @@ def construir_informe(R):
     A("## 7. Indexación y sitemap")
     A("")
     origen = RAW.get("sitemap_xml", {}).get("origen", "?")
+    sms_pre = R["sitemaps"].get("sitemap", []) or []
+    enviadas = sum(int(c.get("submitted", 0))
+                   for sm in sms_pre for c in (sm.get("contents") or []))
     A(f"Origen de la lista de URLs: **{origen}**. "
       f"Total inspeccionadas: **{len(R['inspeccion'])}**.")
     A("")
+    if "inventario" in origen and enviadas > len(R["inspeccion"]):
+        A(f"> **Límite de cobertura**: no se pudo descargar `passas.io/sitemap.xml` desde el "
+          f"entorno de ejecución, así que la lista procede del inventario local de Webflow "
+          f"(2026-07-27, **anterior a la migración del 9–11 sep**). Google declara "
+          f"**{enviadas} URLs enviadas** en el sitemap frente a las {len(R['inspeccion'])} "
+          f"inspeccionadas aquí: **la diferencia no está auditada en este informe**. "
+          f"Para cubrirla hay que reejecutar desde una red con acceso a `passas.io`.")
+        A("")
     A("| URL | coverageState | indexingState | Último rastreo | pageFetchState | googleCanonical vs userCanonical | Rich results |")
     A("|---|---|---|---|---|---|---|")
     for u, v in R["inspeccion"].items():
         if "error" in v:
-            A(f"| `{ruta(u)}` | ERROR | — | — | — | — | {v['error'][:40]} |")
+            A(f"| `{disp(u)}` | ERROR | — | — | — | — | {v['error'][:40]} |")
             continue
         gc, uc = v.get("googleCanonical", ""), v.get("userCanonical", "")
-        can = "coinciden" if gc == uc and gc else (f"`{ruta(gc) or '—'}` ≠ `{ruta(uc) or '—'}`" if (gc or uc) else "—")
+        if gc and uc:
+            can = "coinciden" if gc == uc else f"Google `{gc}` ≠ declarada `{uc}`"
+        elif gc:
+            can = f"Google `{disp(gc)}`; sin canonical declarada"
+        elif uc:
+            can = f"declarada `{disp(uc)}`; Google sin dato"
+        else:
+            can = "—"
         rich = v.get("veredicto_rich", "NONE")
         tipos = ", ".join(v.get("tipos_rich", [])) or "—"
         marca = " ⚠︎3x" if v.get("intentos") == 3 else ""
         crawl = (v.get("lastCrawlTime") or "—")[:10]
-        A(f"| `{ruta(u) or '/'}` | {v.get('coverageState','—')}{marca} | {v.get('indexingState','—')} | "
+        A(f"| `{disp(u)}` | {v.get('coverageState','—')}{marca} | {v.get('indexingState','—')} | "
           f"{crawl} | {v.get('pageFetchState','—')} | {can} | {rich} ({tipos}) |")
     A("")
     reintentos = [u for u, v in R["inspeccion"].items() if v.get("intentos") == 3]
     if reintentos:
-        A(f"> ⚠︎3x: {len(reintentos)} URL(s) devolvieron `unknown`/`discovered`; se consultaron "
-          "3 veces y se reporta la **moda**, por ser ruido conocido de la API.")
+        A(f"> ⚠︎3x: {len(reintentos)} de {len(R['inspeccion'])} URL(s) devolvieron "
+          "`unknown`/`discovered` (o estado vacío) en la primera consulta; se consultaron "
+          "3 veces y se reporta la **moda**, por ser ruido conocido de la API. El resto "
+          "se consultó una sola vez.")
         A("")
     A("### Sitemaps")
     A("")
@@ -967,31 +1085,39 @@ def construir_informe(R):
     A("")
     A("_(máximo 5; cada uno marcado como verificado contra la API o como hipótesis)_")
     A("")
-    n = 0
-    n += 1
-    A(f"{n}. **[verificado]** V_actual ({V_ACTUAL_I} → {F}) cierra con {ta['clics']} clics y "
-      f"{fmt(ta['impresiones'])} impresiones (CTR {ta['ctr']}%, posición {ta['posicion']}), "
-      f"frente a {tp['clics']} clics y {fmt(tp['impresiones'])} impresiones en V_previa "
-      f"recalculada.")
+    cx = CONTEXTO_V_PREVIA
+    A(f"1. **[verificado]** **V_previa ha cambiado al recalcularla.** La misma ventana "
+      f"({V_PREVIA[0]} → {V_PREVIA[1]}) da hoy {tp['clics']} clics y {fmt(tp['impresiones'])} "
+      f"impresiones, frente a los {cx['clics']} clics y {fmt(cx['impresiones'])} impresiones "
+      f"que citaba el informe del 25 ago: {tp['clics']-cx['clics']:+d} clics y "
+      f"{sfmt(tp['impresiones']-cx['impresiones'])} impresiones. Los datos de GSC siguen "
+      f"consolidándose semanas después, así que **heredar cifras de un informe anterior "
+      f"introduce error**; conviene recalcular siempre.")
+    A(f"2. **[verificado]** V_actual ({V_ACTUAL_I} → {F}) cierra con {ta['clics']} clics y "
+      f"{fmt(ta['impresiones'])} impresiones (CTR {dec(ta['ctr'])}%, posición "
+      f"{dec(ta['posicion'])}). Frente a V_previa recalculada: {ta['clics']-tp['clics']:+d} "
+      f"clics y {sfmt(ta['impresiones']-tp['impresiones'])} impresiones, con el CTR cayendo "
+      f"{dec(abs(ta['ctr']-tp['ctr']))} pp — más impresiones sin más clics.")
     if total_usa == 0:
-        n += 1
-        A(f"{n}. **[verificado]** GSC no registra ningún clic desde EE. UU. en ASNEF, estafa ni "
-          "burofax durante V_cruce, pese a que Analyze atribuye 10 sesiones de EE. UU. a "
-          "`google.com` en esas páginas. Las dos fuentes no describen el mismo tráfico.")
-    n += 1
-    A(f"{n}. **[verificado]** La dimensión `query` solo cubre {cob['clics_pct']}% de los clics y "
-      f"{cob['impr_pct']}% de las impresiones de V_actual; el análisis por cluster describe "
-      "una fracción minoritaria del rendimiento real.")
-    tl = R["techlaw"]
-    n += 1
-    A(f"{n}. **[verificado]** El bloque TechLaw (ES+EN) acumula {tl['clics']} clics y "
-      f"{fmt(tl['impresiones'])} impresiones en V_actual.")
-    if n < 5:
-        n += 1
-        A(f"{n}. **[hipótesis]** Los cambios de 7–11 sep (canonical v2, migración a "
-          "`/legal-tools`, slugs EN nuevos con 301 pendientes) caen en el extremo final de la "
-          "ventana o después de F, por lo que su efecto **aún no es medible** en estos datos. "
-          "Queda por confirmar en la próxima extracción.")
+        A(f"3. **[verificado]** **Cero clics desde EE. UU. en todo el sitio** durante V_cruce "
+          f"(0 clics sobre {fmt(R['cruce_usa_total']['impresiones'])} impresiones), medido con "
+          f"filtro de país sobre una sola dimensión. Las 10 sesiones estadounidenses que "
+          f"Analyze atribuye a `google.com` no pueden ser clics de la Búsqueda.")
+    else:
+        A(f"3. **[verificado]** GSC registra {total_usa} clic(s) desde EE. UU. en V_cruce.")
+    ctc = R["cruce_total"]["clics"]
+    pcc = tot(R["cruce_pais"])["clics"]
+    A(f"4. **[verificado]** **Las consultas de dos dimensiones no son utilizables para contar "
+      f"clics en esta propiedad.** En V_cruce, `page`×`country` devuelve {pcc} clics frente a "
+      f"los {ctc} reales: se pierde el {dec((1-pcc/ctc)*100,0) if ctc else '—'}% por "
+      f"anonimización. Cualquier reparto cruzado de este informe (y de los anteriores) "
+      f"describe una minoría de los clics; los totales fiables vienen de una sola dimensión.")
+    A(f"5. **[hipótesis]** Los cambios de 7–11 sep (canonical v2, migración a `/legal-tools`, "
+      f"slugs EN nuevos con 301 pendientes) caen en el extremo final de la ventana o después "
+      f"de F = {F}, por lo que su efecto **aún no es medible**. Señal coherente con la "
+      f"hipótesis, no prueba: {sum(1 for v in R['inspeccion'].values() if 'unknown' in (v.get('coverageState') or '').lower())} "
+      f"URLs inspeccionadas siguen siendo «unknown to Google». Queda por confirmar en la "
+      f"próxima extracción.")
     A("")
     A("---")
     A("")
