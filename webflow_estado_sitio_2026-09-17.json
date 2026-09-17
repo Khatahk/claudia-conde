@@ -1,0 +1,118 @@
+{
+  "_comentario": "Estado real de passas.io leido con la Webflow Data API el 2026-09-17, para contrastar contra los datos de GSC (que solo llegan al 2026-09-15). Sin credenciales.",
+  "site_id": "693bff66fcd35a6e780380c2",
+  "site_name": "PASSAS",
+  "base_url": "https://passas.io",
+  "site_created_on": "2025-12-12T11:41:26.966Z",
+  "dominios_last_published": "2026-09-17T12:33:35.965Z",
+  "site_last_updated": "2026-09-17T13:30:10.882Z",
+  "gsc_datos_hasta": "2026-09-15",
+  "locales": {
+    "primario": {"tag": "es-ES", "subdirectorio": "", "redirect": true},
+    "secundario": [{"tag": "en", "subdirectorio": "en", "enabled": true}]
+  },
+  "navegacion_principal": [
+    {"label": "Qué hacemos", "destino": "/areas"},
+    {"label": "Honorarios", "destino": "/honorarios"},
+    {"label": "Herramientas", "destino": "/legal-tools"},
+    {"label": "Blog", "destino": "/blog"},
+    {"label": "El Despacho", "destino": "/team"},
+    {"label": "Videoconsulta (CTA x2)", "destino": "/videoconsulta"}
+  ],
+  "_nota_navegacion": "/servicios ya NO esta en el menu principal. Las 10 fichas de servicio dependen ahora de los enlaces desde las areas.",
+  "areas": [
+    {
+      "orden": 1, "slug_es": "inteligencia-artificial", "slug_en": "artificial-intelligence",
+      "dolor": "Estoy usando la IA y no sé si me estoy metiendo en un marrón",
+      "eslogan": "Para quien construye o despliega IA y quiere saber qué le exige la ley antes de que se lo diga un inspector.",
+      "servicios_referenciados": 3, "herramientas_referenciadas": 2,
+      "enlaces_internos_en_tesis": ["/blog/checklist-ai-act-cumplimiento-empresas", "/legal-tools/autoevaluacion-ai-act", "/blog/administrador-responsabilidad-personal-ia-empresa-lsc-236"],
+      "enlaces_internos_en_experiencia": ["/abogados-inteligencia-artificial"]
+    },
+    {
+      "orden": 2, "slug_es": "datos", "slug_en": "data-law",
+      "dolor": "Tengo una empresa digital basada en datos y tengo miedo de no estar gestionando bien el riesgo",
+      "eslogan": "Para empresas digitales que viven de los datos y quieren gestionar el riesgo regulatorio como negocio.",
+      "servicios_referenciados": 2, "herramientas_referenciadas": 1,
+      "enlaces_internos_en_tesis": [], "enlaces_internos_en_experiencia": []
+    },
+    {
+      "orden": 3, "slug_es": "litigacion", "slug_en": "litigation",
+      "dolor": "Tengo un litigio, o un posible litigio, y necesito un abogado",
+      "eslogan": "Para quien tiene un conflicto con más de 10.000 € en juego y quiere saber, antes de pleitear, si le compensa.",
+      "servicios_referenciados": 3, "herramientas_referenciadas": 2,
+      "enlaces_internos_en_tesis": [], "enlaces_internos_en_experiencia": []
+    },
+    {
+      "orden": 4, "slug_es": "internacional", "slug_en": "international",
+      "dolor": "Soy una empresa extranjera con intereses en España que proteger, o una empresa extracomunitaria que necesita un abogado europeo",
+      "eslogan": "Para empresas de fuera de España, o de fuera de la Unión, que necesitan protección jurídica aquí y en su idioma.",
+      "servicios_referenciados": 3, "herramientas_referenciadas": 1,
+      "enlaces_internos_en_tesis": [], "enlaces_internos_en_experiencia": []
+    }
+  ],
+  "servicios": [
+    {"slug": "techlaw-ai-compliance-providers", "desde_eur": 12000, "plazo": "6 semanas", "destinatario": "Providers de sistemas de IA", "related_posts": 4},
+    {"slug": "techlaw-ai-act-alto-riesgo", "desde_eur": 9000, "plazo": "4 semanas", "destinatario": "Deployers de Alto Riesgo", "related_posts": 6},
+    {"slug": "techlaw-founding-pack", "desde_eur": 8000, "plazo": "2 semanas", "destinatario": "Startups", "related_posts": 6},
+    {"slug": "internacional-due-diligence-tech", "desde_eur": 5000, "plazo": "2 semanas", "destinatario": "Inversores y startups", "related_posts": 6},
+    {"slug": "internacional-spain-entry-pack", "desde_eur": 5000, "plazo": "3 semanas", "destinatario": "Empresas extranjeras", "related_posts": 2},
+    {"slug": "techlaw-ai-act-compliance", "desde_eur": 4900, "plazo": "3 semanas", "destinatario": "Deployers de IA", "related_posts": 7},
+    {"slug": "litigacion-juicio-mercantil", "desde_eur": 4000, "plazo": "Según agenda judicial", "destinatario": "Demandante o demandado", "related_posts": 8},
+    {"slug": "internacional-european-data-compliance", "desde_eur": 3500, "plazo": "2 semanas", "destinatario": "Empresas no europeas", "related_posts": 4},
+    {"slug": "litigacion-juicio-administrativo", "desde_eur": 3000, "plazo": "Según agenda judicial", "destinatario": "Empresa o particular", "related_posts": 6},
+    {"slug": "litigacion-juicio-civil", "desde_eur": 2000, "plazo": "Según agenda judicial", "destinatario": "Demandante o demandado", "related_posts": 10}
+  ],
+  "honorarios_publicados": {
+    "videoconsulta_eur": 90,
+    "minimo_extrajudicial_eur": 600,
+    "minimo_judicial_eur": 2000,
+    "tope_declarado": "20 % sobre la cuantía en juego"
+  },
+  "herramientas": [
+    {"slug_es": "adonde-voy", "slug_en": "where-to", "creada": "2026-09-14"},
+    {"slug_es": "inspector-rgpd", "slug_en": "gdpr-inspector", "creada": "2026-09-14"},
+    {"slug_es": "autoevaluacion-ai-act", "slug_en": "ai-act-self-assessment", "creada": "2026-09-10"},
+    {"slug_es": "necesito-abogado-ia", "slug_en": "does-my-ai-need-a-lawyer", "creada": "2026-09-10"},
+    {"slug_es": "necesito-un-abogado", "slug_en": "do-i-need-a-lawyer", "creada": "2026-09-10"},
+    {"slug_es": "te-compensa-abogado", "slug_en": "is-a-lawyer-worth-it", "creada": "2026-09-10"}
+  ],
+  "cadencia_publicacion_blog_es": {
+    "2026-01": 2, "2026-02": 1, "2026-04": 6, "2026-05": 3,
+    "2026-06": 4, "2026-07": 3, "2026-08": 6, "2026-09": 13
+  },
+  "urls_publicadas_sin_datos_en_gsc": [
+    "/areas", "/areas/inteligencia-artificial", "/areas/datos", "/areas/litigacion", "/areas/internacional",
+    "/en/areas", "/en/areas/artificial-intelligence", "/en/areas/data-law", "/en/areas/litigation", "/en/areas/international",
+    "/videoconsulta", "/en/videoconsulta",
+    "/legal-tools/adonde-voy", "/legal-tools/inspector-rgpd",
+    "/blog/tjue-canal-plus-consentimiento-socios-marketing", "/blog/omnibus-digital-rgpd-cookies-estado"
+  ],
+  "sitemap": {
+    "url": "https://passas.io/sitemap.xml",
+    "urls_enviadas": 101,
+    "errores": 0,
+    "avisos": 0,
+    "ultima_descarga": "2026-09-14T23:46:49.523Z",
+    "include_in_sitemap_verificado": "Todas las paginas estaticas (14 por locale), 38 posts ES, 8 posts EN, 4 areas en ambos locales, 10 servicios, 6 herramientas y 2 fichas de equipo estan en true."
+  },
+  "hallazgos_tecnicos_del_codigo": [
+    "Las dos lenguas conviven en el mismo HTML en /areas y en los campos tesis/experiencia, ocultando una con CSS (.l-en{display:none} / html[lang^=en] .l-es{display:none!important}).",
+    "Los href de las areas en ingles se inyectan por JavaScript desde un atributo data-en: las 4 paginas /en/areas/* no reciben enlaces internos estaticos.",
+    "El hub de areas carga una segunda hoja de Google Fonts con 6 familias extra y monta 4 bucles simultaneos de requestAnimationFrame sobre canvas.",
+    "El CSS usa 'Press Start 2P' en la tarjeta de IA y esa familia no aparece en la hoja de fuentes cargada.",
+    "Las tarjetas hacen preventDefault() y navegan con window.location, pero conservan el href: siguen siendo rastreables.",
+    "El texto de tesis y experiencia esta en el HTML, no inyectado por JS.",
+    "El selector de idioma de la cabecera devuelve 'No enabled locales found' al leerlo por API; verificar que renderiza en el sitio publicado.",
+    "Taxonomia desalineada: 4 areas (IA, Datos, Litigacion, Internacional) frente a 3 categorias de servicio (TechLaw, Litigacion, Internacional). 'Datos' no tiene categoria propia.",
+    "La pagina estatica 'Que hacemos' y la plantilla de la coleccion Areas publican ambas en /areas."
+  ],
+  "json_ld": {
+    "home": "LegalService completo con colegiacion, makesOffer y employee",
+    "blog_template": "BlogPosting con inLanguage fijo 'es-ES' (afecta a los 8 posts EN) y url/author.url relativas; falta mainEntityOfPage",
+    "services_template": "Service con AggregateOffer alimentado por honorarios-desde-num",
+    "team_template": "Person con colegio y numero de colegiado",
+    "areas_template": "CollectionPage",
+    "sin_json_ld": ["/team (pagina estatica)", "plantilla de Legal Tools"]
+  }
+}
