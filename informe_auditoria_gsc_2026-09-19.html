@@ -185,8 +185,8 @@ td.tagcell{white-space:nowrap; width:1%}
 
 <header class="masthead">
   <span class="eyebrow">Search Console · Tercera revisión · Datos hasta el 18 sep 2026</span>
-  <h1>Las áreas ya están indexadas.<br>Y lo están con el fallo dentro.</h1>
-  <p class="lede">Cuatro días después, las diez URLs del clúster de áreas han entrado en el índice: las diez salen «Enviada e indexada», con canónica autorreferente correcta. Pero Google las rastreó el <strong>16 de septiembre</strong>, y el JSON-LD que se imprimía como texto visible se corrigió <strong>después</strong>. La versión que Google tiene guardada de las cuatro áreas es la defectuosa. Eso, y una página de 90 € que Google no ha rastreado nunca, son las dos cosas urgentes de esta revisión.</p>
+  <h1>Las diez áreas, dentro.<br>La puerta de entrada, fuera.</h1>
+  <p class="lede">Las diez URLs del clúster de áreas han entrado en el índice, y la versión que Google tiene guardada es correcta: esquema en la cabecera, aunque con los campos vacíos. Conviene reindexar para que vea el esquema con contenido, sin más urgencia que esa. Lo que sí es urgente es que <strong><code>/videoconsulta</code> y <code>/en/videoconsulta</code> no las ha rastreado Google ni una vez</strong>: la puerta de entrada de 90 € al modelo comercial no existe en búsqueda. Y una rectificación más, mía, al final de este bloque.</p>
   <div class="meta">
     <span>Propiedad <b class="mono">sc-domain:passas.io</b></span>
     <span>Datos GSC hasta <b>18 sep</b> · por página <b>16 sep</b></span>
@@ -214,7 +214,7 @@ td.tagcell{white-space:nowrap; width:1%}
       <tr><td>Redirección automática de idioma</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>Googlebot recibe ES, con hreflang <span class="mono">x-default</span>, <span class="mono">es-ES</span> y <span class="mono">en</span>.</td></tr>
       <tr><td>Duplicados bajo <code>/en/</code> de artículos solo en español</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>No existen. El locale EN tiene 8 artículos publicados.</td></tr>
       <tr><td>Restos de e-commerce ensuciando el rastreo</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>Fuera del sitemap.</td></tr>
-      <tr><td>Canónicas con parámetro sin resolver</td><td class="tagcell"><span class="tag mid">◐ Abierto</span></td><td>La canónica global está activa, pero Google no ha vuelto a rastrear la URL paginada desde el 7 de agosto. Ver abajo.</td></tr>
+      <tr><td>Canónicas con parámetro sin resolver</td><td class="tagcell"><span class="tag mid">◐ Abierto</span></td><td>La canónica global está activa, pero las cuatro URLs paginadas indexadas se rastrearon antes de activarla. Ver abajo.</td></tr>
     </tbody>
   </table></div>
 </div>
@@ -231,30 +231,29 @@ td.tagcell{white-space:nowrap; width:1%}
 <!-- ============ URGENTE ============ -->
 <section id="urgente">
   <span class="eyebrow">Lo nuevo · Verificado con la URL Inspection API el 19 sep</span>
-  <h2>Dos cosas que piden acción hoy</h2>
+  <h2>Qué está realmente pendiente</h2>
 
   <div class="findings">
 
-    <div class="finding c"><div class="stripe"></div><div class="body">
-      <div class="fhead"><h3>Google indexó las cuatro áreas con el JSON-LD impreso en el cuerpo</h3><span class="chip c">● Urgente</span><span class="chip n">10 URLs</span></div>
-      <p>Las diez URLs del clúster salen <strong>PASS, «Enviada e indexada»</strong>, con canónica declarada y elegida idénticas y autorreferentes. La solicitud de indexación funcionó y funcionó rápido. El problema es la fecha:</p>
+    <div class="finding w"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>Las áreas están indexadas con el esquema vacío, no con el muro de código</h3><span class="chip w">▲ Importante</span><span class="chip n">10 URLs</span></div>
+      <p>Las diez URLs del clúster salen <strong>PASS, «Enviada e indexada»</strong>, con canónica declarada y elegida idénticas y autorreferentes. La solicitud de indexación funcionó, y funcionó rápido. La cronología importa, y en la revisión anterior la conté mal:</p>
       <div class="timeline">
-        <div class="d">16 sep</div><div class="e">Google rastrea e indexa las diez URLs de área. <b>Es la versión que tiene guardada.</b></div>
-        <div class="d">17 sep</div><div class="e">Lighthouse mide las áreas y registra el JSON-LD <b>imprimiéndose como texto visible</b> en la página.</div>
-        <div class="d">17–18 sep</div><div class="e">Se rehace la plantilla: el JSON-LD pasa a <code>&lt;script type="application/ld+json"&gt;</code> con fichas de CMS reales, en ES y EN.</div>
-        <div class="d">19 sep</div><div class="e">La inspección sigue dando <b>último rastreo: 16 sep</b>. Google no ha vuelto.</div>
+        <div class="d">16 sep</div><div class="e">Google rastrea e indexa las diez URLs. La página lleva el JSON-LD <b>correctamente en la cabecera</b>, pero con los campos vacíos: <code>"name": " "</code> y una <code>url</code> terminada en <code>/areas/</code>. <b>Es la versión que Google tiene guardada.</b></div>
+        <div class="d">17 sep, tarde</div><div class="e">Al pegar el esquema sin envolver en <code>&lt;script&gt;</code>, el JSON-LD empieza a imprimirse como texto visible. Es lo que midió Lighthouse ese día — y lo que Google <b>no</b> llegó a ver.</div>
+        <div class="d">17–18 sep</div><div class="e">Se rehace la plantilla: JSON-LD dentro de <code>&lt;script type="application/ld+json"&gt;</code>, con fichas de CMS reales, en ES y EN.</div>
+        <div class="d">19 sep</div><div class="e">La inspección sigue dando <b>último rastreo: 16 sep</b>. Google no ha vuelto desde entonces.</div>
       </div>
-      <p style="margin-top:14px">Es decir: la primera impresión que Google se ha formado de las cuatro áreas incluye un bloque de código estructurado como contenido de texto visible. En páginas que además emitían <code>"name": " "</code> y URLs terminadas en <code>/areas/</code>, y que son ahora la cabecera del embudo comercial. Una primera evaluación con ese aspecto es mal punto de partida para contenido nuevo, que es justo cuando Google decide cuánta confianza darle.</p>
-      <div class="fix"><b>Qué hacer hoy</b>Solicitar indexación de nuevo para las diez URLs, ahora que la plantilla está corregida. No es cosmético: fuerza que la versión guardada sea la buena antes de que se consolide la evaluación inicial.</div>
+      <p style="margin-top:14px">De modo que no hay ningún muro de código en la versión indexada: esa ventana se abrió y se cerró entre dos rastreos. Lo que Google tiene es un esquema bien colocado pero sin contenido útil, en cuatro páginas que son la cabecera del embudo comercial. No es daño, es oportunidad desaprovechada — y se recupera con un re-rastreo.</p>
+      <div class="fix"><b>Qué hacer</b>Solicitar indexación de las diez, ahora que la plantilla emite el esquema con los datos reales. Importa porque estas páginas están en su evaluación inicial, que es cuando el esquema más ayuda a que Google entienda de qué van.</div>
     </div></div>
 
     <div class="finding c"><div class="stripe"></div><div class="body">
       <div class="fhead"><h3>La página que vende el producto de 90 € no la ha rastreado Google nunca</h3><span class="chip c">● Urgente</span></div>
-      <p><code>/videoconsulta</code> y <code>/en/videoconsulta</code> están las dos en <strong>«Descubierta: actualmente sin indexar»</strong>, con <span class="mono">pageFetchState</span> sin definir: Google sabe que existen, por el sitemap, y <strong>no ha ido a buscarlas ni una vez</strong>. Cero impresiones históricas.</p>
-      <p>Es el destino de los dos botones de la cabecera y la puerta de entrada de todo el modelo comercial —90 €, descontables de la primera factura—. Y hay un detalle que apunta a la causa: la única URL referente que GSC conoce para ella es <code>/blog/consultar-estado-juicio-andalucia-2026</code>. Ni la home, ni ninguna otra página con cabecera.</p>
-      <p>Ese patrón se repite en las demás páginas del menú. Ninguna de las ocho que he inspeccionado muestra un referente con cabecera: <code>/legal-tools</code>, <code>/team</code> y <code>/abogados-inteligencia-artificial</code> no tienen ningún referente conocido; <code>/honorarios</code> lo es desde <code>/en/honorarios</code> y desde dos URLs <em>paginadas</em>; <code>/blog</code> desde <code>/en/blog</code>, <code>/politica-de-cookies</code> y un artículo.</p>
-      <p><strong>La hipótesis</strong> —y va como hipótesis, porque <code>referringUrls</code> es una muestra y no puedo ver el HTML— es que <strong>los enlaces del menú global no están llegando a Google como enlaces</strong>. Encaja con lo que devuelve la API del componente de navegación, donde cada elemento es un <code>&lt;a&gt;</code> con <code>data-wf-link-page-id</code> y sin <code>href</code>. Si eso es lo que se sirve, el menú no transmite nada y el grafo interno del sitio se apoya en las listas paginadas, que es exactamente lo que se observa.</p>
-      <div class="fix"><b>Comprobación de un minuto</b>Abrir el código fuente de la home —fuente, no inspector— y buscar <code>href="/videoconsulta"</code>. Si no aparece, el menú es HTML sin enlaces y esa es la prioridad número uno del sitio entero, por encima de todo lo demás de este informe. Si aparece, basta con solicitar indexación de las dos URLs.</div>
+      <p><code>/videoconsulta</code> y <code>/en/videoconsulta</code> están las dos en <strong>«Descubierta: actualmente sin indexar»</strong>, con <span class="mono">pageFetchState</span> sin definir. Google <strong>sabe que existen</strong> —la inspección confirma que las tiene asociadas a <code>sitemap.xml</code>— y <strong>no ha ido a buscarlas ni una vez</strong> desde que se crearon el 1 de septiembre. Cero impresiones históricas.</p>
+      <p>Es el destino de los dos botones de la cabecera y la puerta de entrada de todo el modelo comercial: 90 € por sesenta minutos con abogado colegiado, descontables de la primera factura. Que no esté en el índice significa que nadie puede llegar a ella por búsqueda, ni siquiera buscando «videoconsulta abogado».</p>
+      <p>No hay misterio de causa: «Descubierta, actualmente sin indexar» es lo que Google devuelve cuando conoce una URL por el sitemap y no le ha asignado prioridad de rastreo. En un dominio de siete meses con ~130 URLs y trece artículos publicados en un mes, el rastreo va donde hay señales, y a estas dos páginas aún no le han llegado. Se resuelve empujándolas.</p>
+      <div class="fix"><b>Qué hacer</b>Encabezan la lista de solicitudes de indexación de abajo. Y el sitemap reenviado hoy ayuda: es el mecanismo por el que Google las conoce.</div>
     </div></div>
 
   </div>
@@ -309,10 +308,19 @@ td.tagcell{white-space:nowrap; width:1%}
     </div></div>
 
     <div class="finding w"><div class="stripe"></div><div class="body">
-      <div class="fhead"><h3>Hay un segundo parámetro de paginación, en las fichas de abogado</h3><span class="chip w">▲ Importante</span></div>
-      <p>Al inspeccionar los referentes de <code>/honorarios</code> aparece <code>/team/guillermo-passas-varo?660a2bb5_page=2</code>: un parámetro distinto del <code>efe235d7_page</code> del blog. Son dos listas paginadas diferentes generando URLs rastreables.</p>
-      <p>Y la cadena se alimenta sola: la URL paginada del artículo de AI Act figura como referida por <code>?efe235d7_page=2</code>, que a su vez lo será de la anterior. <strong>Google está usando las paginaciones como principal vía de descubrimiento de enlaces internos del sitio</strong>, que es coherente con la hipótesis del menú de la sección anterior.</p>
-      <div class="fix"><b>Qué hacer</b>Al comprobar la canónica de la paginada del blog, comprobar también la de <code>/team/&lt;slug&gt;?660a2bb5_page=2</code>. Si ambas se autocanonizan con parámetro, la solución es una canónica autorreferente en las dos plantillas, no la global.</div>
+      <div class="fhead"><h3>Cuatro URLs paginadas indexadas, en dos plantillas distintas</h3><span class="chip w">▲ Importante</span></div>
+      <p>La inspección de hoy amplía el hallazgo: no es una URL paginada, son cuatro, y hay <strong>dos parámetros distintos</strong> —<code>efe235d7_page</code> en el blog y <code>660a2bb5_page</code> en las fichas de abogado—. Todas indexadas, todas autocanonizándose <em>con el parámetro</em>, y todas con <span class="mono">userCanonical: null</span>: Google no detecta etiqueta canónica declarada en ninguna.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>URL paginada indexada</th><th class="num">Último rastreo</th><th class="num">Días</th></tr></thead>
+        <tbody>
+          <tr><td class="url">/blog/exito-abogado-preventivo-etica?efe235d7_page=2</td><td class="num">21 jun</td><td class="num">90</td></tr>
+          <tr><td class="url">/blog/responsable-…-obligaciones-2026?efe235d7_page=3</td><td class="num">7 ago</td><td class="num">43</td></tr>
+          <tr><td class="url">/team/guillermo-passas-varo?660a2bb5_page=2</td><td class="num">21 ago</td><td class="num">29</td></tr>
+          <tr><td class="url">/blog/cuando-necesitas-abogado-test-ocho-preguntas?efe235d7_page=3</td><td class="num">1 sep</td><td class="num">18</td></tr>
+        </tbody>
+      </table></div>
+      <p>Las cuatro se rastrearon antes de que se activara la canónica global, así que el <span class="mono">userCanonical</span> nulo no prueba todavía que la canónica no las alcance. La de <code>cuando-necesitas-abogado</code> es la más reciente —1 de septiembre—: <strong>si la canónica global ya estaba activa en esa fecha, esa sola URL demuestra que no llega a las páginas que genera la Collection List</strong>, y entonces hace falta una canónica autorreferente por plantilla.</p>
+      <div class="fix"><b>Qué hacer</b>Dos cosas. Una: decirme cuándo se activó la canónica global, que acota el diagnóstico sin gastar cuota. Dos: pedir re-rastreo de una paginada de cada plantilla —la del blog y la de equipo— y volver a inspeccionarlas en dos semanas. Si <span class="mono">userCanonical</span> sigue nulo tras un rastreo nuevo, la global no alcanza y toca la autorreferente.</div>
     </div></div>
 
   </div>
@@ -341,10 +349,11 @@ td.tagcell{white-space:nowrap; width:1%}
 
     <div class="finding w"><div class="stripe"></div><div class="body">
       <div class="fhead"><h3>El <span class="mono">NO_LCP</span> del área de IA merece una segunda medición</h3><span class="chip w">▲ Verificar</span></div>
-      <p>Que Lighthouse no encuentre elemento de LCP no es solo consecuencia del JSON-LD visible. Suele pasar cuando el contenido principal es un <code>&lt;canvas&gt;</code> animado o texto que aparece por escritura progresiva —las dos cosas están en esa página— y significa que el navegador no identifica un elemento estable que considerar «el contenido».</p>
-      <p>Si tras la corrección sigue dando <span class="mono">NO_LCP</span>, conviene que el H1 del área se pinte como texto estático desde el primer frame y que el efecto de máquina de escribir se aplique encima, no en lugar de él. Es un cambio pequeño con efecto directo en cómo se mide y se percibe la página.</p>
-      <div class="fix"><b>Qué hacer</b>Volver a pasar Lighthouse por las cuatro áreas ahora que la plantilla está limpia, y comparar contra estas cifras para saber cuánto era el fallo y cuánto es la gamificación.</div>
+      <p>El H1 del área es texto normal y se pinta como tal, así que no es el sospechoso. El efecto de escritura progresiva está en el <strong>embed de la Propuesta</strong>, más abajo en la página, junto al <code>&lt;canvas&gt;</code> animado. Que Lighthouse no encuentre elemento de LCP suele pasar cuando el candidato natural es un lienzo que se repinta o un bloque cuyo texto aparece carácter a carácter: el navegador no identifica un elemento estable que considerar «el contenido».</p>
+      <p>Con el JSON-LD ya fuera del cuerpo, la medición vuelve a ser interpretable. Si el <span class="mono">NO_LCP</span> persiste, el candidato es ese embed, no el encabezado — y la salida sería que el bloque tenga un estado de reposo visible desde el primer frame, con la animación encima.</p>
+      <div class="fix"><b>Qué hacer</b>Volver a pasar Lighthouse por las cuatro áreas ahora que la plantilla está limpia y pasarme las cifras. Yo no puedo medirlo: sin acceso al dominio desde este entorno, cualquier número que diera sería inventado.</div>
     </div></div>
+
   </div>
 </section>
 
@@ -401,23 +410,61 @@ td.tagcell{white-space:nowrap; width:1%}
   </div>
 </section>
 
+<!-- ============ INDEXACIÓN ============ -->
+<section id="indexacion">
+  <span class="eyebrow">Parte operativa</span>
+  <h2>Solicitudes de indexación, listas para lanzar</h2>
+  <p class="intro">Search Console admite del orden de diez solicitudes al día por propiedad. Comprobado: <strong>no hay vía automática</strong>. El recurso <code>urlInspection.index</code> de la Search Console API expone un único método, <code>inspect</code>; no hay ninguno para solicitar indexación. La Indexing API de Google existe, pero su ámbito documentado son las páginas de <span class="mono">JobPosting</span> y <span class="mono">BroadcastEvent</span>, así que no aplica a estas URLs. Van a mano.</p>
+  <p class="intro" style="margin-top:12px">Lo que sí he podido hacer desde la API es <strong>reenviar el sitemap</strong>, que era el primer paso del plan: hecho hoy a las 11:35, <span class="mono">isPending: true</span>. Google lo recogerá en su próximo ciclo y eso ya empuja por sí solo las URLs que solo conoce por ahí — <code>/videoconsulta</code> entre ellas.</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th class="num">#</th><th>Día 1</th><th>Por qué aquí</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td class="url">/videoconsulta</td><td>Nunca rastreada. Producto de entrada de 90 €.</td></tr>
+      <tr><td class="num">2</td><td class="url">/en/videoconsulta</td><td>Nunca rastreada. Misma página, locale EN.</td></tr>
+      <tr><td class="num">3</td><td class="url">/servicios/techlaw-ai-act-compliance</td><td>20 días sin rastrear; metadatos reescritos que Google no ha visto. Ficha de 4.900 €.</td></tr>
+      <tr><td class="num">4</td><td class="url">/areas</td><td>Hub ES. Va antes que sus hijas: al re-rastrearlo, Google sigue sus enlaces.</td></tr>
+      <tr><td class="num">5</td><td class="url">/en/areas</td><td>Hub EN, por el mismo motivo. <b>Subido desde el día 2.</b></td></tr>
+      <tr><td class="num">6</td><td class="url">/areas/inteligencia-artificial</td><td>Esquema vacío en la versión indexada.</td></tr>
+      <tr><td class="num">7</td><td class="url">/areas/datos</td><td>Ídem.</td></tr>
+      <tr><td class="num">8</td><td class="url">/areas/litigacion</td><td>Ídem.</td></tr>
+      <tr><td class="num">9</td><td class="url">/areas/internacional</td><td>Ídem.</td></tr>
+      <tr><td class="num">10</td><td class="url">/en/areas/artificial-intelligence</td><td>Ídem, y es el área con más peso comercial en EN.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="scroll"><table>
+    <thead><tr><th class="num">#</th><th>Día 2</th><th>Por qué aquí</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td class="url">/en/areas/litigation</td><td>Completa el clúster EN.</td></tr>
+      <tr><td class="num">2</td><td class="url">/en/areas/international</td><td>Ídem.</td></tr>
+      <tr><td class="num">3</td><td class="url">/en/areas/data-law</td><td><b>Bajado desde el día 1.</b> Es la única de las diez que ya tiene resultados —9 impresiones en posición 6,9—, así que Google ya está pendiente de ella: es la que menos empuje necesita.</td></tr>
+      <tr><td class="num">4</td><td class="url">/blog/responsable-del-despliegue-ai-act-obligaciones-2026?efe235d7_page=3</td><td>Prueba de canónica, plantilla de blog. La más antigua de las del blog: 43 días.</td></tr>
+      <tr><td class="num">5</td><td class="url">/team/guillermo-passas-varo?660a2bb5_page=2</td><td>Prueba de canónica, plantilla de equipo. Es la única paginada de equipo que Google reconoce; las de David y la <code>page=3</code> no existen para él.</td></tr>
+    </tbody>
+  </table></div>
+
+  <p class="intro" style="margin-top:20px">Cinco huecos libres el día 2, y <strong>los dejaría libres</strong>. Los candidatos que quedan no los justifican: las otras dos paginadas indexadas son la misma prueba repetida, y <code>/blog/exito-abogado-preventivo-etica</code> —el último «Rastreada: actualmente sin indexar»— no debe pedirse antes de decidir si se reescribe o se fusiona; pedir indexación de una página que quizá vaya a redirigirse es trabajo que se deshace.</p>
+  <p class="intro" style="margin-top:12px"><strong><code>/legal</code> queda fuera</strong>, como dices. Lo he inspeccionado hoy para confirmarlo: sigue en «Rastreada: actualmente sin indexar», con canónica propia y último rastreo el 30 de mayo. Google no ha visto la 301 porque lleva 112 días sin pasar, y se destrabará solo cuando pase — el sitemap reenviado ayuda. Pedir indexación de una URL que ya no es una página no aporta nada.</p>
+  <p class="intro" style="margin-top:12px">Dos avisos sobre las paginadas del día 2: solicitar indexación de una URL que se quiere fuera del índice suena contradictorio, pero es el único modo de forzar el rastreo, y <strong>el resultado es la prueba</strong>. Si la canónica se sirve bien, Google la seguirá y consolidará en la URL limpia. Si al re-inspeccionarlas dentro de dos semanas <span class="mono">userCanonical</span> sigue nulo, la canónica global no alcanza a las páginas de Collection List y hace falta una autorreferente en cada plantilla. Por eso van una de cada plantilla y no dos de la misma.</p>
+</section>
+
 <!-- ============ PLAN ============ -->
 <section id="plan">
   <span class="eyebrow">Prioridad</span>
   <h2>Qué hacer esta semana</h2>
-  <p class="intro">Corto y ordenado. Los cuatro primeros son de hoy y suman menos de una hora.</p>
+  <p class="intro">Corto y ordenado. El primero ya está hecho; los dos siguientes son las listas de arriba.</p>
 
   <ol class="plan">
-    <li><span class="what">Reenviar el sitemap</span><span class="eff">Hoy · 2 min</span><span class="why">Sin descargar desde el 14 sep, con dos publish de por medio. Destraba las tres latencias de una vez.</span></li>
-    <li><span class="what">Solicitar indexación de las diez URLs de área</span><span class="eff">Hoy · 15 min</span><span class="why">Google tiene guardada la versión con el JSON-LD impreso como texto visible. La evaluación inicial de contenido nuevo se consolida ahora.</span></li>
-    <li><span class="what">Buscar <code>href="/videoconsulta"</code> en el código fuente de la home</span><span class="eff">Hoy · 1 min</span><span class="why">Si no está, el menú no transmite enlaces y eso reordena el informe entero. Si está, basta con pedir indexación de las dos URLs de videoconsulta.</span></li>
-    <li><span class="what">Solicitar indexación de <code>/legal</code>, <code>techlaw-ai-act-compliance</code> y la URL paginada</span><span class="eff">Hoy · 5 min</span><span class="why">Llevan 112, 20 y 43 días sin rastrear. Ninguna ha visto su corrección.</span></li>
+    <li><span class="what">Reenviar el sitemap</span><span class="eff">Hecho · vía API</span><span class="why">Reenviado hoy a las 11:35 desde la Search Console API, <span class="mono">isPending: true</span>. Llevaba sin descargarse desde el 14 sep con dos publish de por medio.</span></li>
+    <li><span class="what">Lanzar la lista del día 1</span><span class="eff">Hoy · 15 min</span><span class="why">Diez solicitudes: las dos de videoconsulta, la ficha de AI Act y los dos hubs con sus áreas. Detalle y orden en la sección anterior.</span></li>
+    <li><span class="what">Lanzar la lista del día 2</span><span class="eff">Mañana · 10 min</span><span class="why">Cinco: el resto del clúster EN y las dos paginadas de prueba, una por plantilla.</span></li>
     <li><span class="what">Atacar el bloqueo de renderizado común a todo el sitio</span><span class="eff">Alto · 3 h</span><span class="why">450 ms de bloqueo y 240 KiB de JS sin usar. Es lo que separa la home de un 84 de un 95, y afecta a todas las páginas, no solo a las áreas.</span></li>
     <li><span class="what">Enlazar los artículos de AI Act a la ficha con ancla de contratación</span><span class="eff">Alto · 3 h</span><span class="why">Si tras el re-rastreo la ficha sigue entre 30 y 50, los metadatos no eran el cuello: es la autoridad interna.</span></li>
-    <li><span class="what">Re-medir Lighthouse en las cuatro áreas</span><span class="eff">Medio · 20 min</span><span class="why">Separar cuánto del 65 y del NO_LCP era el fallo del JSON-LD y cuánto es la gamificación.</span></li>
-    <li><span class="what">Verificar la canónica de las dos paginaciones tras el re-rastreo</span><span class="eff">Medio · 15 min</span><span class="why">Si <span class="mono">userCanonical</span> sigue nulo, la canónica global no alcanza a las URLs de Collection List y hace falta una autorreferente por plantilla.</span></li>
-    <li><span class="what">Decidir sobre <code>/blog/exito-abogado-preventivo-etica</code></span><span class="eff">Bajo · 30 min</span><span class="why">Último no indexado, 91 días sin rastrear, de la etapa pre-especialización. Reescribir y enlazar desde un área, o fusionar y redirigir.</span></li>
-    <li><span class="what">Pintar el H1 de las áreas como texto estático desde el primer frame</span><span class="eff">Bajo · 1 h</span><span class="why">Solo si el NO_LCP persiste tras la re-medición.</span></li>
+    <li><span class="what">Re-medir Lighthouse en las cuatro áreas y pasarme las cifras</span><span class="eff">Medio · 20 min</span><span class="why">Con el JSON-LD ya fuera del cuerpo, la medición vuelve a ser interpretable. Yo no puedo medirlo sin acceso al dominio.</span></li>
+    <li><span class="what">Confirmarme cuándo se activó la canónica global</span><span class="eff">Medio · 1 min</span><span class="why">Si fue antes del 1 de septiembre, la paginada rastreada ese día ya prueba que no alcanza a la Collection List, y no hace falta esperar dos semanas.</span></li>
+    <li><span class="what">Re-inspeccionar las dos paginadas dos semanas después del re-rastreo</span><span class="eff">Medio · 15 min</span><span class="why">Si <span class="mono">userCanonical</span> sigue nulo, toca canónica autorreferente en la plantilla de blog y en la de equipo.</span></li>
+    <li><span class="what">Decidir sobre <code>/blog/exito-abogado-preventivo-etica</code></span><span class="eff">Bajo · 30 min</span><span class="why">Último no indexado, 91 días sin rastrear, de la etapa pre-especialización. Reescribir y enlazar desde un área, o fusionar y redirigir — y solo entonces pedir indexación.</span></li>
   </ol>
 
   <p class="intro" style="margin-top:26px"><strong>Y la fecha sigue siendo el 15 de octubre.</strong> Para entonces habrá cuatro semanas de las áreas en índice y dos semanas post-rastreo de las fichas reescritas. Las preguntas: ¿tienen impresiones las diez áreas, o solo la de Datos?; ¿ha salido <code>techlaw-ai-act-compliance</code> de la franja 30–50?; ¿sigue la cohorte B2B por encima del 2 % con volumen ya significativo?; ¿y aparece <code>/videoconsulta</code> por fin en el índice?</p>
@@ -425,7 +472,7 @@ td.tagcell{white-space:nowrap; width:1%}
 
 <footer>
   <p><b>Qué hay detrás de cada afirmación.</b> Search Analytics API: series por fecha, página, consulta y sus cruces, datos hasta el 18 de septiembre (por página, hasta el 16). URL Inspection API: 37 URLs inspeccionadas el 19 de septiembre, de donde salen los estados de cobertura, canónicas, fechas de último rastreo y URLs referentes. API de sitemaps para la fecha de descarga. Las cifras de Lighthouse y los doce hallazgos rectificados vienen de tus comprobaciones del 18 de septiembre contra el sitio publicado.</p>
-  <p><b>Lo que sigo sin poder ver.</b> El proxy de egress de este entorno bloquea passas.io: <code>curl</code> y la herramienta de fetch devuelven <span class="mono">EGRESS_BLOCKED</span>. No he rastreado el HTML servido, así que nada de lo que digo sobre lo que el navegador recibe —el menú, las canónicas renderizadas, hreflang— es una afirmación: son hipótesis con una comprobación concreta al lado. La lección del informe anterior, escrita para no repetirla: <strong>la Data API de Webflow describe el origen, no la página; entre una cosa y otra hay plantillas, componentes, código global y locales secundarios, y ahí se decide casi todo</strong>. <span class="mono">referringUrls</span> es además una muestra que Google ofrece a título de ejemplo, no un listado de enlaces entrantes.</p>
+  <p><b>Lo que sigo sin poder ver, y qué hago con ello.</b> El proxy de egress de este entorno bloquea passas.io: <code>curl</code> y la herramienta de fetch devuelven <span class="mono">EGRESS_BLOCKED</span>. No he rastreado el HTML servido ni una sola vez en las tres revisiones. El procedimiento, después de fallar dos veces por lo mismo: <strong>nada sobre lo que recibe el navegador se afirma desde aquí</strong>. Va como pregunta, con la comprobación concreta al lado y sin puesto en la lista de prioridades, hasta que alguien la mire en el HTML servido. La Data API de Webflow describe el origen —campos de CMS, ajustes del Designer, el locale primario—, no la página renderizada; y <span class="mono">referringUrls</span> es una muestra que Google ofrece como ejemplo, no un listado de enlaces entrantes. Ninguna de las dos cosas prueba lo que hay en el HTML.</p>
 </footer>
 
 </div>
