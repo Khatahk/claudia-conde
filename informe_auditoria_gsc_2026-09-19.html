@@ -1,0 +1,474 @@
+<title>Auditoría GSC passas.io</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F4F6F9; --surface:#FFFFFF; --surface-2:#EDF0F5;
+  --ink:#131923; --ink-2:#465063; --muted:#79849A;
+  --line:#DCE2EB; --line-strong:#C3CCD9;
+  --accent:#3D5AD9; --accent-ink:#2A3FA0; --accent-wash:rgba(61,90,217,.10);
+  --crit:#CE2F26; --crit-wash:rgba(206,47,38,.10);
+  --warn:#B36A00; --warn-wash:rgba(179,106,0,.12);
+  --good:#17795E; --good-wash:rgba(23,121,94,.12);
+  --grid:rgba(19,25,35,.08);
+  --shadow:0 1px 2px rgba(19,25,35,.05), 0 8px 24px -16px rgba(19,25,35,.25);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1319; --surface:#161C25; --surface-2:#1D242F;
+    --ink:#E9EDF4; --ink-2:#AFBACB; --muted:#7D889B;
+    --line:#252D3A; --line-strong:#343E4E;
+    --accent:#8098F0; --accent-ink:#A9BAF7; --accent-wash:rgba(128,152,240,.14);
+    --crit:#F0685E; --crit-wash:rgba(240,104,94,.14);
+    --warn:#E8A33D; --warn-wash:rgba(232,163,61,.14);
+    --good:#3FAE86; --good-wash:rgba(63,174,134,.14);
+    --grid:rgba(233,237,244,.09);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1319; --surface:#161C25; --surface-2:#1D242F;
+  --ink:#E9EDF4; --ink-2:#AFBACB; --muted:#7D889B;
+  --line:#252D3A; --line-strong:#343E4E;
+  --accent:#8098F0; --accent-ink:#A9BAF7; --accent-wash:rgba(128,152,240,.14);
+  --crit:#F0685E; --crit-wash:rgba(240,104,94,.14);
+  --warn:#E8A33D; --warn-wash:rgba(232,163,61,.14);
+  --good:#3FAE86; --good-wash:rgba(63,174,134,.14);
+  --grid:rgba(233,237,244,.09);
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px; line-height:1.62; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px; margin:0 auto; padding-inline:20px; padding-block:0 72px}
+h1,h2,h3{font-family:Newsreader,Georgia,"Times New Roman",serif; font-weight:600; text-wrap:balance; margin:0}
+h1{font-size:clamp(30px,5.2vw,46px); line-height:1.12; letter-spacing:-.015em}
+h2{font-size:clamp(22px,3.4vw,29px); line-height:1.2; letter-spacing:-.01em}
+h3{font-size:18px; line-height:1.3}
+p{margin:0}
+a{color:var(--accent-ink); text-decoration-thickness:1px; text-underline-offset:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--muted);
+}
+header.masthead{
+  border-bottom:1px solid var(--line); padding-block:44px 30px;
+  display:flex; flex-direction:column; gap:18px;
+}
+.masthead .meta{display:flex; flex-wrap:wrap; gap:6px 22px; font-size:12.5px; color:var(--muted)}
+.masthead .meta b{color:var(--ink-2); font-weight:500}
+.lede{font-size:17px; color:var(--ink-2); max-width:64ch; line-height:1.66}
+.lede strong{color:var(--ink); font-weight:600}
+.verdict{
+  margin-block:32px; background:var(--surface); border:1px solid var(--line);
+  border-left:3px solid var(--accent); border-radius:3px; padding:24px 26px;
+  box-shadow:var(--shadow); display:flex; flex-direction:column; gap:12px;
+}
+.verdict p{font-size:16.5px; line-height:1.6}
+.verdict .big{font-family:Newsreader,Georgia,serif; font-size:21px; line-height:1.4; color:var(--ink)}
+.verdict.alerta{border-left-color:var(--crit)}
+.kpis{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1px; background:var(--line); border:1px solid var(--line); border-radius:3px;
+  overflow:hidden; margin-block:32px;
+}
+.kpi{background:var(--surface); padding:16px 18px; display:flex; flex-direction:column; gap:3px}
+.kpi .k{font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); font-family:"IBM Plex Mono",monospace}
+.kpi .v{font-family:"IBM Plex Mono",monospace; font-size:26px; font-weight:500; letter-spacing:-.02em; line-height:1.15}
+.kpi .d{font-size:12px; color:var(--ink-2)}
+.up{color:var(--good)} .down{color:var(--crit)}
+section{padding-block:40px 8px; border-top:1px solid var(--line); margin-top:38px}
+section > .eyebrow{display:block; margin-bottom:8px}
+section > p.intro{margin-top:14px; color:var(--ink-2); max-width:66ch}
+.charts{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:26px}
+@media(max-width:720px){.charts{grid-template-columns:1fr}}
+figure{margin:0; background:var(--surface); border:1px solid var(--line); border-radius:3px; padding:18px 16px 12px}
+figcaption{display:flex; flex-direction:column; gap:2px; margin-bottom:14px; padding-inline:2px}
+figcaption .t{font-family:Newsreader,Georgia,serif; font-size:17px; font-weight:600}
+figcaption .s{font-size:12px; color:var(--muted)}
+.chartbox{position:relative}
+svg{display:block; width:100%; height:auto; overflow:visible}
+.tip{
+  position:absolute; pointer-events:none; opacity:0; transform:translate(-50%,-100%);
+  background:var(--ink); color:var(--bg); padding:7px 10px; border-radius:3px;
+  font-size:11.5px; font-family:"IBM Plex Mono",monospace; white-space:nowrap;
+  transition:opacity .12s; z-index:5; line-height:1.45;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tip{background:#E9EDF4; color:#0E1319}}
+:root[data-theme="dark"] .tip{background:#E9EDF4; color:#0E1319}
+.findings{display:flex; flex-direction:column; gap:14px; margin-top:26px}
+.finding{
+  background:var(--surface); border:1px solid var(--line); border-radius:3px;
+  padding:18px 20px 18px 18px; display:grid; grid-template-columns:4px 1fr; gap:0 16px;
+}
+.finding .stripe{border-radius:2px; grid-row:1/-1}
+.finding.c .stripe{background:var(--crit)}
+.finding.w .stripe{background:var(--warn)}
+.finding.g .stripe{background:var(--good)}
+.finding .body{display:flex; flex-direction:column; gap:9px; min-width:0}
+.fhead{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px}
+.fhead h3{flex:1 1 220px; min-width:0}
+.chip{
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.08em;
+  text-transform:uppercase; padding:3px 8px; border-radius:2px; white-space:nowrap;
+  display:inline-flex; align-items:center; gap:5px;
+}
+.chip.c{background:var(--crit-wash); color:var(--crit)}
+.chip.w{background:var(--warn-wash); color:var(--warn)}
+.chip.g{background:var(--good-wash); color:var(--good)}
+.chip.n{background:var(--surface-2); color:var(--ink-2)}
+.finding p{font-size:14.5px; color:var(--ink-2)}
+.finding p strong{color:var(--ink); font-weight:600}
+.fix{font-size:13.5px; color:var(--ink-2); border-top:1px dashed var(--line-strong); padding-top:10px}
+.fix b{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:3px}
+.scroll{overflow-x:auto; margin-top:14px; border:1px solid var(--line); border-radius:3px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:520px}
+th,td{padding:9px 13px; text-align:left; border-bottom:1px solid var(--line)}
+thead th{
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--muted); font-weight:500; background:var(--surface-2);
+}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap}
+td.url{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-2)}
+code{font-family:"IBM Plex Mono",monospace; font-size:12.5px; background:var(--surface-2); padding:1px 5px; border-radius:2px; color:var(--ink)}
+.finding code{word-break:break-all}
+ol.plan{list-style:none; counter-reset:step; padding:0; margin:26px 0 0; display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:3px; overflow:hidden}
+ol.plan li{counter-increment:step; background:var(--surface); padding:16px 20px; display:grid; grid-template-columns:auto 1fr auto; gap:4px 16px; align-items:baseline}
+ol.plan li::before{content:counter(step,decimal-leading-zero); font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted)}
+ol.plan .what{font-weight:500; color:var(--ink); font-size:14.5px}
+ol.plan .why{grid-column:2; font-size:13px; color:var(--ink-2)}
+ol.plan .eff{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); white-space:nowrap}
+@media(max-width:560px){
+  ol.plan li{grid-template-columns:auto 1fr}
+  ol.plan .eff{grid-column:2; margin-top:4px}
+}
+footer{margin-top:44px; padding-top:24px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); display:flex; flex-direction:column; gap:8px}
+footer b{color:var(--ink-2); font-weight:500}
+ul.tight{margin:6px 0 0; padding-left:18px; font-size:13.5px; color:var(--ink-2); display:flex; flex-direction:column; gap:4px}
+ul.tight li::marker{color:var(--muted)}
+.perfil{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:3px; overflow:hidden; margin-top:24px}
+.perfil > div{background:var(--surface); padding:16px 18px; display:flex; flex-direction:column; gap:6px}
+.perfil .a{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted)}
+.perfil .b{font-family:Newsreader,Georgia,serif; font-size:17px; font-weight:600; line-height:1.25}
+.perfil .c{font-size:13px; color:var(--ink-2)}
+.perfil .d{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-2); margin-top:2px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important; animation:none!important}}
+</style>
+<style>
+/* --- añadidos v3 --- */
+.rect{margin-block:30px; background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--warn); border-radius:3px; padding:22px 24px; box-shadow:var(--shadow)}
+.rect h3{margin-bottom:10px}
+.rect p{color:var(--ink-2); font-size:14.5px}
+.tag{display:inline-flex; align-items:center; gap:5px; font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; padding:2px 7px; border-radius:2px; white-space:nowrap}
+.tag.ok{background:var(--good-wash); color:var(--good)}
+.tag.no{background:var(--crit-wash); color:var(--crit)}
+.tag.mid{background:var(--warn-wash); color:var(--warn)}
+td.tagcell{white-space:nowrap; width:1%}
+.timeline{display:grid; grid-template-columns:auto 1fr; gap:0 18px; margin-top:22px; font-size:14px}
+.timeline .d{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted); padding:9px 0; border-top:1px solid var(--line); white-space:nowrap}
+.timeline .e{padding:9px 0; border-top:1px solid var(--line); color:var(--ink-2)}
+.timeline .e b{color:var(--ink); font-weight:600}
+.timeline > :nth-child(1), .timeline > :nth-child(2){border-top:none}
+.lh{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:3px; overflow:hidden; margin-top:22px}
+.lh > div{background:var(--surface); padding:14px 16px; display:flex; flex-direction:column; gap:3px}
+.lh .p{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted); letter-spacing:.06em}
+.lh .n{font-family:"IBM Plex Mono",monospace; font-size:26px; font-weight:500; line-height:1.1}
+.lh .m{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-2)}
+.lh .warnnote{font-size:11.5px; color:var(--warn)}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="eyebrow">Search Console · Tercera revisión · Datos hasta el 18 sep 2026</span>
+  <h1>Las áreas ya están indexadas.<br>Y lo están con el fallo dentro.</h1>
+  <p class="lede">Cuatro días después, las diez URLs del clúster de áreas han entrado en el índice: las diez salen «Enviada e indexada», con canónica autorreferente correcta. Pero Google las rastreó el <strong>16 de septiembre</strong>, y el JSON-LD que se imprimía como texto visible se corrigió <strong>después</strong>. La versión que Google tiene guardada de las cuatro áreas es la defectuosa. Eso, y una página de 90 € que Google no ha rastreado nunca, son las dos cosas urgentes de esta revisión.</p>
+  <div class="meta">
+    <span>Propiedad <b class="mono">sc-domain:passas.io</b></span>
+    <span>Datos GSC hasta <b>18 sep</b> · por página <b>16 sep</b></span>
+    <span>Inspección de URL <b>19 sep</b></span>
+    <span>Histórico <b>21.619 impresiones · 257 clics</b></span>
+  </div>
+</header>
+
+<div class="rect">
+  <h3>Antes de nada: doce hallazgos del informe anterior eran falsos</h3>
+  <p>Los has comprobado uno a uno contra el sitio publicado y tenías razón. La causa es única y vale la pena dejarla escrita porque condiciona cómo hay que leer cualquier auditoría futura de este sitio: <strong>leí la Data API de Webflow y deduje de ahí lo que se servía al navegador</strong>. La API describe el origen —campos de CMS, ajustes de página, el locale primario—, no la página renderizada. Entre medias hay plantillas, componentes, código global, locales secundarios y el runtime de Webflow, y ahí se decidía todo lo que fallé.</p>
+  <p style="margin-top:10px">En esta revisión, cada afirmación nueva lleva su origen explícito. Sigo sin poder rastrear passas.io: el proxy de egress de este entorno bloquea el dominio, y <code>curl</code> y la herramienta de fetch devuelven <span class="mono">EGRESS_BLOCKED</span>. Todo lo que afirmo viene de la Search Analytics API y de la URL Inspection API, que son la vista de Google, no la mía. Lo que no pueda verificar por ahí, va como pregunta.</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Hallazgo del informe anterior</th><th class="tagcell">Estado</th><th>Motivo</th></tr></thead>
+    <tbody>
+      <tr><td>Tesis sin enlaces internos en tres áreas</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>Las cuatro enlazan a servicios, herramientas y artículos desde <code>tesis</code> y <code>experiencia</code>.</td></tr>
+      <tr><td>Áreas EN sin enlaces entrantes</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>Confirmado también por GSC: <code>/en/areas/data-law</code> figura como referida por <code>/areas/datos</code>, y <code>/areas/litigacion</code> por <code>/en/areas/litigation</code>. El conmutador funciona.</td></tr>
+      <tr><td><code>/servicios</code> fuera del menú deja las fichas huérfanas</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>Decisión deliberada; enlazada desde el pie y desde las tarjetas de cada área. Sigue indexada, rastreada el 7 sep.</td></tr>
+      <tr><td><code>/legal</code> sin indexar</td><td class="tagcell"><span class="tag mid">◐ Matizado</span></td><td>301 a <code>/aviso-legal</code> desde el 11 sep. Ver abajo: Google aún no la ha rastreado.</td></tr>
+      <tr><td>CTR de marca del 4,6 % como prueba de fuerza de marca</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>«passas» es consulta homónima. El dato del cohorte sigue siendo útil como techo de conversión, no como medida de marca.</td></tr>
+      <tr><td><code>inLanguage: es-ES</code> en los artículos EN</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>El JSON-LD del locale EN es independiente y correcto. Leí solo el primario.</td></tr>
+      <tr><td>«Datos» necesita categoría de servicio propia</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>La categoría va en el slug de las fichas. Cambiarla rompería URLs indexadas — el coste supera al beneficio.</td></tr>
+      <tr><td>Press Start 2P sin declarar</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>Se carga en todo el sitio; es la tipografía de los botones pixel.</td></tr>
+      <tr><td>Redirección automática de idioma</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>Googlebot recibe ES, con hreflang <span class="mono">x-default</span>, <span class="mono">es-ES</span> y <span class="mono">en</span>.</td></tr>
+      <tr><td>Duplicados bajo <code>/en/</code> de artículos solo en español</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>No existen. El locale EN tiene 8 artículos publicados.</td></tr>
+      <tr><td>Restos de e-commerce ensuciando el rastreo</td><td class="tagcell"><span class="tag no">✕ Falso</span></td><td>Fuera del sitemap.</td></tr>
+      <tr><td>Canónicas con parámetro sin resolver</td><td class="tagcell"><span class="tag mid">◐ Abierto</span></td><td>La canónica global está activa, pero Google no ha vuelto a rastrear la URL paginada desde el 7 de agosto. Ver abajo.</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><span class="k">Áreas indexadas</span><span class="v up">10 / 10</span><span class="d">ES y EN, rastreo 16 sep</span></div>
+  <div class="kpi"><span class="k">Impresiones 7 d</span><span class="v">2.565</span><span class="d">26 clics</span></div>
+  <div class="kpi"><span class="k">Histórico</span><span class="v">21.619</span><span class="d">257 clics acumulados</span></div>
+  <div class="kpi"><span class="k">Cohorte B2B sep</span><span class="v up">2,34 %</span><span class="d">CTR, pos. 6,5 · sube</span></div>
+  <div class="kpi"><span class="k">Fichas de servicio</span><span class="v down">0,46 %</span><span class="d">CTR, pos. 13,8 · sin cambio</span></div>
+  <div class="kpi"><span class="k">Videoconsulta</span><span class="v down">0</span><span class="d">rastreos de Google, nunca</span></div>
+</div>
+
+<!-- ============ URGENTE ============ -->
+<section id="urgente">
+  <span class="eyebrow">Lo nuevo · Verificado con la URL Inspection API el 19 sep</span>
+  <h2>Dos cosas que piden acción hoy</h2>
+
+  <div class="findings">
+
+    <div class="finding c"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>Google indexó las cuatro áreas con el JSON-LD impreso en el cuerpo</h3><span class="chip c">● Urgente</span><span class="chip n">10 URLs</span></div>
+      <p>Las diez URLs del clúster salen <strong>PASS, «Enviada e indexada»</strong>, con canónica declarada y elegida idénticas y autorreferentes. La solicitud de indexación funcionó y funcionó rápido. El problema es la fecha:</p>
+      <div class="timeline">
+        <div class="d">16 sep</div><div class="e">Google rastrea e indexa las diez URLs de área. <b>Es la versión que tiene guardada.</b></div>
+        <div class="d">17 sep</div><div class="e">Lighthouse mide las áreas y registra el JSON-LD <b>imprimiéndose como texto visible</b> en la página.</div>
+        <div class="d">17–18 sep</div><div class="e">Se rehace la plantilla: el JSON-LD pasa a <code>&lt;script type="application/ld+json"&gt;</code> con fichas de CMS reales, en ES y EN.</div>
+        <div class="d">19 sep</div><div class="e">La inspección sigue dando <b>último rastreo: 16 sep</b>. Google no ha vuelto.</div>
+      </div>
+      <p style="margin-top:14px">Es decir: la primera impresión que Google se ha formado de las cuatro áreas incluye un bloque de código estructurado como contenido de texto visible. En páginas que además emitían <code>"name": " "</code> y URLs terminadas en <code>/areas/</code>, y que son ahora la cabecera del embudo comercial. Una primera evaluación con ese aspecto es mal punto de partida para contenido nuevo, que es justo cuando Google decide cuánta confianza darle.</p>
+      <div class="fix"><b>Qué hacer hoy</b>Solicitar indexación de nuevo para las diez URLs, ahora que la plantilla está corregida. No es cosmético: fuerza que la versión guardada sea la buena antes de que se consolide la evaluación inicial.</div>
+    </div></div>
+
+    <div class="finding c"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>La página que vende el producto de 90 € no la ha rastreado Google nunca</h3><span class="chip c">● Urgente</span></div>
+      <p><code>/videoconsulta</code> y <code>/en/videoconsulta</code> están las dos en <strong>«Descubierta: actualmente sin indexar»</strong>, con <span class="mono">pageFetchState</span> sin definir: Google sabe que existen, por el sitemap, y <strong>no ha ido a buscarlas ni una vez</strong>. Cero impresiones históricas.</p>
+      <p>Es el destino de los dos botones de la cabecera y la puerta de entrada de todo el modelo comercial —90 €, descontables de la primera factura—. Y hay un detalle que apunta a la causa: la única URL referente que GSC conoce para ella es <code>/blog/consultar-estado-juicio-andalucia-2026</code>. Ni la home, ni ninguna otra página con cabecera.</p>
+      <p>Ese patrón se repite en las demás páginas del menú. Ninguna de las ocho que he inspeccionado muestra un referente con cabecera: <code>/legal-tools</code>, <code>/team</code> y <code>/abogados-inteligencia-artificial</code> no tienen ningún referente conocido; <code>/honorarios</code> lo es desde <code>/en/honorarios</code> y desde dos URLs <em>paginadas</em>; <code>/blog</code> desde <code>/en/blog</code>, <code>/politica-de-cookies</code> y un artículo.</p>
+      <p><strong>La hipótesis</strong> —y va como hipótesis, porque <code>referringUrls</code> es una muestra y no puedo ver el HTML— es que <strong>los enlaces del menú global no están llegando a Google como enlaces</strong>. Encaja con lo que devuelve la API del componente de navegación, donde cada elemento es un <code>&lt;a&gt;</code> con <code>data-wf-link-page-id</code> y sin <code>href</code>. Si eso es lo que se sirve, el menú no transmite nada y el grafo interno del sitio se apoya en las listas paginadas, que es exactamente lo que se observa.</p>
+      <div class="fix"><b>Comprobación de un minuto</b>Abrir el código fuente de la home —fuente, no inspector— y buscar <code>href="/videoconsulta"</code>. Si no aparece, el menú es HTML sin enlaces y esa es la prioridad número uno del sitio entero, por encima de todo lo demás de este informe. Si aparece, basta con solicitar indexación de las dos URLs.</div>
+    </div></div>
+
+  </div>
+</section>
+
+<!-- ============ MOVIMIENTO ============ -->
+<section id="movimiento">
+  <span class="eyebrow">Lo nuevo · Search Analytics</span>
+  <h2>Qué se ha movido en cuatro días</h2>
+  <p class="intro">Buenas noticias que conviene registrar, y tres latencias que explican por qué algunas correcciones aún no se ven.</p>
+
+  <div class="findings">
+
+    <div class="finding g"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>La primera área ya tiene resultados, y es la inglesa</h3><span class="chip g">✓ Señal</span></div>
+      <p><code>/en/areas/data-law</code> registró <strong>9 impresiones en posición media 6,9</strong> el 16 de septiembre, el mismo día del rastreo. Es la única de las diez con datos todavía, pero entrar directamente en la primera página con una URL de horas es una señal de confianza de dominio notable para un sitio de siete meses.</p>
+      <p>Que sea la inglesa es además el desmentido más limpio de mi hallazgo sobre enlaces entrantes: llegó primero precisamente la versión que yo daba por huérfana.</p>
+    </div></div>
+
+    <div class="finding g"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>Juicio Administrativo está subiendo desde la reescritura</h3><span class="chip g">✓ Señal temprana</span></div>
+      <p>Serie diaria de <code>/servicios/litigacion-juicio-administrativo</code>: 11 sep, 34 impresiones en posición 7,8 → 16 sep, <strong>53 impresiones en posición 6,5</strong>, con volumen creciendo cada día. Google la rastreó el 11 de septiembre.</p>
+      <p>Es demasiado pronto para atribuirlo a los metadatos nuevos y al cambio de la primera FAQ, pero la dirección es la correcta y esta es la ficha que hay que vigilar para saber si el reparto de intención —ficha para contratar, artículo para coste— está funcionando.</p>
+    </div></div>
+
+    <div class="finding g"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>Resueltos solos: dos hallazgos del informe anterior</h3><span class="chip g">✓ Cerrado</span></div>
+      <p><code>/blog/la-consulta-juridica-gratuita-…</code> ha pasado de «Rastreada: actualmente sin indexar» a <strong>«Enviada e indexada»</strong>, rastreada el 17 de septiembre. Las dos herramientas publicadas el 14 de septiembre, <code>/legal-tools/adonde-voy</code> y <code>/legal-tools/inspector-rgpd</code>, también están indexadas, rastreadas el 17.</p>
+      <p>Queda solo <code>/blog/exito-abogado-preventivo-etica</code> como «Rastreada: actualmente sin indexar», con último rastreo el 20 de junio: 91 días. Es el artículo más antiguo del blog junto al anterior, de la etapa previa a la especialización.</p>
+    </div></div>
+
+    <div class="finding w"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>Tres correcciones que Google todavía no ha visto</h3><span class="chip w">▲ Latencia</span></div>
+      <p>No son fallos: son páginas que Google no ha vuelto a rastrear desde antes de los cambios. Merece la pena saberlo para no interpretar la falta de movimiento como que la corrección no funciona.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>URL</th><th>Cambio aplicado</th><th class="num">Último rastreo</th><th class="num">Días</th></tr></thead>
+        <tbody>
+          <tr><td class="url">/legal</td><td>301 a <code>/aviso-legal</code> el 11 sep</td><td class="num">30 may</td><td class="num">112</td></tr>
+          <tr><td class="url">/servicios/techlaw-ai-act-compliance</td><td>Metadatos reescritos el 17–18 sep</td><td class="num">30 ago</td><td class="num">20</td></tr>
+          <tr><td class="url">/blog/responsable-…-2026?efe235d7_page=3</td><td>Canónica global activada</td><td class="num">7 ago</td><td class="num">43</td></tr>
+        </tbody>
+      </table></div>
+      <p><code>/legal</code> sigue apareciendo como «Rastreada: actualmente sin indexar» con canónica propia porque Google lleva <strong>112 días</strong> sin volver: no ha visto la 301. Y la URL paginada sigue autocanonizándose <em>con el parámetro</em> y con <span class="mono">userCanonical: null</span> —Google no detecta etiqueta canónica declarada— porque su última visita es del 7 de agosto, anterior al cambio.</p>
+      <div class="fix"><b>Qué hacer</b>Solicitar indexación de las tres. Y anotar la de la paginada para re-verificar en dos semanas: si tras un rastreo nuevo sigue con <span class="mono">userCanonical: null</span>, la canónica global no está alcanzando a las URLs que genera la paginación de Collection List y hace falta una canónica autorreferente en la plantilla.</div>
+    </div></div>
+
+    <div class="finding w"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>El sitemap no se descarga desde el 14 de septiembre</h3><span class="chip w">▲ Importante</span></div>
+      <p>La API de sitemaps devuelve <strong>última descarga: 14 sep, 23:46</strong>, con 101 URLs, cero errores y cero avisos. El sitio se publicó el 17 y se ha vuelto a tocar el 18. Google lleva cinco días sin recoger el sitemap, lo que explica en parte las latencias de arriba.</p>
+      <p>Además, la cuenta sigue en 101 URLs. Conviene confirmar que el sitemap recoge ya las páginas creadas después —las dos herramientas del 14, los dos artículos del 16 y 17— y que el número sube en la próxima descarga.</p>
+      <div class="fix"><b>Qué hacer</b>Reenviar el sitemap desde Search Console. Es la acción de menor coste y mayor alcance de todo el informe: mueve la aguja de las tres latencias a la vez.</div>
+    </div></div>
+
+    <div class="finding w"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>Hay un segundo parámetro de paginación, en las fichas de abogado</h3><span class="chip w">▲ Importante</span></div>
+      <p>Al inspeccionar los referentes de <code>/honorarios</code> aparece <code>/team/guillermo-passas-varo?660a2bb5_page=2</code>: un parámetro distinto del <code>efe235d7_page</code> del blog. Son dos listas paginadas diferentes generando URLs rastreables.</p>
+      <p>Y la cadena se alimenta sola: la URL paginada del artículo de AI Act figura como referida por <code>?efe235d7_page=2</code>, que a su vez lo será de la anterior. <strong>Google está usando las paginaciones como principal vía de descubrimiento de enlaces internos del sitio</strong>, que es coherente con la hipótesis del menú de la sección anterior.</p>
+      <div class="fix"><b>Qué hacer</b>Al comprobar la canónica de la paginada del blog, comprobar también la de <code>/team/&lt;slug&gt;?660a2bb5_page=2</code>. Si ambas se autocanonizan con parámetro, la solución es una canónica autorreferente en las dos plantillas, no la global.</div>
+    </div></div>
+
+  </div>
+</section>
+
+<!-- ============ RENDIMIENTO ============ -->
+<section id="rendimiento">
+  <span class="eyebrow">Rendimiento · Lighthouse móvil, 17 sep</span>
+  <h2>Qué mirar de estas cifras y qué no</h2>
+  <p class="intro">Las medidas de las áreas se tomaron con el JSON-LD imprimiéndose como texto visible, así que no describen la página actual. Lo que sí es válido, y es lo que importa, es lo común a todo el sitio.</p>
+
+  <div class="lh">
+    <div><span class="p">Home</span><span class="n">84</span><span class="m">LCP 3,5 · FCP 3,3 · TBT 70 ms · CLS 0</span></div>
+    <div><span class="p">/areas/litigacion</span><span class="n">82</span><span class="m">LCP 2,9 · TBT 260 ms · SI 5,0</span><span class="warnnote">medida no válida</span></div>
+    <div><span class="p">/areas/internacional</span><span class="n">65</span><span class="m">LCP 6,7 · TBT 210 ms</span><span class="warnnote">medida no válida</span></div>
+    <div><span class="p">/areas/inteligencia-artificial</span><span class="n">—</span><span class="m">error NO_LCP</span><span class="warnnote">medida no válida</span></div>
+  </div>
+
+  <div class="findings">
+    <div class="finding w"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>El problema real es de terceros, y afecta a todas las páginas</h3><span class="chip w">▲ Importante</span></div>
+      <p>Unos <strong>450 ms de bloqueo de renderizado</strong> entre el cargador de Google Fonts y el snippet de Intellimize, exceso de <code>preconnect</code> y <strong>~240 KiB de JavaScript sin usar</strong>, casi todo de jQuery, GSAP e Intellimize. Eso es lo que separa la home de un 84 a un 95, y es independiente de la gamificación de las áreas.</p>
+      <p>La home tiene LCP 3,5 s y FCP 3,3 s en móvil: los dos por encima del umbral recomendado de 2,5 s, y con un TBT bajísimo (70 ms), lo que apunta a que el cuello no es ejecución de JavaScript propio sino <strong>espera de recursos bloqueantes antes de pintar</strong>. Encaja exactamente con los 450 ms de bloqueo y con las fuentes.</p>
+      <div class="fix"><b>Qué hacer, por orden</b>1) Precargar la fuente del LCP y servir el resto con <code>font-display: swap</code>, que ya se usa en los embeds. 2) Cargar Intellimize en diferido o condicionarlo a las páginas donde se use de verdad. 3) jQuery solo es necesario si lo requiere alguna interacción heredada de Webflow: comprobar si se puede quitar. 4) Re-medir <em>después</em>, y solo entonces mirar las áreas.</div>
+    </div></div>
+
+    <div class="finding w"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>El <span class="mono">NO_LCP</span> del área de IA merece una segunda medición</h3><span class="chip w">▲ Verificar</span></div>
+      <p>Que Lighthouse no encuentre elemento de LCP no es solo consecuencia del JSON-LD visible. Suele pasar cuando el contenido principal es un <code>&lt;canvas&gt;</code> animado o texto que aparece por escritura progresiva —las dos cosas están en esa página— y significa que el navegador no identifica un elemento estable que considerar «el contenido».</p>
+      <p>Si tras la corrección sigue dando <span class="mono">NO_LCP</span>, conviene que el H1 del área se pinte como texto estático desde el primer frame y que el efecto de máquina de escribir se aplique encima, no en lugar de él. Es un cambio pequeño con efecto directo en cómo se mide y se percibe la página.</p>
+      <div class="fix"><b>Qué hacer</b>Volver a pasar Lighthouse por las cuatro áreas ahora que la plantilla está limpia, y comparar contra estas cifras para saber cuánto era el fallo y cuánto es la gamificación.</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ EN PIE ============ -->
+<section id="enpie">
+  <span class="eyebrow">Sigue en pie</span>
+  <h2>Lo que no ha cambiado</h2>
+  <p class="intro">Tres cosas del informe anterior sobreviven a la verificación y siguen siendo el núcleo del problema comercial.</p>
+
+  <figure style="margin-top:26px">
+    <figcaption><span class="t">CTR por cohorte de contenido</span><span class="s">Clics ÷ impresiones acumulados hasta el 18 sep · pasa el cursor para ver volumen y posición media</span></figcaption>
+    <div class="chartbox"><div id="c3"></div><div class="tip" id="t3"></div></div>
+  </figure>
+
+  <div class="findings">
+
+    <div class="finding c"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>AI Act Compliance sigue en tierra de nadie</h3><span class="chip c">● Crítico</span><span class="chip n">0 clics históricos</span></div>
+      <p>Lo señalaste como el hallazgo de mayor valor y los datos nuevos lo confirman, incluso lo empeoran. Serie diaria de septiembre:</p>
+      <div class="scroll"><table>
+        <thead><tr><th class="num">5 sep</th><th class="num">7 sep</th><th class="num">9 sep</th><th class="num">11 sep</th><th class="num">13 sep</th><th class="num">14 sep</th><th class="num">15 sep</th><th class="num">16 sep</th></tr></thead>
+        <tbody><tr>
+          <td class="num">37,5</td><td class="num">52,3</td><td class="num">30,7</td><td class="num">33,6</td><td class="num">50,1</td><td class="num">54,9</td><td class="num">50,4</td><td class="num">31,7</td>
+        </tr></tbody>
+      </table></div>
+      <p>Posición media diaria oscilando entre 30 y 55 sin tendencia, con 6–12 impresiones al día y <strong>cero clics, siempre</strong>. No es una página que esté cayendo: es una página que Google no sabe dónde colocar. Y es la ficha de 4.900 € con siete artículos del blog en el top 10 hablando de su materia.</p>
+      <p>Los metadatos nuevos son la primera mitad de la solución. La segunda es la autoridad interna: <strong>Google la rastreó por última vez el 30 de agosto</strong>, así que ni siquiera ha visto el cambio. Hasta que la rastree de nuevo, la posición no se moverá por sí sola.</p>
+      <div class="fix"><b>Qué hacer</b>Solicitar indexación, y después medir sobre la serie diaria —no sobre la media de 28 días, que aquí esconde la volatilidad—. Si tras el rastreo sigue entre 30 y 50, el problema no son los metadatos sino los enlaces internos desde los artículos de AI Act con ancla de contratación.</div>
+    </div></div>
+
+    <div class="finding w"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>El desajuste de intención sigue gobernando el sitio</h3><span class="chip w">▲ Estructural</span></div>
+      <p>Con datos hasta el 18 de septiembre, las cohortes se separan un poco más que hace cuatro días:</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Cohorte</th><th class="num">Impresiones</th><th class="num">Clics</th><th class="num">CTR</th><th class="num">Posición</th></tr></thead>
+        <tbody>
+          <tr><td>Marca (home, equipo, honorarios)</td><td class="num">1.900</td><td class="num">86</td><td class="num">4,53 %</td><td class="num">5,8</td></tr>
+          <tr><td>Blog B2B · cohorte septiembre</td><td class="num">428</td><td class="num">10</td><td class="num">2,34 %</td><td class="num">6,5</td></tr>
+          <tr><td>Blog consumo · guías masivas</td><td class="num">8.623</td><td class="num">84</td><td class="num">0,97 %</td><td class="num">6,7</td></tr>
+          <tr><td>Fichas de servicio (2–12 k€)</td><td class="num">3.238</td><td class="num">15</td><td class="num">0,46 %</td><td class="num">13,8</td></tr>
+          <tr><td>Herramientas</td><td class="num">56</td><td class="num">0</td><td class="num">0,00 %</td><td class="num">17,3</td></tr>
+        </tbody>
+      </table></div>
+      <p>La cohorte B2B de septiembre ha pasado del 2,15 % al <strong>2,34 %</strong> ganando volumen, y sigue duplicando a las guías de consumo que producen el 96 % de las impresiones del blog. Las fichas de servicio siguen clavadas en posición 13,8. La conclusión del informe anterior aguanta: <strong>el contenido que trae al comprador es el B2B, y la capa que cobra sigue siendo la peor posicionada</strong>.</p>
+      <p>Con la salvedad que señalaste sobre «passas» como consulta homónima: el 4,53 % de la cohorte de marca no mide fuerza de marca, mide lo que ocurre <em>cuando alguien llega a una página que responde bien</em>. Como techo de conversión sigue siendo el mejor dato del sitio.</p>
+    </div></div>
+
+    <div class="finding g"><div class="stripe"></div><div class="body">
+      <div class="fhead"><h3>Canibalización del clúster contencioso: en tratamiento</h3><span class="chip g">✓ En curso</span></div>
+      <p>El reparto de intención está aplicado —la primera FAQ de la ficha pasa a «¿Cuánto cobráis por un contencioso-administrativo?»— y la ficha empieza a subir. Las seis consultas de precio siguen sumando 575 impresiones y cero clics en el histórico, así que el efecto aún no se ve en la serie de consultas.</p>
+      <p>La medición limpia llega cuando la ficha acumule dos semanas post-rastreo. La pregunta concreta a la que hay que responder entonces: ¿ha dejado el artículo de aparecer para «honorarios abogado contencioso administrativo», o siguen apareciendo los dos?</p>
+    </div></div>
+
+  </div>
+</section>
+
+<!-- ============ PLAN ============ -->
+<section id="plan">
+  <span class="eyebrow">Prioridad</span>
+  <h2>Qué hacer esta semana</h2>
+  <p class="intro">Corto y ordenado. Los cuatro primeros son de hoy y suman menos de una hora.</p>
+
+  <ol class="plan">
+    <li><span class="what">Reenviar el sitemap</span><span class="eff">Hoy · 2 min</span><span class="why">Sin descargar desde el 14 sep, con dos publish de por medio. Destraba las tres latencias de una vez.</span></li>
+    <li><span class="what">Solicitar indexación de las diez URLs de área</span><span class="eff">Hoy · 15 min</span><span class="why">Google tiene guardada la versión con el JSON-LD impreso como texto visible. La evaluación inicial de contenido nuevo se consolida ahora.</span></li>
+    <li><span class="what">Buscar <code>href="/videoconsulta"</code> en el código fuente de la home</span><span class="eff">Hoy · 1 min</span><span class="why">Si no está, el menú no transmite enlaces y eso reordena el informe entero. Si está, basta con pedir indexación de las dos URLs de videoconsulta.</span></li>
+    <li><span class="what">Solicitar indexación de <code>/legal</code>, <code>techlaw-ai-act-compliance</code> y la URL paginada</span><span class="eff">Hoy · 5 min</span><span class="why">Llevan 112, 20 y 43 días sin rastrear. Ninguna ha visto su corrección.</span></li>
+    <li><span class="what">Atacar el bloqueo de renderizado común a todo el sitio</span><span class="eff">Alto · 3 h</span><span class="why">450 ms de bloqueo y 240 KiB de JS sin usar. Es lo que separa la home de un 84 de un 95, y afecta a todas las páginas, no solo a las áreas.</span></li>
+    <li><span class="what">Enlazar los artículos de AI Act a la ficha con ancla de contratación</span><span class="eff">Alto · 3 h</span><span class="why">Si tras el re-rastreo la ficha sigue entre 30 y 50, los metadatos no eran el cuello: es la autoridad interna.</span></li>
+    <li><span class="what">Re-medir Lighthouse en las cuatro áreas</span><span class="eff">Medio · 20 min</span><span class="why">Separar cuánto del 65 y del NO_LCP era el fallo del JSON-LD y cuánto es la gamificación.</span></li>
+    <li><span class="what">Verificar la canónica de las dos paginaciones tras el re-rastreo</span><span class="eff">Medio · 15 min</span><span class="why">Si <span class="mono">userCanonical</span> sigue nulo, la canónica global no alcanza a las URLs de Collection List y hace falta una autorreferente por plantilla.</span></li>
+    <li><span class="what">Decidir sobre <code>/blog/exito-abogado-preventivo-etica</code></span><span class="eff">Bajo · 30 min</span><span class="why">Último no indexado, 91 días sin rastrear, de la etapa pre-especialización. Reescribir y enlazar desde un área, o fusionar y redirigir.</span></li>
+    <li><span class="what">Pintar el H1 de las áreas como texto estático desde el primer frame</span><span class="eff">Bajo · 1 h</span><span class="why">Solo si el NO_LCP persiste tras la re-medición.</span></li>
+  </ol>
+
+  <p class="intro" style="margin-top:26px"><strong>Y la fecha sigue siendo el 15 de octubre.</strong> Para entonces habrá cuatro semanas de las áreas en índice y dos semanas post-rastreo de las fichas reescritas. Las preguntas: ¿tienen impresiones las diez áreas, o solo la de Datos?; ¿ha salido <code>techlaw-ai-act-compliance</code> de la franja 30–50?; ¿sigue la cohorte B2B por encima del 2 % con volumen ya significativo?; ¿y aparece <code>/videoconsulta</code> por fin en el índice?</p>
+</section>
+
+<footer>
+  <p><b>Qué hay detrás de cada afirmación.</b> Search Analytics API: series por fecha, página, consulta y sus cruces, datos hasta el 18 de septiembre (por página, hasta el 16). URL Inspection API: 37 URLs inspeccionadas el 19 de septiembre, de donde salen los estados de cobertura, canónicas, fechas de último rastreo y URLs referentes. API de sitemaps para la fecha de descarga. Las cifras de Lighthouse y los doce hallazgos rectificados vienen de tus comprobaciones del 18 de septiembre contra el sitio publicado.</p>
+  <p><b>Lo que sigo sin poder ver.</b> El proxy de egress de este entorno bloquea passas.io: <code>curl</code> y la herramienta de fetch devuelven <span class="mono">EGRESS_BLOCKED</span>. No he rastreado el HTML servido, así que nada de lo que digo sobre lo que el navegador recibe —el menú, las canónicas renderizadas, hreflang— es una afirmación: son hipótesis con una comprobación concreta al lado. La lección del informe anterior, escrita para no repetirla: <strong>la Data API de Webflow describe el origen, no la página; entre una cosa y otra hay plantillas, componentes, código global y locales secundarios, y ahí se decide casi todo</strong>. <span class="mono">referringUrls</span> es además una muestra que Google ofrece a título de ejemplo, no un listado de enlaces entrantes.</p>
+</footer>
+
+</div>
+
+<script>
+const COHORTES=[
+ {n:"Marca: home, equipo, honorarios", ctr:4.53, i:1900, c:86, pos:5.8},
+ {n:"Blog B2B · cohorte septiembre",   ctr:2.34, i:428,  c:10, pos:6.5},
+ {n:"Blog consumo · guías masivas",    ctr:0.97, i:8623, c:84, pos:6.7},
+ {n:"Fichas de servicio (2–12 k€)",    ctr:0.46, i:3238, c:15, pos:13.8},
+ {n:"Herramientas interactivas",       ctr:0.00, i:56,   c:0,  pos:17.3}
+];
+function nf(n){return n.toLocaleString("es-ES");}
+function barras(mountId,tipId,DATA){
+  const mount=document.getElementById(mountId), tip=document.getElementById(tipId);
+  if(!mount||!tip) return;
+  const W=920, ML=250, MR=118, MT=8, rowH=46, H=MT+DATA.length*rowH+10;
+  const iw=W-ML-MR, top=5;
+  const x=v=>ML+(iw*v)/top;
+  let g="";
+  for(let t=0;t<=top;t++){
+    g+=`<line x1="${x(t).toFixed(1)}" y1="${MT}" x2="${x(t).toFixed(1)}" y2="${H-14}" stroke="var(--grid)" stroke-width="1"/>`;
+    g+=`<text x="${x(t).toFixed(1)}" y="${H-2}" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="IBM Plex Mono, monospace">${t} %</text>`;
+  }
+  DATA.forEach((d,i)=>{
+    const cy=MT+i*rowH+rowH/2, bw=Math.max(x(d.ctr)-ML,2);
+    g+=`<text x="${ML-14}" y="${cy+4}" text-anchor="end" fill="var(--ink)" font-size="14" font-family="IBM Plex Sans, sans-serif">${d.n}</text>`;
+    g+=`<rect x="${ML}" y="${(cy-11).toFixed(1)}" width="${bw.toFixed(1)}" height="22" rx="3" fill="var(--accent)"/>`;
+    g+=`<text x="${(ML+bw+10).toFixed(1)}" y="${cy+4}" fill="var(--ink-2)" font-size="12.5" font-family="IBM Plex Mono, monospace">${d.ctr.toFixed(2).replace(".",",")} %</text>`;
+    g+=`<rect x="0" y="${(cy-rowH/2).toFixed(1)}" width="${W}" height="${rowH}" fill="transparent" data-i="${i}"/>`;
+  });
+  mount.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="CTR por cohorte de contenido">${g}</svg>`;
+  const svg=mount.querySelector("svg");
+  svg.addEventListener("pointermove",e=>{
+    const t=e.target.closest("rect[data-i]"); if(!t) return;
+    const d=DATA[+t.dataset.i], r=svg.getBoundingClientRect(), mr=mount.getBoundingClientRect();
+    const cy=MT+(+t.dataset.i)*rowH+rowH/2;
+    tip.style.left=(r.left-mr.left+(Math.min(x(d.ctr)+70,W-80)/W)*r.width)+"px";
+    tip.style.top=(((cy-14)/H)*r.height)+"px";
+    tip.innerHTML=`${nf(d.i)} impresiones · ${nf(d.c)} clic${d.c===1?"":"s"}<br>posición media ${d.pos.toFixed(1).replace(".",",")}`;
+    tip.style.opacity="1";
+  });
+  svg.addEventListener("pointerleave",()=>{tip.style.opacity="0";});
+}
+barras("c3","t3",COHORTES);
+</script>
